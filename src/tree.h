@@ -2,6 +2,7 @@
 #define TREE_H
 
 #include <assert.h>
+#include <utility>
 
 template <typename TKey, typename TValue> class Node {
 public:
@@ -33,8 +34,8 @@ public:
 template <typename TKey, typename TValue>
 class Tree {
 private:
-    Node<TKey,TValue> *header = nullptr;
-    int numNodes = 0;
+    Node<TKey,TValue> *header_ = nullptr;
+    int num_nodes_ = 0;
 
 public:
     using tree_type = Tree<TKey, TValue>;
@@ -42,13 +43,13 @@ public:
     //using iterator = TreeIterator<tree_type>;
     //using const_iterator = TreeConstIterator<tree_type>;
 
-    Tree(): header(nullptr){ }
+    Tree(): header_(nullptr){ }
 
-    int size() const { return numNodes; }
+    int size() const { return num_nodes_; }
 
-    node_type* root() { return header; }
+    node_type* root() { return header_; }
 
-    const node_type* root() const { return header; }
+    const node_type* root() const { return header_; }
 
     node_type *grandpa(node_type *node) {
         if (node->parent != nullptr
@@ -60,7 +61,7 @@ public:
     node_type *uncle(node_type *node) {
         node_type *grandparent = grandpa(node);
         if (grandparent == nullptr) return nullptr;
-        else if (grandparent->left == node->parent)  return grandparent->right;
+        else if (grandparent->left == node->parent) return grandparent->right;
         else return grandparent->left;
     }
 
@@ -75,276 +76,259 @@ public:
     }
 
     void erase(TKey key) {
-        node_type *delNode = find (key);
-        if (delNode != nullptr) {
-          delNode = takeNode(delNode);
-          delete delNode;
+        node_type *node = findNode (key);
+        if (node != nullptr) {
+          node = deleteNode(node);
+          delete node;
         }
       }
 
-    node_type *find (TKey key) {
-        node_type *node = header;
+    node_type *findNode(TKey key) {
+        node_type *node = header_;
         if (node==nullptr) return nullptr;
 
         while (node != nullptr && key != node->key) {
-          if (key > node->key) {
-            node = node->right;
-          } else if (key < node->key) {
-            node = node->left;
-          }
+          if (key > node->key)  node = node->right;
+          else if (key < node->key) node = node->left;
         }
         return node;
     }
 
-
-    static node_type *GetMax(node_type *node) {
+    static node_type *maxNode(node_type *node) {
         if (node == nullptr) return nullptr;
-        while (node->right != nullptr) {
+        while (node->right != nullptr)
             node = node->right;
-        }
         return node;
     }
 
-    static node_type *GetMin(node_type *node) {
+    static node_type *minNode(node_type *node) {
         if (node == nullptr) return nullptr;
-        while (node->left != nullptr) {
+        while (node->left != nullptr)
             node = node->left;
-        }
         return node;
     }
 
-
-    void replace_child_of_parent(node_type *x, node_type *y) {
+    void replaceChildsOfParent(node_type *x, node_type *y) {
         if (x->parent != nullptr) {
-          if (x == x->parent->left) {
-              x->parent->left = y;
-          } else if (x == x->parent->right) {
-              x->parent->right = y;
-          }
+            if (x == x->parent->left) x->parent->left = y;
+            else if (x == x->parent->right) x->parent->right = y;
         }
-      }
+    }
 
-    void replace_node(node_type *x, node_type *y)  {
-        replace_child_of_parent(x,y);
-        replace_child_of_parent(y,x);
+    void replaceNode(node_type *x, node_type *y)  {
+        replaceChildsOfParent(x,y);
+        replaceChildsOfParent(y,x);
 
-        node_type *tmp = x->left;
-        x->left = y->left;
-        y->left = tmp;
-
-        tmp = x->right;
-        x->right = y->right;
-        y->right = tmp;
-
-        tmp = x->parent;
-        x->parent = y->parent;
-        y->parent = tmp;
-
-        bool tmp_red = x->red;
-        x->red = y->red;
-        y->red = tmp_red;
+        std::swap(x->left, y->left);
+        std::swap(x->right, y->right);
+        std::swap(x->parent, y->parent);
+        std::swap(x->red, y->red);
 
         if (x->left != nullptr) x->left->parent = x;
         if (x->right != nullptr) x->right->parent = x;
         if (y->left != nullptr) y->left->parent = y;
         if (y->right != nullptr) y->right->parent = y;
-      }
-
+    }
 
     // Надо удалить значение-ключ
     // Это значение хранится в узле
     // Этот узел отправляем в эту функцию чтобы выдернуть из дерева и уничтожить
-    // Функцию надо сводить к удалению узла который имеет только одногосына или вообще не имеет
+    // Функцию надо сводить к удалению узла который имеет только одного сына или вообще не имеет
     // Известно что у узла слева находятся значения меньше значения узла
     // Поэтому делаем замену (узел <-> максимальный узел среди левой ветки этого узла)
     // У этого узла нет правого сына.
-    node_type *takeNode(node_type *node) {
+    node_type *deleteNode(node_type *node) {
         if (node == nullptr) {  // если узел пустой, возвращает пустой узел
             return nullptr;
         }
 
-        node_type *delNode = node;
-
-        if (delNode->left != nullptr) {
-            delNode = GetMax(delNode->left);
-        } else if (delNode->right != nullptr) {
-            delNode = GetMin(delNode->right);
+        node_type *replaceableNode = node;
+        if (replaceableNode->left != nullptr) {
+            replaceableNode = maxNode(replaceableNode->left);
+        } else if (replaceableNode->right != nullptr) {
+            replaceableNode = minNode(replaceableNode->right);
         }
 
-        if (delNode != node) {
-            replace_node(delNode,node);
-            if (header == node) {
-                header = delNode;
+        if (replaceableNode != node) {
+            replaceNode(replaceableNode,node);
+            if (header_ == node) header_ = replaceableNode;
+            replaceableNode = node;
+        }
+
+        // Если заменяемый узел черный, нельзя просто удалить узел, так как черная высота меняется
+        // Поэтому
+        if (replaceableNode->red == false) {
+            node_type *child;
+            if (replaceableNode->left != nullptr) child = replaceableNode->left;
+            else child = replaceableNode->right;
+
+            // Если есть один ребенок (а может быть только один ребенок, так как мы спустились до самого нижнего узла)
+            // Тогда этого ребенка поднимаем на место удаляемого узла и меняем цвет на черный
+            if (child != nullptr) {
+                child->parent = replaceableNode->parent;
+
+                if (replaceableNode->parent->left == replaceableNode) {
+                    replaceableNode->parent->left = child;
+                } else if (replaceableNode->parent->right == replaceableNode) {
+                    replaceableNode->parent->right = child;
+                }
+
+                child->red = false;
+            } else { //если нет детей
+                deleteNodeWithoutChild(replaceableNode);
             }
-            delNode = node;
-        }
+        }// else: Если заменяемый узел красный, тогда можно просто удалить узел,
+        // так как черная высота не меняется
 
-        if (delNode->red == false) {
-            //if (delNode->left != nullptr) node_type *child = delNode->left;
-            //node_type *child = delNode->right;
-            node_type *child = delNode->left ? delNode->left : delNode->right;
-
-            if (child == nullptr) {
-                delete_case1(delNode);
-            } else {
-                child->parent = delNode->parent;
-
-            if (delNode->parent->left == delNode) {
-                delNode->parent->left = child;
-            } else if (delNode->parent->right == delNode) {
-                delNode->parent->right = child;
+        // Родителю сообщаем, что уходим
+        if (replaceableNode->parent != nullptr) {
+            if (replaceableNode->parent->left == replaceableNode) {
+                replaceableNode->parent->left = nullptr;
+            } else if (replaceableNode->parent->right == replaceableNode) {
+                replaceableNode->parent->right = nullptr;
             }
+        } else header_ = nullptr;  // Если нет родителя, то сообщаем дереву, что оно пусто
 
-            child->red = false;
-            }
-        }
+        /*if (header_ == replaceableNode) {
+            header_ = nullptr;
+        }*/
 
-        if (delNode->parent != nullptr) {
-            if (delNode->parent->left == delNode) {
-                delNode->parent->left = nullptr;
-            } else if (delNode->parent->right == delNode) {
-                delNode->parent->right = nullptr;
-            }
-        }
+        num_nodes_ -= 1;
 
-        if (header == delNode) {
-            header = nullptr;
-        }
-
-        numNodes -= 1;
-
-        return delNode;
+        return replaceableNode;
     }
 
-    void delete_case1(node_type *node) {
-       if (node->parent != nullptr) delete_case2(node);
-     }
 
-     void delete_case2(node_type *node) {
-       node_type *brotherNode = neighbour(node);
-       if (brotherNode->red == true) {
-         node->parent->red = true;
-         brotherNode->red = false;
-         if (node == node->parent->left)
-           rotate_left(node->parent);
-         else
-           rotate_right(node->parent);
-       }
-       delete_case3(node);
-     }
+    // Удаляем узла без детей
+    // Если узел левый, тогда черного соседа поднимаем на место родителя
+    void deleteNodeWithoutChild(node_type *node) {
+        if (node->parent != nullptr) {
+            node_type *neighbor = neighbour(node);
+            if (neighbor->red == true && neighbor != nullptr) {
+                node->parent->red = true;
+                neighbor->red = false;
+                if (node == node->parent->left) rotateLeft(node->parent);
+                else rotateRight(node->parent);
+            }
+            changeNeighborToRed(node);
+        }
+    }
 
-     void delete_case3(node_type *node) {
-       node_type *brotherNode = neighbour(node);
-       if ((node->parent->red == false) && (brotherNode->red == false) &&
-           (brotherNode->left == nullptr || brotherNode->left->red == false) &&
-           (brotherNode->right == nullptr || brotherNode->right->red == false)) {
-         brotherNode->red = true;
-         delete_case1(node->parent);
-       } else
-         delete_case4(node);
-     }
+    // Если родитель черный и сосед черный, тогда поменяем цвет соседа на красный
+    void changeNeighborToRed(node_type *node) {
+        node_type *neighbor = neighbour(node);
+        if ((node->parent->red == false) && (neighbor->red == false) &&
+        (neighbor->left == nullptr || neighbor->left->red == false) &&
+        (neighbor->right == nullptr || neighbor->right->red == false)) {
+            neighbor->red = true;
+            deleteNodeWithoutChild(node->parent);
+        } else {
+            replaceParentNeighborColor(node);
+        }
+    }
 
-     void delete_case4(node_type *node) {
-       node_type *brotherNode = neighbour(node);
-       if ((node->parent->red == true) && (brotherNode->red == false) &&
-           (brotherNode->left == nullptr || brotherNode->left->red == false) &&
-           (brotherNode->right == nullptr || brotherNode->right->red == false)) {
-         brotherNode->red = true;
-         node->parent->red = false;
-       } else
-         delete_case5(node);
-     }
+    // Если родитель красный и сосед черный, тогда меняем их цвета
+    void replaceParentNeighborColor(node_type *node) {
+        node_type *neighbor = neighbour(node);
+        if ((node->parent->red == true) && (neighbor->red == false) &&
+        (neighbor->left == nullptr || neighbor->left->red == false) &&
+        (neighbor->right == nullptr || neighbor->right->red == false)) {
+            neighbor->red = true;
+            node->parent->red = false;
+        } else {
+           lowerNeighbor(node);
+           raiseNeighbor(node);
+        }
 
-     void delete_case5(node_type *node) {
-       node_type *brotherNode = neighbour(node);
-       if (brotherNode->red == false) {
-         if ((node == node->parent->left) &&
-             (brotherNode->right == nullptr ||
-              brotherNode->right->red == false) &&
-             (brotherNode->left != nullptr && brotherNode->left->red == true)) {
-           brotherNode->red = true;
-           brotherNode->left->red = false;
-           rotate_right(brotherNode);
-         } else if ((node == node->parent->right) &&
-                    (brotherNode->left == nullptr ||
-                     brotherNode->left->red == false) &&
-                    (brotherNode->right != nullptr &&
-                     brotherNode->right->red == true)) {
-           brotherNode->red = true;
-           brotherNode->right->red = false;
-           rotate_left(brotherNode);
-         }
-       }
-       delete_case6(node);
-     }
+    }
 
-     void delete_case6(node_type *node) {
-       node_type *brotherNode = neighbour(node);
-       brotherNode->red = node->parent->red;
-       node->parent->red = false;
-       if (node == node->parent->left) {
-         brotherNode->right->red = false;
-         rotate_left(node->parent);
-       } else {
-         brotherNode->left->red = false;
-         rotate_right(node->parent);
-       }
-     }
+    // Если сосед черный и сын соседа черный
+    // тогда соседа делаем красным и меняем с сыном
+    void lowerNeighbor(node_type *node) {
+        node_type *neighbor = neighbour(node);
+        if (neighbor->red == false) {
+            if ((node == node->parent->left) &&
+            (neighbor->right == nullptr || neighbor->right->red == false) &&
+            (neighbor->left != nullptr && neighbor->left->red == true)) {
+                neighbor->red = true;
+                neighbor->left->red = false;
+                rotateRight(neighbor);
+            } else if ((node == node->parent->right) &&
+            (neighbor->left == nullptr || neighbor->left->red == false) &&
+            (neighbor->right != nullptr && neighbor->right->red == true)) {
+                neighbor->red = true;
+                neighbor->right->red = false;
+                rotateLeft(neighbor);
+            }
+        }
+    }
 
+    // Если отец и сосед одного цвета
+    // тогда отца делаем черным, сына соседа делаем черным
+    // поднимаем соседа на место отца
+    void raiseNeighbor(node_type *node) {
+        node_type *neighbor = neighbour(node);
+        neighbor->red = node->parent->red;
+        node->parent->red = false;
+        if (node == node->parent->left) {
+            neighbor->right->red = false;
+            rotateLeft(node->parent);
+        } else {
+            neighbor->left->red = false;
+            rotateRight(node->parent);
+        }
+    }
 
     // Функция для добавления новый ноды без балансировки
     // Если ключ ноды меньше ключа рассмаотриваемого узла то добавляем как левый сын
     // Если больше то как правый сын
     // Если равны, то не добавляем (для set)
-    bool insert(node_type *newNode) {
-        if (header == nullptr) {
-            header = newNode;
-            // header -> red = false;
-            assert(header -> red == false);
+    bool insert(node_type *node) {
+        if (header_ == nullptr) {
+            header_ = node;
+            // header_ -> red = false;
+            assert(header_ -> red == false);
         } else {
-            node_type *parentNode = header;
-            node_type *currentNode = header;
+            node_type *parentNode = header_;
+            node_type *currentNode = header_;
             while (currentNode != nullptr) {
-                if (newNode->key < parentNode->key) currentNode = parentNode->left;
+                if (node->key < parentNode->key) currentNode = parentNode->left;
                 else currentNode = parentNode->right;
-                if (newNode->key == parentNode->key) return false;
+                if (node->key == parentNode->key) return false;
                 if (currentNode != nullptr) parentNode = currentNode;
             }
-            newNode->red = (newNode == header) ? false : true;
+            node->red = (node == header_) ? false : true;
 
-            if (newNode->key < parentNode->key) parentNode->left = newNode;
-            else parentNode->right = newNode;
+            if (node->key < parentNode->key) parentNode->left = node;
+            else parentNode->right = node;
 
-            newNode->parent = parentNode;
+            node->parent = parentNode;
 
-            tree_balancing(newNode); // tree_balancing
+            treeBalancing(node);
 
-            /*while (header->parent !=nullptr) {
-                header = header->parent;
+            /*while (header_->parent !=nullptr) {
+                header_ = header_->parent;
             }*/
         }
-        numNodes += 1;
-
-        //if (newNode != root()) rebalanceAfterInsert(newNode);
-
+        num_nodes_ += 1;
         return true;
     }
 
     // Балансировка:
     // Перекрашиваем отца в черный, дядя тоже должен быть черным, чтобы черная высота у них совпадала
     // Если дядя красный, тогда ...
-    void tree_balancing(node_type *node) {
+    void treeBalancing(node_type *node) {
       if (node->parent == nullptr) node->red = false;
       else if (node->parent->red == false) return;
-      else red_uncle(node);
+      else redUncle(node);
     }
 
     // Балансировка: Дядя то красный оказывается
     // Если дядя красный, тогда дядю перекрасим в черный.
     // Поскольку дядя черный, дед должен быть красным (если только не корень)
-    // Поскольку дед красный, проверим отца деда, он должен быть черным ->tree_balancing
+    // Поскольку дед красный, проверим отца деда, он должен быть черным ->treeBalancing
     // Если дяди не существует тогда ...
-    void red_uncle(node_type *node) {
+    void redUncle(node_type *node) {
       node_type *uncleNode = uncle(node);
       node_type *grandparent;
       if ((uncleNode != nullptr) && (uncleNode->red == true)) {
@@ -352,7 +336,7 @@ public:
         uncleNode->red = false;
         grandparent = grandpa(node);
         grandparent->red = true;
-        tree_balancing(grandparent);
+        treeBalancing(grandparent);
       } else {
         rotate(node);
       }
@@ -366,10 +350,10 @@ public:
       // Если узел правый и отец левый, тогда правый поворот для отца
       // Если узел левый и отец правый, тогда левый поворот для отца
       if ((node == node->parent->right) && (node->parent == grandparent->left)) {
-        rotate_left(node->parent);
+        rotateLeft(node->parent);
         node = node->left;
       } else if ((node == node->parent->left) && (node->parent == grandparent->right)) {
-        rotate_right(node->parent);
+        rotateRight(node->parent);
         node = node->right;
       }
 
@@ -378,16 +362,16 @@ public:
       node->parent->red = false;
       grandparent->red = true;
       if ((node == node->parent->left) && (node->parent == grandparent->left)) {
-        rotate_right(grandparent);
+        rotateRight(grandparent);
       } else {
-        rotate_left(grandparent);
+        rotateLeft(grandparent);
       }
     }
 
     // Левый поворот
     // Правый сын узла поднимается на место узла
-    // Переназначаем родителя, и правого, левого сына
-    void rotate_left(node_type *node) {
+    // Переназначаем родителя, правого, левого сына
+    void rotateLeft(node_type *node) {
       node_type *temp = node->right;
       temp->parent = node->parent;
       if (node->parent != nullptr) {
@@ -398,12 +382,12 @@ public:
       if (temp->left != nullptr) temp->left->parent = node;
       node->parent = temp;
       temp->left = node;
-      if (temp->parent == nullptr) header = temp;
+      if (temp->parent == nullptr) header_ = temp;
     }
 
     // Правый поворот
     // Левый сын узла поднимается на место узла
-    void rotate_right(node_type *node) {
+    void rotateRight(node_type *node) {
       node_type *temp = node->left;
       temp->parent = node->parent;
       if (node->parent != nullptr) {
@@ -414,11 +398,8 @@ public:
       if (temp->right != nullptr) temp->right->parent = node;
       node->parent = temp;
       temp->right = node;
-      if (temp->parent == nullptr) header = temp;
+      if (temp->parent == nullptr) header_ = temp;
     }
-
-
-
 };
 
 #endif /* TREE_H */

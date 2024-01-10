@@ -3,7 +3,7 @@
 #include "tree.h"
 
 
-static bool writeIntegerTree(const Node<int,int>* root, FILE* f, int level = 0) {
+static bool showTree(const Node<int,int>* root, FILE* f, int level = 0) {
     int i;
     for (i = 0; i < level; ++i) {
         fprintf(f, "    ");
@@ -17,8 +17,8 @@ static bool writeIntegerTree(const Node<int,int>* root, FILE* f, int level = 0) 
             fprintf(f, " red\n");
         else
             fprintf(f, " black\n");
-        writeIntegerTree(root->left, f, level+1);
-        writeIntegerTree(root->right, f, level+1);
+        showTree(root->left, f, level+1);
+        showTree(root->right, f, level+1);
     }
 
     return true;
@@ -57,7 +57,7 @@ int main() {
 
     //std::cout << "Size: " <<  tree.size() << std::endl;
 
-    writeIntegerTree(tree.root(), stdout);
+    showTree(tree.root(), stdout);
 
 
     //tree.add(node);
