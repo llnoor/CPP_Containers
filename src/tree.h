@@ -45,6 +45,20 @@ public:
 
     Tree(): header_(nullptr){ }
 
+    ~Tree() {
+        clearTree(header_);
+        num_nodes_ = 0;
+    }
+
+    void clearTree(node_type *node) {
+        if (node != nullptr) {
+            clearTree(node->left);
+            clearTree(node->right);
+            delete node;
+            node = nullptr;
+        }
+    }
+
     int size() const { return num_nodes_; }
 
     node_type* root() { return header_; }
