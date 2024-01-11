@@ -3,6 +3,7 @@
 
 #include <assert.h>
 #include <utility>
+#include <stdexcept>
 
 template <typename TKey, typename TValue> class Node {
 public:
@@ -33,13 +34,20 @@ public:
 
 template <typename TKey, typename TValue>
 class Tree {
-private:
-    Node<TKey,TValue> *header_ = nullptr;
-    int num_nodes_ = 0;
+
 
 public:
     using tree_type = Tree<TKey, TValue>;
     using node_type = Node<TKey,TValue>;
+
+    using key_type = TKey;
+    using value_type = TValue;
+    //using reference = TValue &;
+    //using const_reference = const TValue &;
+    using reference = TKey &;
+    using const_reference = const TKey &;
+    using size_type = size_t;
+
     //using iterator = TreeIterator<tree_type>;
     //using const_iterator = TreeConstIterator<tree_type>;
 
@@ -59,10 +67,72 @@ public:
         }
     }
 
-    int size() const { return num_nodes_; }
+    Tree(Tree&& second) noexcept {
+        std::swap(header_, second.header_);
+        std::swap(num_nodes_, second.num_nodes_);
+    };
+
+    Tree& operator=(Tree&& second) {
+        if (this->header_ != second.header_) {
+            clearTree(this->header_);
+            std::swap(header_, second.header_);
+            std::swap(num_nodes_, second.num_nodes_);
+        }
+        return *this;
+    }
+
+    Tree(const Tree &second) {
+        if (this->header_ != second.header_) {
+          clearTree(this->header_);
+
+          if (second.header_ != nullptr) {
+            this->header_ = new node_type(second.header_);
+            сopyWithoutBalancing(second.header_, this->header_);
+          }
+
+          this->num_nodes_ = second.num_nodes_;
+        }
+    }
+
+    Tree& operator=(const Tree& second) {
+        if (this->header_ != second.header_) {
+            clearTree(this->header_);
+            if (second.header_ != nullptr) {
+                this->header_ = new node_type(second.header_);
+                сopyWithoutBalancing(second.header_, this->header_);
+            }
+            this->num_nodes_ = second.num_nodes_;
+        }
+        return *this;
+    }
+
+    void swap(Tree& second) {
+        std::swap(header_, second.header_);
+        std::swap(num_nodes_, second.num_nodes_);
+    }
+
+    /*void merge(Tree& second) {
+        //std::swap(header_, second.header_);
+        //std::swap(num_nodes_, second.num_nodes_);
+    }*/
+
+    void clear() {
+        if (header_ != nullptr) {
+        clearTree(header_);
+        num_nodes_ = 0;
+        }
+    }
+
+    bool empty() { return (header_ == nullptr); }
+
+    size_type size() const { return num_nodes_; }
+
+    size_type max_size() {
+        std::allocator<value_type> size;
+        return size.max_size() / 10;
+    }
 
     node_type* root() { return header_; }
-
     const node_type* root() const { return header_; }
 
     node_type *grandpa(node_type *node) {
@@ -92,10 +162,10 @@ public:
     void erase(TKey key) {
         node_type *node = findNode (key);
         if (node != nullptr) {
-          node = deleteNode(node);
-          delete node;
+            node = deleteNode(node);
+            delete node;
         }
-      }
+    }
 
     node_type *findNode(TKey key) {
         node_type *node = header_;
@@ -142,6 +212,22 @@ public:
         if (x->right != nullptr) x->right->parent = x;
         if (y->left != nullptr) y->left->parent = y;
         if (y->right != nullptr) y->right->parent = y;
+    }
+
+    void сopyWithoutBalancing(node_type *from, node_type *to) {
+        if (from->right != nullptr) {
+            node_type *node = new node_type(from->right);
+            to->right = node;
+            node->parent = to;
+            сopyWithoutBalancing(from->right, node);
+        }
+
+        if (from->left != nullptr) {
+            node_type *node = new node_type(from->left);
+            to->left = node;
+            node->parent = to;
+            сopyWithoutBalancing(from->left, node);
+        }
     }
 
     // Надо удалить значение-ключ
@@ -211,7 +297,6 @@ public:
 
         return replaceableNode;
     }
-
 
     // Удаляем узла без детей
     // Если узел левый, тогда черного соседа поднимаем на место родителя
@@ -414,6 +499,24 @@ public:
       temp->right = node;
       if (temp->parent == nullptr) header_ = temp;
     }
+
+    // iterator begin()
+    // iterator end()
+
+    // void clear()
+
+    // std::pair<iterator, bool> insert(const value_type& value)
+
+    // void erase(iterator pos)
+
+    // iterator find(const Key& key)
+
+    // bool contains(const Key& key)
+
+
+private:
+    Node<TKey,TValue> *header_ = nullptr;
+    size_type num_nodes_ = 0;
 };
 
 #endif /* TREE_H */

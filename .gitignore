@@ -1,3 +1,6 @@
+build-tree*
+*.user
+
 # Prerequisites
 *.d
 
