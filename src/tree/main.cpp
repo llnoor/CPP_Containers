@@ -2,8 +2,9 @@
 #include <iostream>
 #include "tree.h"
 
+using namespace s21;
 
-static bool showTree(const Node<int,int>* root, FILE* f, int level = 0) {
+static bool showTree(const TreeNode<int,int>* root, FILE* f, int level = 0) {
     int i;
     for (i = 0; i < level; ++i) {
         fprintf(f, "    ");
