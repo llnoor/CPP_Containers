@@ -35,12 +35,11 @@ public:
 
     Tree(): header_(nullptr){ }
 
-    Tree(std::initializer_list<value_type> const &items) {
-        //for (const_reference item : items) {
-        for (const TKey &item : items) {
-            node_type *node = new node_type(item);
-            if (!insertNode(node)) delete node;
-        }
+    Tree(std::initializer_list<key_type> const &items) {
+      for (const_reference item : items) {
+        node_type *node = new node_type(item);
+        if (!tree_type::insertNode(node)) delete node;
+      }
     }
 
     ~Tree() {clearTree(header_); num_nodes_ = 0;}
@@ -171,7 +170,7 @@ public:
 
     template <typename... Args>
     std::vector<std::pair<iterator, bool>> emplace(Args &&...args) {
-        std::initializer_list<value_type> items = {args...};
+        std::initializer_list<key_type> items = {args...};
         std::vector<std::pair<iterator, bool>> temp_vector;
 
         for (const TKey& item : items) {

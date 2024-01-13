@@ -42,6 +42,17 @@ int main() {
 
 
    //std::set<char> a;
+    s21::set<int> std_three_obj = {100,200, 300};
+   //auto r = std_three_obj.emplace(100, 200, 42, 400);
+
+
+   for (auto& item : std_three_obj) {
+       std::cout << item << ' ';
+   }
+   std::cout << '\n';
+
+
+
    s21::set<char> a;
    a.insert('G');
    a.insert('F');

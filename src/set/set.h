@@ -24,7 +24,14 @@ public:
     using typename tree_type::iterator;
     using typename tree_type::const_iterator;
 
+    set() : tree_type() {}
 
+    set(std::initializer_list<key_type> const &items) {
+        for (const_reference item : items) {
+            node_type *node = new node_type(item);
+            if (!tree_type::insertNode(node)) delete node;
+        }
+    }
 
 };
 
