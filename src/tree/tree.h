@@ -35,6 +35,14 @@ public:
 
     Tree(): header_(nullptr){ }
 
+    Tree(std::initializer_list<value_type> const &items) {
+        //for (const_reference item : items) {
+        for (const TKey &item : items) {
+            node_type *node = new node_type(item);
+            if (!insertNode(node)) delete node;
+        }
+    }
+
     ~Tree() {clearTree(header_); num_nodes_ = 0;}
 
     void clearTree(node_type *node) {
@@ -90,32 +98,6 @@ public:
         std::swap(num_nodes_, second.num_nodes_);
     }
 
-    /*void merge(Tree& second) {
-        //std::swap(header_, second.header_);
-        //std::swap(num_nodes_, second.num_nodes_);
-    }*/
-
-    void merge2(tree_type &other) {
-      if (other.root != nullptr) {
-
-        node_type *current_node = nullptr;
-        node_type *takingNode = nullptr;
-        for (const_iterator tmp_iter = other.begin(); tmp_iter != other.end();) {
-          takingNode = (tmp_iter++).node_;
-          current_node = other.takeNode(takingNode);
-
-          current_node->left = nullptr;
-          current_node->right = nullptr;
-          current_node->red = true;
-          current_node->parent = nullptr;
-
-          if (!insert(current_node)) {
-            other.insert(current_node);
-          }
-        }
-      }
-    }
-
     void clean (node_type *node) {
         node->left = nullptr;
         node->right = nullptr;
@@ -136,9 +118,7 @@ public:
                 thisNode = second.deleteNode(secondNode);
                 clean(thisNode);
 
-                if (!insert(thisNode)) {
-                  second.insert(thisNode);
-                }
+                if (!insertNode(thisNode)) second.insertNode(thisNode);
             }
         }
     }
@@ -150,13 +130,57 @@ public:
         }
     }
 
-    // std::pair<iterator, bool> insert(const key_type& value)
+    bool contains(const TKey &key) { return findNode(key); }
 
-    // void erase(iterator pos)
+    /*std::pair<iterator, bool> insert2(const TKey &key) {
+      return insertKey(key);
+    }*/
 
-    // iterator find(const Key& key)
+    /*void add(TKey key) {
+        node_type *node  = new node_type(key);
+        insertNode(node);
+    }*/
 
-    // bool contains(const Key& key)
+
+    std::pair<iterator, bool> insert(const TKey &key) {
+      node_type *node = nullptr;
+      bool temp_bool = false;
+
+      //  Проверить!!!!
+      if (! isMultiset() ) node = findNode(key);
+
+      if (node == nullptr) {
+        node = new node_type(key);
+        temp_bool = insertNode(node);
+      }
+      return std::pair<iterator, bool>(node, temp_bool);
+    }
+
+    std::pair<node_type*, bool> insertKey(const TKey &key) {
+      node_type *node = nullptr;
+      bool temp_bool = false;
+
+      if (! isMultiset() ) node = findNode(key);
+
+      if (node == nullptr) {
+        node = new node_type(key);
+        temp_bool = insertNode(node);
+      }
+      return std::pair<node_type*, bool>(node, temp_bool);
+    }
+
+    template <typename... Args>
+    std::vector<std::pair<iterator, bool>> emplace(Args &&...args) {
+        std::initializer_list<value_type> items = {args...};
+        std::vector<std::pair<iterator, bool>> temp_vector;
+
+        for (const TKey& item : items) {
+            //std::pair<node_type *, bool> temp_insert = tree_type::insertKey(item);
+            std::pair<node_type *, bool> temp_insert = tree_type::insert(item);
+            temp_vector.push_back(std::pair<iterator, bool>(iterator(temp_insert.first),temp_insert.second));
+        }
+        return temp_vector;
+    }
 
     const_iterator begin() const { return iterator(minNode(header_)); }
     const_iterator rbegin() const { return iterator(maxNode(header_)); }
@@ -207,12 +231,12 @@ public:
 
     /*void add(TKey key, TValue value = 0) {
         node_type *node  = new node_type(key,value);
-        insert(node);
+        insertNode(node);
     }*/
 
     void add(TKey key) {
         node_type *node  = new node_type(key);
-        insert(node);
+        insertNode(node);
     }
 
     void erase(TKey key) {
@@ -429,6 +453,10 @@ public:
         return i;
     }
 
+    iterator find(const TKey &key) {
+      return iterator(findNode(key));
+    }
+
     node_type *findNode(TKey key) {
         node_type *node = header_;
         if (node==nullptr) return nullptr;
@@ -436,12 +464,13 @@ public:
         while (node != nullptr &&
                0 != compareNode(key, node)
                ) {
-          if (compareNode(key, node) > 0)  node = node->right;
-          else if (compareNode(key, node) < 0) node = node->left;
+            if (compareNode(key, node) > 0)  node = node->right;
+            else if (compareNode(key, node) < 0) node = node->left;
         }
         return node;
     }
 
+    // findNode without compareNode
     /*node_type *findNode(TKey key) {
         node_type *node = header_;
         if (node==nullptr) return nullptr;
@@ -457,7 +486,7 @@ public:
     // Если ключ ноды меньше ключа рассмаотриваемого узла то добавляем как левый сын
     // Если больше то как правый сын
     // Если равны, то не добавляем (для set)
-    bool insert(node_type *node) {
+    bool insertNode(node_type *node) {
         if (header_ == nullptr) {
             header_ = node;
             // header_ -> red = false;
@@ -600,24 +629,6 @@ public:
     }
 
 
-
-
-    // Заменить на наш вектор
-    /*template <typename... Args>
-    std::vector<std::pair<iterator, bool>> insert_many(Args &&...args) {
-      std::initializer_list<key_type> items = {args...};
-
-      std::vector<std::pair<iterator, bool>> resultVec;
-
-      for (const_reference item : items) {
-        std::pair<node_type *, bool> insertRes = tree_type::insert(item);
-        resultVec.push_back(std::pair<iterator, bool>(iterator(insertRes.first),
-                                                      insertRes.second));
-      }
-
-      return resultVec;
-    }*/
-
 private:
     TreeNode<TKey,TValue> *header_ = nullptr;
     size_type num_nodes_ = 0;
@@ -629,9 +640,10 @@ public:
     using tree_type = TTree;
     using node_type = typename TTree::node_type;
     using key_type = typename TTree::key_type;
+    using value_type = typename TTree::value_type;
     using const_reference = const key_type &;
 
-    template <typename TTree::TKey, typename TTree::TValue>
+    template <typename TKey, typename TValue>
     friend class Tree;
 
     TreeConstIterator(node_type *node) : node_(node) {}
@@ -655,8 +667,9 @@ public:
         if (node_->right != nullptr) {
             node_ = tree_type::minNode(node_->right);
         } else {
-            while (node_->parent != nullptr && tree_type::isRight(node_)) {
-              node_ = node_->parent;
+            // while (node_->parent != nullptr && tree_type::isRight(node_)) {
+            while (node_->parent != nullptr && node_ == node_->parent->right) {
+                node_ = node_->parent;
             }
             node_ = node_->parent;
         }
@@ -675,11 +688,11 @@ public:
         if (node_->left != nullptr) {
             node_ = tree_type::maxNode(node_->left);
         } else {
-          node_type *parentNode = nullptr;
-          while (node_->parent != nullptr && tree_type::isLeft(node_)) {
+            // while (node_->parent != nullptr && tree_type::isLeft(node_)) {
+            while (node_->parent != nullptr && node_ == node_->parent->left) {
+                node_ = node_->parent;
+            }
             node_ = node_->parent;
-          }
-          node_ = node_->parent;
         }
       } else {
         assert(0);
@@ -689,6 +702,14 @@ public:
         }
       }
       return *this;
+    }
+
+    const_reference operator*() const {
+        if (node_ != nullptr) return node_->key;
+        else  {
+            static key_type empty_key = key_type{};
+            return empty_key;
+        }
     }
 
 protected:
@@ -703,7 +724,7 @@ public:
     using key_type = typename TTree::key_type;
     using reference = key_type &;
 
-    template <typename TTree::TKey, typename TTree::TValue>
+    template <typename TKey, typename TValue>
     friend class Tree;
 
     TreeIterator(node_type *node) : tree_type(node) {}
