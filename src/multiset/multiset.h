@@ -28,7 +28,14 @@ public:
         return true;
     }
 
+    multiset() : tree_type() {}
 
+    multiset(std::initializer_list<key_type> const &items) {
+        for (const_reference item : items) {
+            node_type *node = new node_type(item);
+            if (!tree_type::insertNode(node)) delete node;
+        }
+    }
 };
 
 }

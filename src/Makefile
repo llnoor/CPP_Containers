@@ -2,6 +2,7 @@ CC = gcc -std=c++17 -g -Wall -Werror -Wextra
 OS = $(shell uname)
 
 SET = tests/test_set.cc
+MAP = tests/test_map.cc
 
 ifeq ($(OS), Linux)
 CHECKFLAGS = -lgtest -lgtest_main -lrt -lm -lstdc++ -pthread 
@@ -15,8 +16,10 @@ test_set:
 	$(CC) $(FLAGS) $(SET) -o test_set $(CHECKFLAGS)
 	./test_set
 
-test: build_test
-	./test
+test_map:
+	$(CC) $(FLAGS) $(MAP) -o test_set $(CHECKFLAGS)
+	./test_map
+
 
 valgrind: test
 	CK_FORK=no valgrind --vgdb=no --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose ./test

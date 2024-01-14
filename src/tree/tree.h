@@ -78,40 +78,43 @@ public:
         return *this;
     }
 
-    Tree(Tree&& second) noexcept {
-        //second = std::move(second_t);
-        std::swap(this->header_, second.header_);
-        std::swap(this->num_nodes_, second.num_nodes_);
-    };
+    // Конструктор перемещения
+    // to convert lvalue to rvalue
+    // https://stackoverflow.com/questions/34784755/c11-lvalue-rvalue-and-stdmove
+    Tree(Tree &&other) { moveConstructor(std::move(other)); }
 
-    Tree& operator=(Tree&& second) {
-        if (this->header_ != second.header_) {
-            clearTree(this->header_);
-            std::swap(this->header_, second.header_);
-            std::swap(this->num_nodes_, second.num_nodes_);
-        }
+    Tree &operator=(Tree &&s) {
+        moveConstructor(std::move(s));
         return *this;
     }
 
+    void moveConstructor(Tree &&second) {
+        //clearTree(header_);
+        /*header_ = m.header_;
+        num_nodes_ = m.num_nodes_;
+        m.header_ = nullptr;
+        m.num_nodes_ = 0;*/
+        std::swap(header_, second.header_);
+        std::swap(num_nodes_, second.num_nodes_);
+    }
 
-/// del
+    
+    // Проверить
+    TKey &at(const TKey &key) {
+        node_type *node = tree_type::findNode(key);
+        if (node == nullptr) throw std::out_of_range("Node does not exists");
+        return node->key.second;
+    }
 
-/*
-      Tree(Tree &&other) { MoveTree(std::move(other)); }
-
-  void MoveTree(Tree &&m) {
-    clearTree(header_);
-    header_ = m.header_;
-    num_nodes_ = m.num_nodes_;
-
-    m.header_ = nullptr;
-    m.num_nodes_ = 0;
-  }
-*/
-/// del
-
-
-
+    // Проверить
+    TKey &operator[](const TKey &key) {
+        node_type *node = tree_type::findNode(key);
+        if (node == nullptr) {
+            node = new node_type(key);
+            tree_type::insert(node);
+        }
+        return node->key.second;
+    }
 
     void swap(Tree& second) {
         std::swap(header_, second.header_);
@@ -125,25 +128,14 @@ public:
         node->parent = nullptr;
     }
 
-
-    // Проверить!!!
-    //
     void merge(tree_type& second) {
         if (second.header_ != nullptr && this->header_ != nullptr) {
             node_type *thisNode = nullptr;
             node_type *secondNode = nullptr;
-            //iterator iterator_second_tree = second.begin();
-            //while (iterator_second_tree.node_ != nullptr) {
             for (const_iterator iterator_second_tree = second.begin(); iterator_second_tree != second.end();) {
                 secondNode = (iterator_second_tree++).node_;
                 thisNode = second.deleteNode(secondNode);
-        thisNode->left = nullptr;
-        thisNode->right = nullptr;
-        thisNode->red = true;
-        thisNode->parent = nullptr;                
-                
-                //clean(thisNode);
-
+                clean(thisNode);
                 if (!insertNode(thisNode)) second.insertNode(thisNode);
             }
         }
@@ -159,15 +151,10 @@ public:
 
     bool contains(const TKey &key) { return findNode(key); }
 
-    /*std::pair<iterator, bool> insert2(const TKey &key) {
-      return insertKey(key);
-    }*/
-
     /*void add(TKey key) {
         node_type *node  = new node_type(key);
         insertNode(node);
     }*/
-
 
     std::pair<iterator, bool> insert(const TKey &key) {
       node_type *node = nullptr;

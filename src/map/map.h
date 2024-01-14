@@ -39,6 +39,17 @@ public:
         else i=0;
         return i;
     }
+
+    map() : tree_type() {}
+
+    map(std::initializer_list<key_type> const &items) {
+        for (const_reference item : items) {
+            node_type *node = new node_type(item);
+            if (!tree_type::insertNode(node)) delete node;
+        }
+    }
+
+
 };
 
 }
