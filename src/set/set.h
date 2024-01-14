@@ -33,6 +33,17 @@ public:
         }
     }
 
+    set(const set &s) : tree_type(s) {}
+
+    //set(set &&s) : tree_type(*s) {}
+
+    set(set &&s) : tree_type(std::move(s)) {}
+
+    /*set &operator=(set &&s) {
+        tree_type::MoveTree(std::move(s));
+        return *this;
+    }*/
+
 };
 
 }

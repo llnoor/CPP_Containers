@@ -53,20 +53,6 @@ public:
         }
     }
 
-    Tree(Tree&& second) noexcept {
-        std::swap(header_, second.header_);
-        std::swap(num_nodes_, second.num_nodes_);
-    };
-
-    Tree& operator=(Tree&& second) {
-        if (this->header_ != second.header_) {
-            clearTree(this->header_);
-            std::swap(header_, second.header_);
-            std::swap(num_nodes_, second.num_nodes_);
-        }
-        return *this;
-    }
-
     Tree(const Tree &second) {
         if (this->header_ != second.header_) {
           clearTree(this->header_);
@@ -92,6 +78,41 @@ public:
         return *this;
     }
 
+    Tree(Tree&& second) noexcept {
+        //second = std::move(second_t);
+        std::swap(this->header_, second.header_);
+        std::swap(this->num_nodes_, second.num_nodes_);
+    };
+
+    Tree& operator=(Tree&& second) {
+        if (this->header_ != second.header_) {
+            clearTree(this->header_);
+            std::swap(this->header_, second.header_);
+            std::swap(this->num_nodes_, second.num_nodes_);
+        }
+        return *this;
+    }
+
+
+/// del
+
+/*
+      Tree(Tree &&other) { MoveTree(std::move(other)); }
+
+  void MoveTree(Tree &&m) {
+    clearTree(header_);
+    header_ = m.header_;
+    num_nodes_ = m.num_nodes_;
+
+    m.header_ = nullptr;
+    m.num_nodes_ = 0;
+  }
+*/
+/// del
+
+
+
+
     void swap(Tree& second) {
         std::swap(header_, second.header_);
         std::swap(num_nodes_, second.num_nodes_);
@@ -111,11 +132,17 @@ public:
         if (second.header_ != nullptr && this->header_ != nullptr) {
             node_type *thisNode = nullptr;
             node_type *secondNode = nullptr;
-            iterator iterator_second_tree = second.begin();
-            while (iterator_second_tree.node_ != nullptr) {
+            //iterator iterator_second_tree = second.begin();
+            //while (iterator_second_tree.node_ != nullptr) {
+            for (const_iterator iterator_second_tree = second.begin(); iterator_second_tree != second.end();) {
                 secondNode = (iterator_second_tree++).node_;
                 thisNode = second.deleteNode(secondNode);
-                clean(thisNode);
+        thisNode->left = nullptr;
+        thisNode->right = nullptr;
+        thisNode->red = true;
+        thisNode->parent = nullptr;                
+                
+                //clean(thisNode);
 
                 if (!insertNode(thisNode)) second.insertNode(thisNode);
             }
@@ -125,6 +152,7 @@ public:
     void clear() {
         if (header_ != nullptr) {
         clearTree(header_);
+        header_ = nullptr;
         num_nodes_ = 0;
         }
     }
@@ -174,8 +202,8 @@ public:
         std::vector<std::pair<iterator, bool>> temp_vector;
 
         for (const TKey& item : items) {
-            //std::pair<node_type *, bool> temp_insert = tree_type::insertKey(item);
-            std::pair<node_type *, bool> temp_insert = tree_type::insert(item);
+            std::pair<node_type *, bool> temp_insert = tree_type::insertKey(item);
+            //std::pair<node_type *, bool> temp_insert = tree_type::insert(item);
             temp_vector.push_back(std::pair<iterator, bool>(iterator(temp_insert.first),temp_insert.second));
         }
         return temp_vector;
@@ -240,6 +268,14 @@ public:
 
     void erase(TKey key) {
         node_type *node = findNode (key);
+        if (node != nullptr) {
+            node = deleteNode(node);
+            delete node;
+        }
+    }
+
+    void erase(iterator it) {
+        node_type *node = it.node_;
         if (node != nullptr) {
             node = deleteNode(node);
             delete node;
@@ -693,13 +729,13 @@ public:
             }
             node_ = node_->parent;
         }
-      } else {
+      } /*else {
         assert(0);
         assert(1);
         if (tree_type::root() != nullptr) {
             node_ = tree_type::maxNode(tree_type::root());
         }
-      }
+      }*/
       return *this;
     }
 
@@ -770,19 +806,27 @@ public:
     TValue  value;
 
     TreeNode():
-        left(0),
-        right(0),
-        parent(0),
+        left(nullptr),
+        right(nullptr),
+        parent(nullptr),
         red(false),
         key(0),
         value(0){}
 
     TreeNode(TKey key):
-        left(0),
-        right(0),
-        parent(0),
+        left(nullptr),
+        right(nullptr),
+        parent(nullptr),
         red(false),
         key(key),
+        value(0){}
+
+    TreeNode(TreeNode *node):
+        left(nullptr),
+        right(nullptr),
+        parent(nullptr),
+        red(node->red),
+        key(node->key),
         value(0){}
 
     TreeNode(TKey key, TValue value):
