@@ -158,6 +158,48 @@ TEST(VectorDataTest, ReturnsCorrectPointer) {
 
 // отсутствует оператор[] 
 
+
+
+
+TEST(s21_vector_push_back, valid) {
+  s21::Vector<int> vec;
+  std::vector<int> std_vec;
+
+  for (int i = 0; i < 10; ++i) {
+    vec.push_back(i);
+    std_vec.push_back(i);
+    ASSERT_EQ(vec.size(), std_vec.size());
+    ASSERT_EQ(vec.back(), std_vec.back());
+  }
+
+  for (size_t i = 0; i < vec.size(); ++i) {
+    ASSERT_EQ(vec[i], std_vec[i]);
+  }
+}
+
+TEST(s21_vector_reserve, valid) {
+  s21::Vector<int> vec;
+  std::vector<int> std_vec;
+
+  vec.reserve(20);
+  std_vec.reserve(20);
+
+  ASSERT_EQ(vec.capacity(), 20);
+  ASSERT_EQ(std_vec.capacity(), 20);
+
+  for (int i = 0; i < 10; ++i) {
+    vec.push_back(i);
+    std_vec.push_back(i);
+    ASSERT_EQ(vec.size(), std_vec.size());
+    ASSERT_EQ(vec.back(), std_vec.back());
+  }
+
+  for (size_t i = 0; i < vec.size(); ++i) {
+    ASSERT_EQ(vec[i], std_vec[i]);
+  }
+}
+
+
 /*
 Array
  */

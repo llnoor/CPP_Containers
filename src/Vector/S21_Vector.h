@@ -102,15 +102,16 @@ iterator end();
         size_type max_size();
 
 
-        // void reserve(size_type size);
+        void reserve(size_type size);
 
         size_type capacity();
 
 
 
-        void clear();
+        // void clear();
 
         void shrink_to_fit();
+        void push_back(const_reference value);
 
         private:
         value_type *data_;

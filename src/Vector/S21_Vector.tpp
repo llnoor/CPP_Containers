@@ -134,10 +134,56 @@ typename Vector<value_type>::size_type Vector<value_type>::capacity() {
 //  "typename" используется для указания, что следующий токен представляет собой тип
 
 
+//не уверена в безопасности 
 template <typename value_type>
 void Vector<value_type>::shrink_to_fit() {
+  size_type count_ = this->size_;
+  while (count_ --){
+    this->capacity_--;
+ }
+ }
 
+
+// Одна из стратегий - 2^n - увеличивать ёмкость контейнера по степеням двойки.
+/*
+Популярная стратегия — увеличение capacity по степеням двойки. 
+Посмотрим на асимптотику при этом.
+ Пусть финальный размер массива N, k — степень двойки такая, что 2^k <= N < 2^(k+1).
+  У нас копирование происходит теперь не каждый раз, 
+  а всё реже и реже: после 1-го шага (1 элемент), после второго (2 элемента),
+   после 4-ого (4 элемента),
+    после 8-го (8 элементов) и т. д. Итого 1 + 2 + 4 + ... + 2^k = 2^(k+1) - 1 < 2*N копирований. 
+    Таким образом, количество копирований остаётся O(N) (за счёт менее оптимального расхода памяти).
+
+
+*/
+template <typename value_type>
+void Vector<value_type>::push_back(const_reference value) {
+  if (size_ >= capacity_) {
+    // если кап = 0 новая капа будет 1, в другом случае удвоение капы
+    reserve((capacity_ == 0) ? 1 : capacity_ * 2);
+  }
+  
+  data_[size_++] = value;
 }
+
+template <typename value_type>
+void Vector<value_type>::reserve(size_type newCapacity) {
+  if (newCapacity > capacity_) {
+    value_type* tmp = data_;
+    data_ = new value_type[newCapacity];
+    std::copy(tmp, tmp + size_, data_);
+    capacity_ = newCapacity;
+    delete[] tmp; 
+  }
+}
+
+
+
+
+
+
+
 
 }  // namespace s21
 
