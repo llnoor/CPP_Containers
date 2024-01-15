@@ -1,47 +1,71 @@
 namespace s21 {
 
+// конструктор по умолчанию
+template<typename value_type>
+Vector<value_type>::Vector() : data_(nullptr), size_(0), capacity_(0) {};
 
+// конструктор с одним параметром
+template<typename value_type>
+Vector<value_type>::Vector(size_type n) : size_(n), capacity_(n), data_(new value_type[n]{}) {}
 
-// конструктор с одним параметром 
-template <typename value_type> // объявление шаблона класса вектор с параметром
-Vector<value_type>::Vector(size_type n) : size_(n), capacity_(n), data_(new value_type[n]) { // инициализация  членов класса. data выдел новый массив  value_type размером n и присваивает его указатель переменной data_ 
-    for (size_type i = 0; i < size_; ++i) {
-        data_[i] = value_type();
-    }
-}
-// Это цикл, который инициализирует каждый элемент массива data_ значением по умолчанию типа value_type. Для этого используется конструктор по умолчанию value_type(). В результате каждый элемент вектора будет проинициализирован значением по умолчанию типа value_type.
-
-
-// конструктор копирования 
-template <typename value_type>
-Vector<value_type>::Vector(const Vector &v) 
-    : size_(v.size_), capacity_(v.capacity_), data_(new value_type[v.capacity_])
-{
-    std::copy(v.data_, v.data_ + v.size_, data_);
+// конструктор списка инициализаторов, создает вектор, инициализированный с помощью std::initializer_list
+template<typename value_type>
+Vector<value_type>::Vector(std::initializer_list<value_type> const &items) {
+  size_ = capacity_ = items.size();
+  data_ = new value_type[capacity_];
+  std::copy(items.begin(), items.end(), data_);
 }
 
-// // конструктор перемещения 
-// template <typename value_type>
-template <typename value_type>
-Vector<value_type>::Vector(Vector &&v):size_(v.size_), capacity_(v.capacity_), data_(v.data_) {
-  v.size_ = 0;
-  v.capacity_ = 0;
+// конструктор копирования
+template<typename value_type>
+Vector<value_type>::Vector(const Vector &v)
+    : size_(v.size_), capacity_(v.capacity_), data_(new value_type[v.capacity_]) {
+  std::copy(v.data_, v.data_ + v.size_, data_);
+}
+
+// конструктор перемещения
+template<typename value_type>
+Vector<value_type>::Vector(Vector &&v) : size_(v.size_), capacity_(v.capacity_), data_(v.data_) {
+  v.size_ = v.capacity_ = 0;
   v.data_ = nullptr;
 }
 
-
-
-template <typename value_type>
-//если в ашке можно исп псевдонимы и короче получается  
-
-
-typename Vector <value_type>:: reference Vector<value_type>::operator[](size_type pos){
-return data_[pos];
+// деструктор
+template<typename value_type>
+Vector<value_type>::~Vector() {
+  size_ = capacity_ = 0;
+  delete[] data_;
+  data_ = nullptr;
 }
 
-template <typename value_type>
-typename Vector<value_type>:: reference Vector<value_type>::at(size_type pos) {
-  if(pos >= size()) {
+//template<typename value_type>
+//Vector<T> &Vector<T>::operator=(vector<T> &&v)
+//noexcept {
+//if (this != &v) {
+//this->
+//swap(v);
+//
+//delete[] v.
+//data_;
+//v.
+//size_ = 0;
+//v.
+//capacity_ = 0;
+//v.
+//data_ = nullptr;
+//}
+//
+//return *this;
+//}
+
+template<typename value_type>
+typename Vector<value_type>::reference Vector<value_type>::operator[](size_type pos) {
+  return data_[pos];
+}
+
+template<typename value_type>
+typename Vector<value_type>::reference Vector<value_type>::at(size_type pos) {
+  if (pos >= size()) {
     throw std::out_of_range("out of range");
   }
   // Exceptions
@@ -56,54 +80,51 @@ typename Vector<value_type>:: reference Vector<value_type>::at(size_type pos) {
 */
 
 // возвращает ссылку на первый эл-т
-template <typename value_type>
-typename Vector<value_type>:: const_reference Vector<value_type>::front() const {
+template<typename value_type>
+typename Vector<value_type>::const_reference Vector<value_type>::front() const {
   // в ориге не выбрасывает не знаю оставлять ли
-  if(size_ == 0) {
+  if (size_ == 0) {
     throw std::out_of_range("empty");
   }
-return data_[0];
-} 
+  return data_[0];
+}
 
-template <typename value_type>
-typename Vector<value_type>:: const_reference Vector<value_type>::back() const{
+template<typename value_type>
+typename Vector<value_type>::const_reference Vector<value_type>::back() const {
   return data_[size_ - 1];
-} 
+}
 
 
 // data_ указатель на начало массива size_ кол-во эл-ов
 
-template <typename value_type>
-typename Vector<value_type>:: iterator Vector <value_type>::begin() {
+template<typename value_type>
+typename Vector<value_type>::iterator Vector<value_type>::begin() {
   return data_;
 }
 
-template <typename value_type>
-typename Vector<value_type>:: iterator Vector <value_type>:: end() {
+template<typename value_type>
+typename Vector<value_type>::iterator Vector<value_type>::end() {
   return data_ + size_;
 }
 
-
-
-template <typename value_type>
+template<typename value_type>
 bool Vector<value_type>::empty() {
   return size_ == 0;
 }
 
-template <typename value_type>
+template<typename value_type>
 typename Vector<value_type>::size_type Vector<value_type>::size() {
   return size_;
 }
 
-
-// верхний предел на размер вектора 
-template <typename value_type>
+// верхний предел на размер вектора
+template<typename value_type>
 typename Vector<value_type>::size_type Vector<value_type>::max_size() {
-  return std::numeric_limits<size_t>::max()/ sizeof(size_type);
+  return std::numeric_limits<size_t>::max() / sizeof(size_type);
 
 }
 
-template <typename value_type>
+template<typename value_type>
 typename Vector<value_type>::size_type Vector<value_type>::capacity() {
   return (capacity_ - size_);
 }
@@ -134,10 +155,48 @@ typename Vector<value_type>::size_type Vector<value_type>::capacity() {
 //  "typename" используется для указания, что следующий токен представляет собой тип
 
 
-template <typename value_type>
+//не уверена в безопасности
+template<typename value_type>
 void Vector<value_type>::shrink_to_fit() {
+  size_type count_ = this->size_;
+  while (count_--) {
+    this->capacity_--;
+  }
+}
 
+
+// Одна из стратегий - 2^n - увеличивать ёмкость контейнера по степеням двойки.
+/*
+Популярная стратегия — увеличение capacity по степеням двойки.
+Посмотрим на асимптотику при этом.
+ Пусть финальный размер массива N, k — степень двойки такая, что 2^k <= N < 2^(k+1).
+  У нас копирование происходит теперь не каждый раз,
+  а всё реже и реже: после 1-го шага (1 элемент), после второго (2 элемента),
+   после 4-ого (4 элемента),
+    после 8-го (8 элементов) и т. д. Итого 1 + 2 + 4 + ... + 2^k = 2^(k+1) - 1 < 2*N копирований.
+    Таким образом, количество копирований остаётся O(N) (за счёт менее оптимального расхода памяти).
+
+
+*/
+template<typename value_type>
+void Vector<value_type>::push_back(const_reference value) {
+  if (size_ >= capacity_) {
+    // если кап = 0 новая капа будет 1, в другом случае удвоение капы
+    reserve((capacity_ == 0) ? 1 : capacity_ * 2);
+  }
+
+  data_[size_++] = value;
+}
+
+template<typename value_type>
+void Vector<value_type>::reserve(size_type newCapacity) {
+  if (newCapacity > capacity_) {
+    value_type *tmp = data_;
+    data_ = new value_type[newCapacity];
+    std::copy(tmp, tmp + size_, data_);
+    capacity_ = newCapacity;
+    delete[] tmp;
+  }
 }
 
 }  // namespace s21
-

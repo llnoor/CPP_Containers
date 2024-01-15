@@ -26,7 +26,7 @@ s21_containers.a: clean
 gcov_report: s21_containers.a
 	$(CC) $(FLAGS) $(GCOV) $(TEST) $(A) $(LIBFLAGS) -o $(GTEST)
 	./$(GTEST)
-	lcov -t "./test" -o report.info --no-external -c -d .
+	lcov -t "./test" -o report.info --no-external -c -d . --ignore-errors mismatch
 	genhtml -o report report.info
 	open ./report/index.html
 
