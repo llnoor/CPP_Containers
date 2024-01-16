@@ -6,6 +6,8 @@
 #include <stdexcept>
 #include <vector>
 
+#include <iostream>
+
 namespace s21 {
 
 template <typename TTree>
@@ -14,18 +16,17 @@ class TreeConstIterator;
 template <typename TTree>
 class TreeIterator;
 
-template <typename TKey, typename TValue>
+template <typename TKey>
 class TreeNode;
 
-template <typename TKey, typename TValue>
+template <typename TKey>
 class Tree {
 
 public:
-    using tree_type = Tree<TKey, TValue>;
-    using node_type = TreeNode<TKey, TValue>;
+    using tree_type = Tree<TKey>;
+    using node_type = TreeNode<TKey>;
 
     using key_type = TKey;
-    using value_type = TKey; //Удалить и не использовать!!! Map работает через пару, TValue удалить
     using reference = TKey &;
     using const_reference = const TKey &;
     using size_type = size_t;
@@ -81,10 +82,10 @@ public:
     // Конструктор перемещения
     // to convert lvalue to rvalue
     // https://stackoverflow.com/questions/34784755/c11-lvalue-rvalue-and-stdmove
-    Tree(Tree &&other) { moveConstructor(std::move(other)); }
+    Tree(Tree &&second) { moveConstructor(std::move(second)); }
 
-    Tree &operator=(Tree &&s) {
-        moveConstructor(std::move(s));
+    Tree &operator=(Tree &&second) {
+        moveConstructor(std::move(second));
         return *this;
     }
 
@@ -96,24 +97,6 @@ public:
         m.num_nodes_ = 0;*/
         std::swap(header_, second.header_);
         std::swap(num_nodes_, second.num_nodes_);
-    }
-
-    
-    // Проверить
-    TKey &at(const TKey &key) {
-        node_type *node = tree_type::findNode(key);
-        if (node == nullptr) throw std::out_of_range("Node does not exists");
-        return node->key.second;
-    }
-
-    // Проверить
-    TKey &operator[](const TKey &key) {
-        node_type *node = tree_type::findNode(key);
-        if (node == nullptr) {
-            node = new node_type(key);
-            tree_type::insert(node);
-        }
-        return node->key.second;
     }
 
     void swap(Tree& second) {
@@ -242,11 +225,6 @@ public:
     bool *isLeft(node_type *node) {
         return (node == node->parent->left);
     }
-
-    /*void add(TKey key, TValue value = 0) {
-        node_type *node  = new node_type(key,value);
-        insertNode(node);
-    }*/
 
     void add(TKey key) {
         node_type *node  = new node_type(key);
@@ -459,7 +437,7 @@ public:
         return false;
     }
 
-    int compareNode(node_type *x, node_type *y) {
+    virtual int compareNode(node_type *x, node_type *y) {
         int i=-1;
         if (x->key < y->key) i=-1;
         else if (x->key > y->key) i=1;
@@ -467,7 +445,7 @@ public:
         return i;
     }
 
-    int compareNode(TKey key, node_type *y) {
+    virtual int compareNode(TKey key, node_type *y) {
         int i=-1;
         if (key < y->key) i=-1;
         else if (key > y->key) i=1;
@@ -652,7 +630,7 @@ public:
 
 
 private:
-    TreeNode<TKey,TValue> *header_ = nullptr;
+    TreeNode<TKey> *header_ = nullptr;
     size_type num_nodes_ = 0;
 };
 
@@ -662,10 +640,9 @@ public:
     using tree_type = TTree;
     using node_type = typename TTree::node_type;
     using key_type = typename TTree::key_type;
-    using value_type = typename TTree::value_type;
     using const_reference = const key_type &;
 
-    template <typename TKey, typename TValue>
+    template <typename TKey>
     friend class Tree;
 
     TreeConstIterator(node_type *node) : node_(node) {}
@@ -746,7 +723,7 @@ public:
     using key_type = typename TTree::key_type;
     using reference = key_type &;
 
-    template <typename TKey, typename TValue>
+    template <typename TKey>
     friend class Tree;
 
     TreeIterator(node_type *node) : tree_type(node) {}
@@ -783,46 +760,34 @@ public:
     }
 };
 
-template <typename TKey, typename TValue> class TreeNode {
+template <typename TKey> class TreeNode {
 public:
-    using node_type = TreeNode<TKey,TValue>;
+    using node_type = TreeNode<TKey>;
 
     node_type *left, *right, *parent;
     bool    red;
     TKey    key;
-    TValue  value;
 
     TreeNode():
         left(nullptr),
         right(nullptr),
         parent(nullptr),
         red(false),
-        key(0),
-        value(0){}
+        key(0){}
 
     TreeNode(TKey key):
         left(nullptr),
         right(nullptr),
         parent(nullptr),
         red(false),
-        key(key),
-        value(0){}
+        key(key){}
 
     TreeNode(TreeNode *node):
         left(nullptr),
         right(nullptr),
         parent(nullptr),
         red(node->red),
-        key(node->key),
-        value(0){}
-
-    TreeNode(TKey key, TValue value):
-        left(0),
-        right(0),
-        parent(0),
-        red(false),
-        key(key),
-        value(value){}
+        key(node->key){}
 };
 
 }

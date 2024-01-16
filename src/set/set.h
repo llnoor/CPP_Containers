@@ -10,13 +10,11 @@
 namespace s21 {
 
 template <typename TKey>
-class set : public Tree<TKey, TKey> {
+class set : public Tree<TKey> {
 public:
     using key_type = TKey;
-    using value_type = TKey;  // Удалить!!! см дерево
-
-    using tree_type = Tree<key_type, value_type>;
-    using node_type = TreeNode<key_type, value_type>;
+    using tree_type = Tree<key_type>;
+    using node_type = TreeNode<key_type>;
 
     using typename tree_type::size_type;
     using typename tree_type::reference;
