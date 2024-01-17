@@ -25,23 +25,11 @@ class Vector {
   Vector(const Vector &v);                                    //copy constructor
   Vector(Vector &&v);                                         //move constructor
   ~Vector();                                                  //destructor
-  //operator=(vector &&v);                                      //assignment operator overload for moving object
+  //Vector &operator=(Vector &&v);                              //assignment operator overload for moving object
+  Vector &operator=(const Vector &other); //?
 
 
-  Vector &operator=(const Vector &other) {
-    if (this != &other) { // Проверка на самоприсваивание
-      delete[] data_; // Очищаем старые данные
 
-      // Копируем размер и емкость
-      size_ = other.size_;
-      capacity_ = other.capacity_;
-
-      // Выделяем новую память и копируем элементы
-      data_ = new value_type[capacity_];
-      std::copy(other.data_, other.data_ + size_, data_);
-    }
-    return *this;
-  }
 
   // value_type& operator[](size_type index) {
   //     return data_[index];
@@ -54,7 +42,7 @@ class Vector {
   // typename Vector
 
 // этот оператор возвращает ссылку на элемент контейнера
-  reference operator[](size_type pos);
+
 
 // operator[] доступа к элементам контейнера по индексу(для получения доступа по позиции)
 //size_type тип для предоставления размера контейнера
@@ -63,38 +51,36 @@ class Vector {
 
 // возвращает ссылку на элемент контейнера по указанному индексу
 
-  reference at(size_type pos);
 
-  const_reference front() const;
-  const_reference back() const;
-
-// доступ к внутреннему массиву
-// возвращает указатель на начало массива
-  T *data() {
-    return data_;
-  };
+  //Element access
+  reference at(size_type pos);          //access specified element with bounds checking
+  reference operator[](size_type pos);  //access specified element
+  const_reference front() const;        //access the first element
+  const_reference back() const;         //access the last element
+  T *data();                            //direct access to the underlying array
 // Vector<int> то T* -> int* указатель на массив эл-ов типа int внутри вектора
 
 
-// Vector iterators
-
+  //Vector iterators
   iterator begin();
   iterator end();
 
-  bool empty();
-  size_type size();
-  size_type max_size();
+  //Vector Capacity
+  bool empty();                   //checks whether the container is empty
+  size_type size();               //returns the number of elements
+  size_type max_size();           //returns the maximum possible number of elements
+  void reserve(size_type size);   //allocate storage of size elements and copies current array elements to a newely allocated array
+  size_type capacity();           //returns the number of elements that can be held in currently allocated storage
+  void shrink_to_fit();           //reduces memory usage by freeing unused memory
 
-  void reserve(size_type size);
+  //Vector Modifiers
+  void clear();                           //clears the contents
+  iterator insert(iterator pos, const_reference value); //inserts elements into concrete pos and returns the iterator that points to the new element вставляет элементы в конкретный pos и возвращает итератор, указывающий на новый элемент
+  void erase(iterator pos); //erases element at pos стирает элемент в позиции
+  void push_back(const_reference value); //adds an element to the end добавляет элемент в конец
+  void pop_back(); //removes the last element
+  void swap(Vector& other); //swaps the contents меняет местами содержимое
 
-  size_type capacity();
-
-
-
-  // void clear();
-
-  void shrink_to_fit();
-  void push_back(const_reference value);
 
  private:
   value_type *data_;

@@ -1,3 +1,5 @@
+#include"S21_Vector.h"
+
 namespace s21 {
 
 // конструктор по умолчанию
@@ -19,7 +21,7 @@ Vector<value_type>::Vector(std::initializer_list<value_type> const &items) {
 // конструктор копирования
 template<typename value_type>
 Vector<value_type>::Vector(const Vector &v)
-    : size_(v.size_), capacity_(v.capacity_), data_(new value_type[v.capacity_]) {
+    : data_(new value_type[v.capacity_]), size_(v.size_), capacity_(v.capacity_)  {
   std::copy(v.data_, v.data_ + v.size_, data_);
 }
 
@@ -38,31 +40,35 @@ Vector<value_type>::~Vector() {
   data_ = nullptr;
 }
 
+//Перегрузка оператора присваивания для перемещения объекта
 //template<typename value_type>
-//Vector<T> &Vector<T>::operator=(vector<T> &&v)
-//noexcept {
-//if (this != &v) {
-//this->
-//swap(v);
+//Vector<value_type> &Vector<value_type>::operator=(Vector &&v) {
 //
-//delete[] v.
-//data_;
-//v.
-//size_ = 0;
-//v.
-//capacity_ = 0;
-//v.
-//data_ = nullptr;
+//  return *this;
 //}
-//
-//return *this;
-//}
+
+template<typename value_type>
+Vector<value_type> &Vector<value_type> :: operator=(const Vector &other) {
+  if (this != &other) { // Проверка на самоприсваивание
+    delete[] data_; // Очищаем старые данные
+
+    // Копируем размер и емкость
+    size_ = other.size_;
+    capacity_ = other.capacity_;
+
+    // Выделяем новую память и копируем элементы
+    data_ = new value_type[capacity_];
+    std::copy(other.data_, other.data_ + size_, data_);
+  }
+  return *this;
+}
 
 template<typename value_type>
 typename Vector<value_type>::reference Vector<value_type>::operator[](size_type pos) {
   return data_[pos];
 }
 
+//доступ к указанному элементу с проверкой границ
 template<typename value_type>
 typename Vector<value_type>::reference Vector<value_type>::at(size_type pos) {
   if (pos >= size()) {
@@ -94,7 +100,10 @@ typename Vector<value_type>::const_reference Vector<value_type>::back() const {
   return data_[size_ - 1];
 }
 
-
+template<typename T>
+T* s21::Vector<T>::data() {
+  return data_;
+}
 // data_ указатель на начало массива size_ кол-во эл-ов
 
 template<typename value_type>
@@ -130,12 +139,12 @@ typename Vector<value_type>::size_type Vector<value_type>::capacity() {
 }
 
 
-// template <typename value_type>
-// void Vector<value_type>::clear() {
-//   delete[] data_;
-//   data_ = nullptr;
-//   size_ = 0;
-// }
+ template <typename value_type>
+ void Vector<value_type>::clear() {
+   delete[] data_;
+   data_ = nullptr;
+   size_ = capacity_ = 0;
+ }
 
 // для предварительного выделения памяти для хранения указанного числа элементов
 // template <typename value_type>
@@ -178,14 +187,46 @@ void Vector<value_type>::shrink_to_fit() {
 
 
 */
+
+//erases element at pos стирает элемент в позиции
+template<typename value_type>
+void Vector<value_type> :: erase(iterator pos) {
+  size_--;
+  capacity_ = size_ * 2;
+  value_type* newData = new value_type[size_];
+
+  size_type count = 0;
+  for (size_type i = 0; i < size_ + 1; i++) {
+    if (data_ + i != pos) {
+      newData[count] = data_[i];
+      count++;
+    }
+  }
+  delete[] data_;
+  data_ = newData;
+}
+
+
+
 template<typename value_type>
 void Vector<value_type>::push_back(const_reference value) {
   if (size_ >= capacity_) {
     // если кап = 0 новая капа будет 1, в другом случае удвоение капы
     reserve((capacity_ == 0) ? 1 : capacity_ * 2);
   }
-
   data_[size_++] = value;
+}
+
+template<typename value_type>
+void Vector<value_type>::pop_back() {
+  if(size_ > 0) size_--;
+}
+
+template<typename value_type>
+void Vector<value_type>::swap(Vector& other) {
+    std::swap(data_, other.data_);
+    std::swap(size_, other.size_);
+    std::swap(capacity_, other.capacity_);
 }
 
 template<typename value_type>

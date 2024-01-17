@@ -36,7 +36,7 @@ TEST(s21_vector, copy) {
   s21::Vector<int> stdvector{2, 3, 4};
   s21vector = stdvector;
 
-  // нужна перегрузка оператора 
+  // нужна перегрузка оператора
   ASSERT_EQ(s21vector.empty(), stdvector.empty());
   ASSERT_EQ(s21vector.size(), stdvector.size());
 }
@@ -134,7 +134,7 @@ TEST(VectorDataTest, ReturnsCorrectPointer) {
 
 //   // Создаем стандартный вектор
 //   std::vector<int> stdVector;
-  
+
 //   // Вызываем reserve для стандартного вектора
 //   stdVector.reserve(new_capacity);
 
@@ -446,6 +446,57 @@ TEST(Array, def_max_size) {
 //     EXPECT_EQ(arr[i], 0);
 //   }
 // }
+
+
+TEST(VectorEraseTest, Erase) {
+
+s21::Vector<int> vec = {1, 2, 3, 4, 5};
+
+vec.erase(vec.begin() + 2);
+
+EXPECT_EQ(vec.size(), 4);
+
+EXPECT_EQ(vec[0], 1);
+EXPECT_EQ(vec[1], 2);
+EXPECT_EQ(vec[2], 4);
+EXPECT_EQ(vec[3], 5);
+}
+
+TEST(VectorPopBackTest, PopBack) {
+
+s21::Vector<int> vec = {1, 2, 3, 4, 5};
+
+vec.pop_back();
+
+EXPECT_EQ(vec.size(), 4);
+
+EXPECT_EQ(vec[0], 1);
+EXPECT_EQ(vec[1], 2);
+EXPECT_EQ(vec[2], 3);
+EXPECT_EQ(vec[3], 4);
+}
+
+
+TEST(VectorSwapTest, Swap) {
+s21::Vector<int> vec1 = {1, 2, 3, 4, 5};
+s21::Vector<int> vec2 = {10, 20, 30};
+
+s21::Vector<int> originalVec1 = vec1;
+s21::Vector<int> originalVec2 = vec2;
+
+vec1.swap(vec2);
+
+EXPECT_EQ(vec1.size(), originalVec2.size());
+EXPECT_EQ(vec2.size(), originalVec1.size());
+
+for (size_t i = 0; i < vec1.size(); ++i) {
+EXPECT_EQ(vec1[i], originalVec2[i]);
+}
+
+for (size_t i = 0; i < vec2.size(); ++i) {
+EXPECT_EQ(vec2[i], originalVec1[i]);
+}
+}
 
 
 
