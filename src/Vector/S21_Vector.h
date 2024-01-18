@@ -25,31 +25,8 @@ class Vector {
   Vector(const Vector &v);                                    //copy constructor
   Vector(Vector &&v);                                         //move constructor
   ~Vector();                                                  //destructor
-  //Vector &operator=(Vector &&v);                              //assignment operator overload for moving object
+  Vector &operator=(Vector &&v);                              //assignment operator overload for moving object
   Vector &operator=(const Vector &other); //?
-
-
-
-
-  // value_type& operator[](size_type index) {
-  //     return data_[index];
-  // }
-
-  //        value_type& operator[](size_type index) {
-  //     return data_[index];
-  // }
-  // template <typename value_type>
-  // typename Vector
-
-// этот оператор возвращает ссылку на элемент контейнера
-
-
-// operator[] доступа к элементам контейнера по индексу(для получения доступа по позиции)
-//size_type тип для предоставления размера контейнера
-
-// reference указывает на то что оператор возврщаает ссылку на эл-т
-
-// возвращает ссылку на элемент контейнера по указанному индексу
 
 
   //Element access
@@ -58,8 +35,6 @@ class Vector {
   const_reference front() const;        //access the first element
   const_reference back() const;         //access the last element
   T *data();                            //direct access to the underlying array
-// Vector<int> то T* -> int* указатель на массив эл-ов типа int внутри вектора
-
 
   //Vector iterators
   iterator begin();
@@ -74,12 +49,12 @@ class Vector {
   void shrink_to_fit();           //reduces memory usage by freeing unused memory
 
   //Vector Modifiers
-  void clear();                           //clears the contents
+  void clear();                                         //clears the contents
   iterator insert(iterator pos, const_reference value); //inserts elements into concrete pos and returns the iterator that points to the new element вставляет элементы в конкретный pos и возвращает итератор, указывающий на новый элемент
-  void erase(iterator pos); //erases element at pos стирает элемент в позиции
-  void push_back(const_reference value); //adds an element to the end добавляет элемент в конец
-  void pop_back(); //removes the last element
-  void swap(Vector& other); //swaps the contents меняет местами содержимое
+  void erase(iterator pos);                             //erases element at pos стирает элемент в позиции
+  void push_back(const_reference value);                //adds an element to the end добавляет элемент в конец
+  void pop_back();                                      //removes the last element
+  void swap(Vector& other);                             //swaps the contents меняет местами содержимое
 
 
  private:
@@ -90,7 +65,7 @@ class Vector {
 };
 }
 
-#include "s21_Vector.tpp"
+#include "S21_Vector.tpp"
 #endif // CPP2_S21_CONTAINERS_VECTOR_S21_VECTOR_H
 
 

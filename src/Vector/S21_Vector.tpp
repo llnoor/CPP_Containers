@@ -40,12 +40,51 @@ Vector<value_type>::~Vector() {
   data_ = nullptr;
 }
 
-//Перегрузка оператора присваивания для перемещения объекта
-//template<typename value_type>
-//Vector<value_type> &Vector<value_type>::operator=(Vector &&v) {
-//
-//  return *this;
-//}
+template<typename T>
+Vector<T>& Vector<T>::operator=(Vector&& v) {
+  if (this != &v) {
+    delete[] data_;
+
+    data_ = v.data_;
+    size_ = v.size_;
+    capacity_ = v.capacity_;
+
+    v.data_ = nullptr;
+    v.size_ = 0;
+    v.capacity_ = 0;
+  }
+  return *this;
+}
+
+template<typename T>
+typename Vector<T>::iterator Vector<T>::insert(iterator pos, const_reference value) {
+  // Проверяем, что pos находится в пределах вектора
+  if (pos < begin() || pos > end()) {
+    throw std::out_of_range("Iterator position out of range");
+  }
+
+  // Рассчитываем индекс позиции в векторе
+  size_type index = pos - begin();
+
+  // Если вектор полностью заполнен, увеличиваем его размер и емкость
+  if (size_ == capacity_) {
+    reserve(capacity_ == 0 ? 1 : capacity_ * 2);
+  }
+
+  // Сдвигаем элементы с позиции index до конца вектора на одну позицию вперед
+  for (size_type i = size_; i > index; --i) {
+    data_[i] = data_[i - 1];
+  }
+
+  // Вставляем новый элемент на позицию index
+  data_[index] = value;
+
+  // Увеличиваем размер вектора
+  ++size_;
+
+  // Возвращаем итератор, указывающий на вставленный элемент
+  return begin() + index;
+}
 
 template<typename value_type>
 Vector<value_type> &Vector<value_type> :: operator=(const Vector &other) {
@@ -74,21 +113,13 @@ typename Vector<value_type>::reference Vector<value_type>::at(size_type pos) {
   if (pos >= size()) {
     throw std::out_of_range("out of range");
   }
-  // Exceptions
-// std::out_of_range if pos >= size().
   return data_[pos];
 }
 
-/*
-отличие reference от const reference
-первый позволяет изменять значение эл-та через эту ссылку
-второй пред доступ к неизменяемому эл-ту контейнера(только читать)
-*/
 
 // возвращает ссылку на первый эл-т
 template<typename value_type>
 typename Vector<value_type>::const_reference Vector<value_type>::front() const {
-  // в ориге не выбрасывает не знаю оставлять ли
   if (size_ == 0) {
     throw std::out_of_range("empty");
   }
@@ -104,7 +135,6 @@ template<typename T>
 T* s21::Vector<T>::data() {
   return data_;
 }
-// data_ указатель на начало массива size_ кол-во эл-ов
 
 template<typename value_type>
 typename Vector<value_type>::iterator Vector<value_type>::begin() {
@@ -146,23 +176,6 @@ typename Vector<value_type>::size_type Vector<value_type>::capacity() {
    size_ = capacity_ = 0;
  }
 
-// для предварительного выделения памяти для хранения указанного числа элементов
-// template <typename value_type>
-// void Vector<value_type>::reserve(size_type size) {
-//   if(size > max_size()) {
-//     throw std::length_error("lenght err");
-//   }
-//   if(size > capacity_) {
-//     value_type* new_data = new value_type[size];
-
-//     std::copy(data_, data_ +size_, new_data);
-
-//     delete[] data_;
-//     capacity_ = size;
-//   }
-// }
-//  "typename" используется для указания, что следующий токен представляет собой тип
-
 
 //не уверена в безопасности
 template<typename value_type>
@@ -173,20 +186,6 @@ void Vector<value_type>::shrink_to_fit() {
   }
 }
 
-
-// Одна из стратегий - 2^n - увеличивать ёмкость контейнера по степеням двойки.
-/*
-Популярная стратегия — увеличение capacity по степеням двойки.
-Посмотрим на асимптотику при этом.
- Пусть финальный размер массива N, k — степень двойки такая, что 2^k <= N < 2^(k+1).
-  У нас копирование происходит теперь не каждый раз,
-  а всё реже и реже: после 1-го шага (1 элемент), после второго (2 элемента),
-   после 4-ого (4 элемента),
-    после 8-го (8 элементов) и т. д. Итого 1 + 2 + 4 + ... + 2^k = 2^(k+1) - 1 < 2*N копирований.
-    Таким образом, количество копирований остаётся O(N) (за счёт менее оптимального расхода памяти).
-
-
-*/
 
 //erases element at pos стирает элемент в позиции
 template<typename value_type>

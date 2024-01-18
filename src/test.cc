@@ -498,6 +498,57 @@ EXPECT_EQ(vec2[i], originalVec1[i]);
 }
 }
 
+TEST(VectorMoveAssignmentTest, MoveAssignment) {
+// Тестовые данные
+s21::Vector<int> original = {1, 2, 3, 4, 5};
+s21::Vector<int> other = {10, 20, 30};
+
+// Сохраняем копии данных для проверки
+s21::Vector<int> originalCopy = original;
+s21::Vector<int> otherCopy = other;
+
+// Вызываем оператор перемещения
+original = std::move(other);
+
+// Проверяем, что размер и емкость original теперь равны other
+EXPECT_EQ(original.size(), otherCopy.size());
+EXPECT_EQ(original.capacity(), otherCopy.capacity());
+
+// Проверяем, что данные original теперь равны данным other
+for (size_t i = 0; i < original.size(); ++i) {
+EXPECT_EQ(original[i], otherCopy[i]);
+}
+
+// Проверяем, что other стал пустым (размер и емкость равны 0)
+EXPECT_EQ(other.size(), 0);
+EXPECT_EQ(other.capacity(), 0);
+}
+
+
+// Test case for Vector insert function
+TEST(VectorInsertTest, Insert) {
+// Тестовые данные
+s21::Vector<int> vec = {1, 2, 3, 4, 5};
+
+// Вставляем элемент в середину вектора
+s21::Vector<int>::iterator it = vec.insert(vec.begin() + 2, 10);
+
+// Проверяем размер после вставки
+EXPECT_EQ(vec.size(), 6);
+
+// Проверяем значения после вставки
+EXPECT_EQ(vec[0], 1);
+EXPECT_EQ(vec[1], 2);
+EXPECT_EQ(vec[2], 10);
+EXPECT_EQ(vec[3], 3);
+EXPECT_EQ(vec[4], 4);
+EXPECT_EQ(vec[5], 5);
+
+// Проверяем, что итератор указывает на вставленный элемент
+EXPECT_EQ(*it, 10);
+EXPECT_EQ(it - vec.begin(), 2);
+}
+
 
 
 int main(int argc, char **argv) {
