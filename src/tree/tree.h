@@ -132,7 +132,7 @@ public:
         }
     }
 
-    bool contains(const TKey &key) { return findNode(key); }
+    virtual bool contains(const TKey &key) { return (findNode(key)!=nullptr); }
 
     /*void add(TKey key) {
         node_type *node  = new node_type(key);

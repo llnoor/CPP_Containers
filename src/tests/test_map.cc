@@ -514,7 +514,7 @@ TEST(MapModifiers, Emplace) {
   EXPECT_EQ(s_tree.size(), o_tree.size());
   EXPECT_EQ(s_tree.empty(), o_tree.empty());
 
-  auto v = s_tree.insert_many(std::pair<std::string, int>{"fourteen", 14},
+  auto v = s_tree.emplace(std::pair<std::string, int>{"fourteen", 14},
                               std::pair<std::string, int>{"seventeen", 17},
                               std::pair<std::string, int>{"fifteen", 15},
                               std::pair<std::string, int>{"fifteen", 15});

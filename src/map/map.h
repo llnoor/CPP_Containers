@@ -135,6 +135,11 @@ public:
       return node->key.second;
     }
 
+    bool contains(const TKey &first_arg) {
+        //std::cout << "It is contains" << std::endl;
+        return (tree_type::findNode(std::make_pair(first_arg, TValue())) != nullptr);
+    }
+
 };
 
 }

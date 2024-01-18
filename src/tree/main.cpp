@@ -5,7 +5,7 @@
 
 #include <map>
 
-using namespace s21;
+//using namespace s21;
 
 /*static bool showTree(const TreeNode<int,int>* root, FILE* f, int level = 0) {
     int i;
@@ -30,7 +30,19 @@ using namespace s21;
 
 int main() {
 
-    s21::map<int, int> mp;
+
+    s21::map<int, char> example = {{1, 'a'}, {2, 'b'}};
+
+
+    for (int x : {2, 5})
+    {
+        if (example.contains(x))
+            std::cout << x << ": Found\n";
+        else
+            std::cout << x << ": Not found\n";
+    }
+
+    /*s21::map<int, int> mp;
 
     // insert elements in random order
     mp.insert(std::make_pair(1, 1321));
@@ -48,7 +60,7 @@ int main() {
 
     std::cout << "mp[1]\t" << mp[1] << std::endl;
     std::cout << "mp[2]\t" << mp[2] << std::endl;
-    std::cout << "mp[3]\t" << mp[3] << std::endl;
+    std::cout << "mp[3]\t" << mp[3] << std::endl;*/
 
     /*s21::map<int, float> products;
     // установка значений
