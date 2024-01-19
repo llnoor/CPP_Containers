@@ -144,7 +144,7 @@ public:
       bool temp_bool = false;
 
       //  Проверить!!!!
-      if (! isMultiset() ) node = findNode(key);
+      if (!isMultiset()) node = findNode(key);
 
       if (node == nullptr) {
         node = new node_type(key);
@@ -157,7 +157,8 @@ public:
       node_type *node = nullptr;
       bool temp_bool = false;
 
-      if (! isMultiset() ) node = findNode(key);
+      //  Проверить!!!!
+      if (!isMultiset()) node = findNode(key);
 
       if (node == nullptr) {
         node = new node_type(key);
@@ -433,7 +434,8 @@ public:
         }
     }
 
-    bool isMultiset() const {  //virtual
+    virtual bool isMultiset() const {  //virtual
+        // std::cout << "It is not Multiset" << std::endl;
         return false;
     }
 
@@ -461,9 +463,7 @@ public:
         node_type *node = header_;
         if (node==nullptr) return nullptr;
 
-        while (node != nullptr &&
-               0 != compareNode(key, node)
-               ) {
+        while (node != nullptr && 0 != compareNode(key, node)) {
             if (compareNode(key, node) > 0)  node = node->right;
             else if (compareNode(key, node) < 0) node = node->left;
         }
@@ -497,7 +497,7 @@ public:
             while (currentNode != nullptr) {
                 if (compareNode(node,parentNode) < 0) currentNode = parentNode->left;
                 else currentNode = parentNode->right;
-                if (0 == compareNode(node,parentNode)) return false;
+                if (0 == compareNode(node,parentNode) && !isMultiset()) return false;
                 if (currentNode != nullptr) parentNode = currentNode;
                 /*
                 if (node->key < parentNode->key) currentNode = parentNode->left;

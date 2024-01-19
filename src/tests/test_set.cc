@@ -5,6 +5,8 @@
 
 #include "../set/set.h"
 
+using namespace std;
+
 TEST(set_test, constr1) {
   s21::set<int> s1 = {9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
   std::set<int> s2 = {9, 8, 7, 6, 5, 4, 3, 2, 1, 0};

@@ -14,7 +14,6 @@ template <typename TKey, typename TValue>
 class map : public Tree<std::pair<TKey, TValue>> {
 public:
     using key_type = std::pair<TKey, TValue>;
-    using mapped_type = std::pair<TKey, TValue>;
 
     using tree_type = Tree<key_type>;
     using node_type = TreeNode<key_type>;

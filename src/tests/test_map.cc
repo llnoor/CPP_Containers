@@ -5,8 +5,7 @@
 
 #include "../map/map.h"
 
-//using namespace std;
-// std::
+using namespace std;
 
 // ------- Map Functions -------
 
@@ -93,8 +92,8 @@ TEST(Map_Element_access, at) {
   p1.first = 0;
   p1.second = 'b';
 
-  std::map<pair<int, char>, string> std_map_2{{p1, "privet"}};
-  s21::map<pair<int, char>, string> s21_map_2{{p1, "privet"}};
+  std::map<std::pair<int, char>, std::string> std_map_2{{p1, "privet"}};
+  s21::map<std::pair<int, char>, std::string> s21_map_2{{p1, "privet"}};
   EXPECT_EQ(std_map_2.at(p1), s21_map_2.at(p1));
 }
 
@@ -361,9 +360,9 @@ TEST(map_test, empty2) {
 TEST(map_test, size1) {
   s21::map<int, int> m1;
   std::map<int, int> m2;
-  std::pair<int, int> pair = {2, 2};
-  m1.insert(pair);
-  m2.insert(pair);
+  std::pair<int, int> pairt = {2, 2};
+  m1.insert(pairt);
+  m2.insert(pairt);
   EXPECT_EQ(m1.size(), m2.size());
 }
 
@@ -415,8 +414,8 @@ TEST(map_test, clear3) {
 TEST(map_test, insert1) {
   s21::map<int, int> m1 = {{11, 11}, {21, 22}, {33, 33}, {44, 44}, {55, 55}};
   std::map<int, int> m2 = {{11, 11}, {21, 22}, {33, 33}, {44, 44}, {55, 55}};
-  std::pair<int, int> pair = {4, 2};
-  EXPECT_EQ(m1.insert(pair).second, m2.insert(pair).second);
+  std::pair<int, int> pairt = {4, 2};
+  EXPECT_EQ(m1.insert(pairt).second, m2.insert(pairt).second);
   EXPECT_EQ(m1.size(), m2.size());
 }
 
@@ -424,8 +423,8 @@ TEST(map_test, insert2) {
   s21::map<int, int> m1;
   std::map<int, int> m2;
   EXPECT_EQ(m1.empty(), m2.empty());
-  std::pair<int, int> pair = {3, 1};
-  EXPECT_EQ(m1.insert(pair).second, m2.insert(pair).second);
+  std::pair<int, int> pairt = {3, 1};
+  EXPECT_EQ(m1.insert(pairt).second, m2.insert(pairt).second);
   EXPECT_EQ(m1.empty(), m2.empty());
   EXPECT_EQ(m1.size(), m2.size());
 }

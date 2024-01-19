@@ -10,13 +10,12 @@
 namespace s21 {
 
 template <typename TKey>
-class multiset : public Tree<TKey, TKey> {
+class multiset : public Tree<TKey> {
 public:
     using key_type = TKey;
-    using value_type = TKey;  // Удалить!!! см дерево
 
-    using tree_type = Tree<key_type, value_type>;
-    using node_type = TreeNode<key_type, value_type>;
+    using tree_type = Tree<key_type>;
+    using node_type = TreeNode<key_type>;
 
     using typename tree_type::size_type;
     using typename tree_type::reference;
@@ -24,7 +23,8 @@ public:
     using typename tree_type::iterator;
     using typename tree_type::const_iterator;
 
-    bool isMultiset() const {  //virtual
+    bool isMultiset() const override {  //virtual
+        // std::cout << "It is Multiset" << std::endl;
         return true;
     }
 
@@ -36,6 +36,52 @@ public:
             if (!tree_type::insertNode(node)) delete node;
         }
     }
+
+    // Проверить!
+    std::pair<iterator, iterator> equal_range(const key_type &key) {
+        node_type *node = tree_type::root();
+        node_type *lowerNode = nullptr;
+        node_type *upperNode = nullptr;
+
+        while (node != nullptr) {
+            if (tree_type::compareNode(key, node) > 0) {
+            node = node->right;
+            } else {
+                if (upperNode == nullptr && (tree_type::compareNode(key, node) < 0)) upperNode = node;
+                lowerNode = node;
+                node = node->left;
+            }
+        }
+        if (upperNode == nullptr) node = tree_type::root();
+        else node = upperNode->left;
+
+        while (node != nullptr) {
+            if (tree_type::compareNode(key, node) < 0) {
+                upperNode = node;
+                node = node->left;
+            } else node = node->right;
+        }
+
+        return std::pair<iterator, iterator>(iterator(lowerNode), iterator(upperNode));
+    }
+
+    size_t count(const key_type &key) {
+        size_t n = 0;
+        std::pair<iterator, iterator> range = equal_range(key);
+        for (iterator &it = range.first; it != range.second; ++it, ++n) {}
+        return n;
+    }
+
+    // Проверить!
+    iterator lower_bound(const key_type &key) {
+        return equal_range(key).first;
+    }
+
+    iterator upper_bound(const key_type &key) {
+        return equal_range(key).second;
+    }
+
+
 };
 
 }
