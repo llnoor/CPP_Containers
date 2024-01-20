@@ -1,8 +1,5 @@
 #ifndef CPP2_S21_CONTAINERS_VECTOR_S21_VECTOR_H
 #define CPP2_S21_CONTAINERS_VECTOR_S21_VECTOR_H
-#include <initializer_list>
-#include <iterator>
-#include <limits>
 #include <stdexcept>
 
 namespace s21 {

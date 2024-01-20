@@ -2,6 +2,8 @@
 
 namespace s21 {
 
+/*     Vector Member functions      */
+
 // конструктор по умолчанию
 template<typename value_type>
 Vector<value_type>::Vector() : data_(nullptr), size_(0), capacity_(0) {};
@@ -40,6 +42,7 @@ Vector<value_type>::~Vector() {
   data_ = nullptr;
 }
 
+//Перегрузка оператора присваивания для движущегося объекта
 template<typename T>
 Vector<T>& Vector<T>::operator=(Vector&& v) {
   if (this != &v) {
