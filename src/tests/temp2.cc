@@ -237,7 +237,7 @@ TEST(SET, Swap2) {
 TEST(SET, Find1) {
   s21::set<int> number1 = {13, 29, 34, 44, 56, 667, 24, 31, 0, 10, 5};
   std::set<int> number2 = {13, 29, 34, 44, 56, 667, 24, 31, 0, 10, 5};
-  EXPECT_EQ(*(number1.find(31)), *(number2.find(31)));
+  EXPECT_EQ(*(number1.find(3)), *(number2.find(3)));
 }
 
 TEST(Set, Find2) {
@@ -257,7 +257,7 @@ TEST(Set, Contains0) {
 
 TEST(SET, Contains1) {
   s21::set<int> number1 = {13, 29, 34, 44, 56, 667, 24, 31, 0, 10, 5};
-  EXPECT_EQ(number1.contains(5), true);
+  EXPECT_EQ(number1.contains(1), true);
 }
 
 TEST(SET, Contains2) {
@@ -380,13 +380,13 @@ TEST(SET, Merge1) {
     EXPECT_EQ(*it1, *it2);
 }
 
-TEST(Set, Emplase2) {
-  s21::set<int> s21_temp = {13, 29, 34, 44, 56, 667, 24, 31, 0, 10, 5};
-  std::set<int> std_temp = {13, 29, 34, 44, 56, 667, 24, 31, 0, 10, 5};
-  auto s21_temp_it = s21_temp.emplace(100, 300, 142, 400);
-  auto std_temp_it = std_temp.emplace(142);
-  EXPECT_EQ(*(s21_temp_it[2].first), *(std_temp_it.first));
-  EXPECT_EQ(s21_temp_it[2].second, std_temp_it.second);
+TEST(Set, Emplase) {
+  s21::set<int> s = {13, 29, 34, 44, 56, 667, 24, 31, 0, 10, 5};
+  std::set<int> o = {13, 29, 34, 44, 56, 667, 24, 31, 0, 10, 5};
+  auto r = s.emplace(100, 300, 142, 400);
+  auto pr3 = o.emplace(100, 300, 142, 400);
+  EXPECT_EQ(*(r[2].first), *(pr3.first));
+  EXPECT_EQ(r[2].second, pr3.second);
 }
 
 TEST(Set, Initializer_list) {
@@ -473,6 +473,8 @@ TEST(Set, Clear) {
   EXPECT_EQ(std_temp.size(), std_empty_temp.size());
   EXPECT_EQ(s21_temp.size(), s21_empty_temp.size());
 }
+
+
 
 int main(int argc, char **argv) {
   ::testing::InitGoogleTest(&argc, argv);
