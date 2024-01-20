@@ -3,6 +3,7 @@ OS = $(shell uname)
 
 SET = tests/test_set.cc
 MAP = tests/test_map.cc
+MULTISET = tests/test_multiset.cc 
 
 ifeq ($(OS), Linux)
 CHECKFLAGS = -lgtest -lgtest_main -lrt -lm -lstdc++ -pthread 
@@ -16,8 +17,12 @@ test_set:
 	$(CC) $(FLAGS) $(SET) -o test_set $(CHECKFLAGS)
 	./test_set
 
+test_multiset:
+	$(CC) $(FLAGS) $(MULTISET) -o test_multiset $(CHECKFLAGS)
+	./test_multiset
+
 test_map:
-	$(CC) $(FLAGS) $(MAP) -o test_set $(CHECKFLAGS)
+	$(CC) $(FLAGS) $(MAP) -o test_map $(CHECKFLAGS)
 	./test_map
 
 

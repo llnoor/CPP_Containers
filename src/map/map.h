@@ -51,6 +51,18 @@ public:
         }
     }
 
+    /*TValue &operator[](const TKey &first_arg) {
+      node_type *node = tree_type::findNode(std::make_pair(first_arg, TValue()));
+      if (node == nullptr) {
+          node  = new node_type(std::make_pair(first_arg, TValue()));
+          tree_type::insertNode(node);
+      }
+      return node->key.second;
+    }*/
+
+
+
+
     // no matching function for call to 'std::pair<int, int>::pair(int)'
     // https://ru.stackoverflow.com/questions/1067488/%D0%92%D0%BE%D0%B7%D0%BD%D0%B8%D0%BA%D0%B0%D0%B5%D1%82-%D0%BE%D1%88%D0%B8%D0%B1%D0%BA%D0%B0-no-matching-function-for-call-to-%D0%BF%D1%80%D0%B8-%D0%BF%D0%BE%D0%BF%D1%8B%D1%82%D0%BA%D0%B5-%D0%BF%D0%B5%D1%80%D0%B5%D0%B4%D0%B0%D1%82%D1%8C-%D0%BE%D0%B1%D1%8A%D0%B5%D0%BA%D1%82
 
@@ -128,10 +140,23 @@ public:
     TValue &operator[](const TKey &first_arg) {
       node_type *node = tree_type::findNode(std::make_pair(first_arg, TValue()));
       if (node == nullptr) {
-          node_type *node  = new node_type(std::make_pair(first_arg, TValue()));
+          //node_type *
+          node  = new node_type(std::make_pair(first_arg, TValue()));
           tree_type::insertNode(node);
       }
       return node->key.second;
+    }
+
+    std::pair<iterator, bool> insert_or_assign(const TKey &key, const TValue &value) {
+        node_type *node = tree_type::findNode(std::make_pair(key, value));
+        bool inserted = false;
+
+        if (node == nullptr) {
+            node  = new node_type(std::make_pair(key, value));
+            inserted = tree_type::insertNode(node);
+        } else node->key.second = value;
+
+        return std::pair<iterator, bool>(node, inserted);
     }
 
     bool contains(const TKey &first_arg) {
