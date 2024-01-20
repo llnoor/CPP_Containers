@@ -25,7 +25,6 @@ test_map:
 	$(CC) $(FLAGS) $(MAP) -o test_map $(CHECKFLAGS)
 	./test_map
 
-
 valgrind: test
 	CK_FORK=no valgrind --vgdb=no --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose ./test
 

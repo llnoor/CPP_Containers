@@ -7,322 +7,337 @@
 
 using namespace std;
 
-TEST(set_test, constr1) {
-  s21::set<int> s1 = {9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
-  std::set<int> s2 = {9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
-  s21::set<int>::iterator it1 = s1.begin();
-  for (auto it2 = s2.begin(); it2 != s2.end(); ++it1, ++it2)
+// ### SET ###
+
+TEST(SET, Insert1) {
+  s21::set<double> number1 = {19, 23, 43, 12, 33, 44, 32, 21, 10, 0};
+  std::set<double> number2 = {19, 23, 43, 12, 33, 44, 32, 21, 10, 0};
+  EXPECT_EQ(number1.size(), number2.size());
+  auto it1 = number1.begin();
+  for (auto it2 = number2.begin(); it2 != number2.end(); ++it1, ++it2)
     EXPECT_EQ(*it1, *it2);
+  EXPECT_EQ(number1.size(), number2.size());
 }
 
-TEST(set_test, constr2) {
-  s21::set<int> s1 = {9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
-  std::set<int> s2 = {9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
-  auto it1 = s1.begin();
-  for (auto it2 = s2.begin(); it2 != s2.end(); ++it1, ++it2)
+TEST(SET, Insert2) {
+  s21::set<double> number1 = {19, 23, 43, 12, 33, 44, 32, 21, 10, 0};
+  std::set<double> number2 = {19, 23, 43, 12, 33, 44, 32, 21, 10, 0};
+  EXPECT_EQ(number1.size(), number2.size());
+  EXPECT_EQ(number1.insert(-1).second, number2.insert(-1).second);
+  auto it1 = number1.begin();
+  for (auto it2 = number2.begin(); it2 != number2.end(); ++it1, ++it2) {
     EXPECT_EQ(*it1, *it2);
+  }
+  EXPECT_EQ(number1.size(), number2.size());
 }
 
-TEST(set_test, constr3) {
-  s21::set<int> s1;
-  std::set<int> s2;
-  EXPECT_EQ(s1.size(), s2.size());
-}
-
-TEST(set_test, constr4) {
-  s21::set<int> s1 = {3, 2, 1};
-  std::set<int> s2 = {3, 2, 1};
-  auto s11 = std::move(s1);
-  auto s22 = std::move(s2);
-  auto it1 = s11.begin();
-  for (auto it2 = s22.begin(); it2 != s22.end(); ++it1, ++it2)
+TEST(SET, Insert3) {
+  s21::set<double> number1 = {13, 29, 34, 44, 56, 667, 24, 31, 0, 10, 5};
+  std::set<double> number2 = {13, 29, 34, 44, 56, 667, 24, 31, 0, 10, 5};
+  EXPECT_EQ(number1.size(), number2.size());
+  auto it1 = number1.begin();
+  for (auto it2 = number2.begin(); it2 != number2.end(); ++it1, ++it2) {
     EXPECT_EQ(*it1, *it2);
-  EXPECT_EQ(s1.size(), s2.size());
-  EXPECT_EQ(s11.size(), s22.size());
+  }
+  EXPECT_EQ(number1.size(), number2.size());
 }
 
-TEST(set_test, constr5) {
-  s21::set<int> s1 = {3, 2, 1};
-  std::set<int> s2 = {3, 2, 1};
-  auto s11 = s1;
-  auto s22 = s2;
-  auto it1 = s11.begin();
-  for (auto it2 = s22.begin(); it2 != s22.end(); ++it1, ++it2)
-    EXPECT_EQ(*it1, *it2);
-  EXPECT_EQ(s1.size(), s2.size());
-  EXPECT_EQ(s11.size(), s22.size());
-}
-
-TEST(set_test, constr6) {
-  s21::set<int> s1 = {-10, -20, -1};
-  std::set<int> s2 = {-10, -20, -1};
-  auto it1 = s1.begin();
-  for (auto it2 = s2.begin(); it2 != s2.end(); ++it1, ++it2)
-    EXPECT_EQ(*it1, *it2);
-  EXPECT_EQ(s1.size(), s2.size());
-}
-
-TEST(set_test, constr7) {
-  s21::set<int> s1 = {3, 2, 1};
-  std::set<int> s2 = {3, 2, 1};
-  s21::set<int> s11;
-  std::set<int> s22;
-  s11 = std::move(s1);
-  s22 = std::move(s2);
-  auto it1 = s11.begin();
-  for (auto it2 = s22.begin(); it2 != s22.end(); ++it1, ++it2)
-    EXPECT_EQ(*it1, *it2);
-  EXPECT_EQ(s1.size(), s2.size());
-  EXPECT_EQ(s11.size(), s22.size());
-}
-
-TEST(set_test, begin1) {
-  s21::set<int> s1 = {3, 2, 1};
-  std::set<int> s2 = {3, 2, 1};
-  auto it1 = s1.begin();
-  auto it2 = s2.begin();
+TEST(SET, Constructor1) {
+  s21::set<int> number1 = {19, 23, 43, 12, 33, 44, 32, 21, 10, 0};
+  std::set<int> number2 = {19, 23, 43, 12, 33, 44, 32, 21, 10, 0};
+  s21::set<int>::iterator it1 = number1.begin();
+  for (auto it2 = number2.begin(); it2 != number2.end(); ++it1, ++it2)
   EXPECT_EQ(*it1, *it2);
 }
 
-TEST(set_test, empty1) {
-  s21::set<int> s1 = {3, 2, 1};
-  std::set<int> s2 = {3, 2, 1};
-  EXPECT_EQ(s1.empty(), s2.empty());
-}
-
-TEST(set_test, empty2) {
-  s21::set<int> s1 = {3, 2, 1};
-  std::set<int> s2 = {3, 2, 1};
-  s1.clear();
-  s2.clear();
-  EXPECT_EQ(s1.empty(), s2.empty());
-}
-
-TEST(set_test, size1) {
-  s21::set<int> s1;
-  std::set<int> s2;
-  s1.insert(1);
-  s2.insert(1);
-  EXPECT_EQ(s1.size(), s2.size());
-}
-
-TEST(set_test, size2) {
-  s21::set<int> s1 = {9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
-  std::set<int> s2 = {9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
-  EXPECT_EQ(s1.size(), s2.size());
-}
-
-TEST(set_test, size3) {
-  s21::set<int> s1 = {9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
-  std::set<int> s2 = {9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
-  s1.clear();
-  s2.clear();
-  EXPECT_EQ(s1.size(), s2.size());
-}
-
-TEST(set_test, clear1) {
-  s21::set<double> s1 = {9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
-  std::set<double> s2 = {9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
-  s1.clear();
-  s2.clear();
-  EXPECT_EQ(s1.size(), s2.size());
-  EXPECT_EQ(s1.empty(), s2.empty());
-}
-
-TEST(set_test, clear2) {
-  s21::set<double> s1;
-  std::set<double> s2;
-  s1.clear();
-  s2.clear();
-  EXPECT_EQ(s1.size(), s2.size());
-  EXPECT_EQ(s1.empty(), s2.empty());
-}
-
-TEST(set_test, clear3) {
-  s21::set<double> s1 = {9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
-  std::set<double> s2 = {9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
-  s1.clear();
-  s2.clear();
-  EXPECT_EQ(s1.size(), s2.size());
-  EXPECT_EQ(s1.empty(), s2.empty());
-  s1.clear();
-  s2.clear();
-  EXPECT_EQ(s1.size(), s2.size());
-  EXPECT_EQ(s1.empty(), s2.empty());
-}
-
-TEST(set_test, insert1) {
-  s21::set<double> s1 = {9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
-  std::set<double> s2 = {9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
-  EXPECT_EQ(s1.size(), s2.size());
-  auto it1 = s1.begin();
-  for (auto it2 = s2.begin(); it2 != s2.end(); ++it1, ++it2)
+TEST(SET, Constructor2) {
+  s21::set<int> number1 = {19, 23, 43, 12, 33, 44, 32, 21, 10, 0};
+  std::set<int> number2 = {19, 23, 43, 12, 33, 44, 32, 21, 10, 0};
+  auto it1 = number1.begin();
+  for (auto it2 = number2.begin(); it2 != number2.end(); ++it1, ++it2)
     EXPECT_EQ(*it1, *it2);
-  EXPECT_EQ(s1.size(), s2.size());
 }
 
-TEST(set_test, insert2) {
-  s21::set<double> s1 = {9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
-  std::set<double> s2 = {9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
-  EXPECT_EQ(s1.size(), s2.size());
-  EXPECT_EQ(s1.insert(-1).second, s2.insert(-1).second);
-  auto it1 = s1.begin();
-  for (auto it2 = s2.begin(); it2 != s2.end(); ++it1, ++it2) {
+TEST(SET, Constructor3) {
+  s21::set<int> number1;
+  std::set<int> number2;
+  EXPECT_EQ(number1.size(), number2.size());
+}
+
+TEST(SET, Constructor4) {
+  s21::set<int> number1 = {19, 23, 43};
+  std::set<int> number2 = {19, 23, 43};
+  auto number11 = std::move(number1);
+  auto number22 = std::move(number2);
+  auto it1 = number11.begin();
+  for (auto it2 = number22.begin(); it2 != number22.end(); ++it1, ++it2)
     EXPECT_EQ(*it1, *it2);
-  }
-  EXPECT_EQ(s1.size(), s2.size());
+  EXPECT_EQ(number1.size(), number2.size());
+  EXPECT_EQ(number11.size(), number22.size());
 }
 
-TEST(set_test, insert3) {
-  s21::set<double> s1 = {3, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
-  std::set<double> s2 = {3, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
-  EXPECT_EQ(s1.size(), s2.size());
-  auto it1 = s1.begin();
-  for (auto it2 = s2.begin(); it2 != s2.end(); ++it1, ++it2) {
+TEST(SET, Constructor5) {
+  s21::set<int> number1 = {19, 23, 43};
+  std::set<int> number2 = {19, 23, 43};
+  auto number11 = number1;
+  auto number22 = number2;
+  auto it1 = number11.begin();
+  for (auto it2 = number22.begin(); it2 != number22.end(); ++it1, ++it2)
     EXPECT_EQ(*it1, *it2);
-  }
-  EXPECT_EQ(s1.size(), s2.size());
+  EXPECT_EQ(number1.size(), number2.size());
+  EXPECT_EQ(number11.size(), number22.size());
 }
 
-TEST(set_test, erase1) {
-  s21::set<double> s1 = {3, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
-  std::set<double> s2 = {3, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
-  EXPECT_EQ(s1.size(), s2.size());
-  s1.erase(s1.begin());
-  s2.erase(s2.begin());
-  EXPECT_EQ(s1.size(), s2.size());
+TEST(SET, Constructor6) {
+  s21::set<int> number1 = {-19, -23, -43};
+  std::set<int> number2 = {-19, -23, -43};
+  auto it1 = number1.begin();
+  for (auto it2 = number2.begin(); it2 != number2.end(); ++it1, ++it2)
+    EXPECT_EQ(*it1, *it2);
+  EXPECT_EQ(number1.size(), number2.size());
 }
 
-TEST(set_test, erase2) {
-  s21::set<double> s1 = {3, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
-  std::set<double> s2 = {3, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
-  s1.erase(s1.begin());
-  s2.erase(s2.begin());
-  auto it1 = s1.begin();
-  auto it2 = s2.begin();
-  EXPECT_EQ(s1.size(), s2.size());
+TEST(SET, Constructor7) {
+  s21::set<int> number1 = {19, 23, 43};
+  std::set<int> number2 = {19, 23, 43};
+  s21::set<int> number11;
+  std::set<int> number22;
+  number11 = std::move(number1);
+  number22 = std::move(number2);
+  auto it1 = number11.begin();
+  for (auto it2 = number22.begin(); it2 != number22.end(); ++it1, ++it2)
+    EXPECT_EQ(*it1, *it2);
+  EXPECT_EQ(number1.size(), number2.size());
+  EXPECT_EQ(number11.size(), number22.size());
+}
+
+TEST(SET, Size1) {
+  s21::set<int> number1;
+  std::set<int> number2;
+  number1.insert(1);
+  number2.insert(1);
+  EXPECT_EQ(number1.size(), number2.size());
+}
+
+TEST(SET, Size2) {
+  s21::set<int> number1 = {19, 23, 43, 12, 33, 44, 32, 21, 10, 0};
+  std::set<int> number2 = {19, 23, 43, 12, 33, 44, 32, 21, 10, 0};
+  EXPECT_EQ(number1.size(), number2.size());
+}
+
+TEST(SET, Size3) {
+  s21::set<int> number1 = {19, 23, 43, 12, 33, 44, 32, 21, 10, 0};
+  std::set<int> number2 = {19, 23, 43, 12, 33, 44, 32, 21, 10, 0};
+  number1.clear();
+  number2.clear();
+  EXPECT_EQ(number1.size(), number2.size());
+}
+
+TEST(SET, Clear1) {
+  s21::set<double> number1 = {19, 23, 43, 12, 33, 44, 32, 21, 10, 0};
+  std::set<double> number2 = {19, 23, 43, 12, 33, 44, 32, 21, 10, 0};
+  number1.clear();
+  number2.clear();
+  EXPECT_EQ(number1.size(), number2.size());
+  EXPECT_EQ(number1.empty(), number2.empty());
+}
+
+TEST(SET, Clear2) {
+  s21::set<double> number1;
+  std::set<double> number2;
+  number1.clear();
+  number2.clear();
+  EXPECT_EQ(number1.size(), number2.size());
+  EXPECT_EQ(number1.empty(), number2.empty());
+}
+
+TEST(SET, Clear3) {
+  s21::set<double> number1 = {19, 23, 43, 12, 33, 44, 32, 21, 10, 0};
+  std::set<double> number2 = {19, 23, 43, 12, 33, 44, 32, 21, 10, 0};
+  number1.clear();
+  number2.clear();
+  EXPECT_EQ(number1.size(), number2.size());
+  EXPECT_EQ(number1.empty(), number2.empty());
+  number1.clear();
+  number2.clear();
+  EXPECT_EQ(number1.size(), number2.size());
+  EXPECT_EQ(number1.empty(), number2.empty());
+}
+
+TEST(SET, Begin) {
+  s21::set<int> number1 = {19, 23, 43};
+  std::set<int> number2 = {19, 23, 43};
+  auto it1 = number1.begin();
+  auto it2 = number2.begin();
   EXPECT_EQ(*it1, *it2);
 }
 
-TEST(set_test, swap1) {
-  s21::set<int> s1 = {3, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
-  std::set<int> s2 = {3, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
-  s21::set<int> s11;
-  std::set<int> s22;
-  s1.swap(s11);
-  s2.swap(s22);
-  EXPECT_EQ(s1.size(), s2.size());
-  EXPECT_EQ(s11.size(), s22.size());
-  auto it1 = s11.begin();
-  for (auto it2 = s22.begin(); it2 != s22.end(); ++it1, ++it2)
+TEST(SET, Empty) {
+  s21::set<int> number1 = {19, 23, 43};
+  std::set<int> number2 = {19, 23, 43};
+  EXPECT_EQ(number1.empty(), number2.empty());
+}
+
+TEST(SET, Empty2) {
+  s21::set<int> number1 = {19, 23, 43};
+  std::set<int> number2 = {19, 23, 43};
+  number1.clear();
+  number2.clear();
+  EXPECT_EQ(number1.empty(), number2.empty());
+}
+
+TEST(SET, Erase1) {
+  s21::set<double> number1 = {13, 29, 34, 44, 56, 667, 24, 31, 0, 10, 5};
+  std::set<double> number2 = {13, 29, 34, 44, 56, 667, 24, 31, 0, 10, 5};
+  EXPECT_EQ(number1.size(), number2.size());
+  number1.erase(number1.begin());
+  number2.erase(number2.begin());
+  EXPECT_EQ(number1.size(), number2.size());
+}
+
+TEST(SET, Erase2) {
+  s21::set<double> number1 = {13, 29, 34, 44, 56, 667, 24, 31, 0, 10, 5};
+  std::set<double> number2 = {13, 29, 34, 44, 56, 667, 24, 31, 0, 10, 5};
+  number1.erase(number1.begin());
+  number2.erase(number2.begin());
+  auto it1 = number1.begin();
+  auto it2 = number2.begin();
+  EXPECT_EQ(number1.size(), number2.size());
+  EXPECT_EQ(*it1, *it2);
+}
+
+TEST(SET, Swap1) {
+  s21::set<int> number1 = {13, 29, 34, 44, 56, 667, 24, 31, 0, 10, 5};
+  std::set<int> number2 = {13, 29, 34, 44, 56, 667, 24, 31, 0, 10, 5};
+  s21::set<int> number11;
+  std::set<int> number22;
+  number1.swap(number11);
+  number2.swap(number22);
+  EXPECT_EQ(number1.size(), number2.size());
+  EXPECT_EQ(number11.size(), number22.size());
+  auto it1 = number11.begin();
+  for (auto it2 = number22.begin(); it2 != number22.end(); ++it1, ++it2)
     EXPECT_EQ(*it1, *it2);
 }
 
-TEST(set_test, swap2) {
-  s21::set<int> s1 = {3, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
-  std::set<int> s2 = {3, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
-  s21::set<int> s11 = {38, 329, 11, 19, 117};
-  std::set<int> s22 = {38, 329, 11, 19, 117};
-  s1.swap(s11);
-  s2.swap(s22);
-  EXPECT_EQ(s1.size(), s2.size());
-  EXPECT_EQ(s11.size(), s22.size());
-  auto it1 = s11.begin();
-  for (auto it2 = s22.begin(); it2 != s22.end(); ++it1, ++it2)
+TEST(SET, Swap2) {
+  s21::set<int> number1 = {13, 29, 34, 44, 56, 667, 24, 31, 0, 10, 5};
+  std::set<int> number2 = {13, 29, 34, 44, 56, 667, 24, 31, 0, 10, 5};
+  s21::set<int> number11 = {138, 3, 101, 1, 67};
+  std::set<int> number22 = {138, 3, 101, 1, 67};
+  number1.swap(number11);
+  number2.swap(number22);
+  EXPECT_EQ(number1.size(), number2.size());
+  EXPECT_EQ(number11.size(), number22.size());
+  auto it1 = number11.begin();
+  for (auto it2 = number22.begin(); it2 != number22.end(); ++it1, ++it2)
     EXPECT_EQ(*it1, *it2);
 }
 
-TEST(set_test, find1) {
-  s21::set<int> s1 = {3, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
-  std::set<int> s2 = {3, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
-  EXPECT_EQ(*(s1.find(3)), *(s2.find(3)));
+TEST(SET, Find1) {
+  s21::set<int> number1 = {13, 29, 34, 44, 56, 667, 24, 31, 0, 10, 5};
+  std::set<int> number2 = {13, 29, 34, 44, 56, 667, 24, 31, 0, 10, 5};
+  EXPECT_EQ(*(number1.find(3)), *(number2.find(3)));
 }
 
-TEST(set_test, contains1) {
-  s21::set<int> s1 = {3, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
-  EXPECT_EQ(s1.contains(1), true);
+TEST(SET, Contains1) {
+  s21::set<int> number1 = {13, 29, 34, 44, 56, 667, 24, 31, 0, 10, 5};
+  EXPECT_EQ(number1.contains(1), true);
 }
 
-TEST(set_test, contains2) {
-  s21::set<int> s1 = {3, 9, 8, 7, 6, 5, 4, 3, 2, 1};
-  EXPECT_EQ(s1.contains(0), false);
+TEST(SET, Contains2) {
+  s21::set<int> number1 = {13, 29, 34, 44, 56, 667, 24, 31, 1, 10, 5};
+  EXPECT_EQ(number1.contains(0), false);
 }
 
-TEST(set_test, iter1) {
-  s21::set<int> s1 = {3, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
-  std::set<int> s2 = {3, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
-  auto it1 = s1.begin();
-  auto it2 = s2.begin();
+TEST(SET, Iterator1) {
+  s21::set<int> number1 = {13, 29, 34, 44, 56, 667, 24, 31, 0, 10, 5};
+  std::set<int> number2 = {13, 29, 34, 44, 56, 667, 24, 31, 0, 10, 5};
+  auto it1 = number1.begin();
+  auto it2 = number2.begin();
   for (int i = 0; i < 9; i++) ++it1, ++it2;
   EXPECT_EQ(*it1, *it2);
 }
 
-TEST(set_test, iter3) {
-  s21::set<int> s1 = {3, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
-  auto it1 = s1.end();
-  auto it2 = s1.end();
+TEST(SET, Iterator3) {
+  s21::set<int> number1 = {13, 29, 34, 44, 56, 667, 24, 31, 0, 10, 5};
+  auto it1 = number1.end();
+  auto it2 = number1.end();
   EXPECT_EQ(it1 == it2, true);
 }
 
-TEST(set_test, iter4) {
-  s21::set<int> s1 = {3, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
-  auto it1 = s1.end();
-  auto it2 = s1.end();
+TEST(SET, Iterator4) {
+  s21::set<int> number1 = {13, 29, 34, 44, 56, 667, 24, 31, 0, 10, 5};
+  auto it1 = number1.end();
+  auto it2 = number1.end();
   EXPECT_EQ(it1 != it2, false);
 }
 
-TEST(set_test, iter5) {
-  s21::set<int> s1 = {3, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
-  auto it1 = s1.end();
-  auto it2 = s1.end();
+TEST(SET, Iterator5) {
+  s21::set<int> number1 = {13, 29, 34, 44, 56, 667, 24, 31, 0, 10, 5};
+  auto it1 = number1.end();
+  auto it2 = number1.end();
   EXPECT_EQ(it1 == it2, true);
 }
 
-TEST(set_test, merge1) {
-  s21::set<int> s1 = {3, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
-  std::set<int> s2 = {3, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
-  s21::set<int> s11 = {112, 1131, 1489, 3589, 38629};
-  std::set<int> s22 = {112, 1131, 1489, 3589, 38629};
-  s1.merge(s11);
-  s2.merge(s22);
-  EXPECT_EQ(s1.size(), s2.size());
-  auto it1 = s1.begin();
-  for (auto it2 = s2.begin(); it2 != s2.end(); ++it1, ++it2)
+TEST(Set, Iterator6) {
+  std::set<int> std_set{13, 29, 34, 44, 56, 667, 24, 31, 0, 10, 5};
+  s21::set<int> s21_set{13, 29, 34, 44, 56, 667, 24, 31, 0, 10, 5};
+
+  EXPECT_EQ(*(std_set.begin()), *(s21_set.begin()));
+}
+
+TEST(Set, Iterator7) {
+  std::set<int> std_set{13, 29, 34, 44, 56, 667, 24, 31, 0, 10, 5};
+  s21::set<int> s21_set{13, 29, 34, 44, 56, 667, 24, 31, 0, 10, 5};
+
+  auto std_it = --std_set.end();
+  auto s21_it = s21_set.rbegin();
+  --std_it;
+  --s21_it;
+
+  EXPECT_EQ(*std_it, *s21_it);
+}
+
+TEST(SET, Merge1) {
+  s21::set<int> number1 = {13, 29, 34, 44, 56, 667, 24, 31, 0, 10, 5};
+  std::set<int> number2 = {13, 29, 34, 44, 56, 667, 24, 31, 0, 10, 5};
+  s21::set<int> number11 = {12, 41, 19, 109, 1234567};
+  std::set<int> number22 = {12, 41, 19, 109, 1234567};
+  number1.merge(number11);
+  number2.merge(number22);
+  EXPECT_EQ(number1.size(), number2.size());
+  auto it1 = number1.begin();
+  for (auto it2 = number2.begin(); it2 != number2.end(); ++it1, ++it2)
     EXPECT_EQ(*it1, *it2);
 }
 
-TEST(Set, emplase) {
-  s21::set<int> s = {3, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
-  std::set<int> o = {3, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
+TEST(Set, Emplase) {
+  s21::set<int> s = {13, 29, 34, 44, 56, 667, 24, 31, 0, 10, 5};
+  std::set<int> o = {13, 29, 34, 44, 56, 667, 24, 31, 0, 10, 5};
 
-  auto r = s.emplace(100, 200, 42, 400);
-
-  auto pr3 = o.emplace(42);
+  auto r = s.emplace(100, 300, 142, 400);
+  auto pr3 = o.emplace(100, 300, 142, 400);
 
   EXPECT_EQ(*(r[2].first), *(pr3.first));
   EXPECT_EQ(r[2].second, pr3.second);
 }
 
-using namespace std;
-
-// ------- Set Functions -------
-
-TEST(Set_Functions, initializer_list_constructor) {
-  std::set<int> std_set{3, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
-  s21::set<int> s21_set{3, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
+TEST(Set, Initializer_list) {
+  std::set<int> std_set{13, 29, 34, 44, 56, 667, 24, 31, 0, 10, 5};
+  s21::set<int> s21_set{13, 29, 34, 44, 56, 667, 24, 31, 0, 10, 5};
   EXPECT_EQ(std_set.size(), s21_set.size());
 
-  // пустое множество
   std::set<int, char> std_empty_set{};
   std::set<int, char> s21_empty_set{};
   EXPECT_EQ(std_empty_set.size(), s21_empty_set.size());
 }
 
-TEST(Set_Functions, copy_constructor) {
-  std::set<int> std_copy_set{3, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
+TEST(Set, Copy) {
+  std::set<int> std_copy_set{13, 29, 34, 44, 56, 667, 24, 31, 0, 10, 5};
   std::set<int> std_set = std_copy_set;
 
-  s21::set<int> s21_copy_set{3, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
+  s21::set<int> s21_copy_set{13, 29, 34, 44, 56, 667, 24, 31, 0, 10, 5};
   s21::set<int> s21_set = s21_copy_set;
 
   auto std_it = std_set.begin();
@@ -332,11 +347,11 @@ TEST(Set_Functions, copy_constructor) {
     EXPECT_EQ(*std_it, *s21_it);
 }
 
-TEST(Set_Functions, move_constructor) {
-  std::set<int> std_moving_set{3, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
+TEST(Set, Move) {
+  std::set<int> std_moving_set{13, 29, 34, 44, 56, 667, 24, 31, 0, 10, 5};
   std::set<int> std_set = std::move(std_moving_set);
 
-  s21::set<int> s21_moving_set{3, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
+  s21::set<int> s21_moving_set{13, 29, 34, 44, 56, 667, 24, 31, 0, 10, 5};
   s21::set<int> s21_set = std::move(s21_moving_set);
 
   auto std_it = std_set.begin();
@@ -345,7 +360,6 @@ TEST(Set_Functions, move_constructor) {
   for (; std_it != std_set.end(); ++std_it, ++s21_it)
     EXPECT_EQ(*std_it, *s21_it);
 
-  // // перемещение пустого множества
   std::set<int> std_null_set;
   std::set<int> std_set_2 = std::move(std_null_set);
 
@@ -356,9 +370,9 @@ TEST(Set_Functions, move_constructor) {
   EXPECT_EQ(std_set_2.size(), s21_set_2.size());
 }
 
-TEST(Set_Functions, assignment_operator_overload) {
-  std::set<int> std_set{3, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
-  s21::set<int> s21_set{3, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
+TEST(Set, assignment_operator_overload) {
+  std::set<int> std_set{13, 29, 34, 44, 56, 667, 24, 31, 0, 10, 5};
+  s21::set<int> s21_set{13, 29, 34, 44, 56, 667, 24, 31, 0, 10, 5};
 
   std::set<int> std_set_2{855, 743, 645, 523, 446, 132, -1123};
   s21::set<int> s21_set_2{855, 743, 645, 523, 446, 132, -1123};
@@ -373,43 +387,19 @@ TEST(Set_Functions, assignment_operator_overload) {
     EXPECT_EQ(*std_it, *s21_it);
 }
 
-// ------- Set Iterators -------
-
-TEST(Set_Iterators, begin) {
-  std::set<int> std_set{3, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
-  s21::set<int> s21_set{3, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
-
-  EXPECT_EQ(*(std_set.begin()), *(s21_set.begin()));
-}
-
-TEST(Set_Iterators, end) {
-  std::set<int> std_set{3, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
-  s21::set<int> s21_set{3, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
-
-  auto std_it = --std_set.end();
-  auto s21_it = s21_set.rbegin();
-  --std_it;
-  --s21_it;
-
-  EXPECT_EQ(*std_it, *s21_it);
-}
-
-// ------- Set Capacity -------
-
-TEST(Set_Capacity, empty) {
-  std::set<int> std_set{3, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
-  s21::set<int> s21_set{3, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
+TEST(Set, empty) {
+  std::set<int> std_set{13, 29, 34, 44, 56, 667, 24, 31, 0, 10, 5};
+  s21::set<int> s21_set{13, 29, 34, 44, 56, 667, 24, 31, 0, 10, 5};
   EXPECT_EQ(std_set.empty(), s21_set.empty());
 
-  // пустое множество
   std::set<int, char> std_empty_set{};
   std::set<int, char> s21_empty_set{};
   EXPECT_EQ(std_empty_set.empty(), s21_empty_set.empty());
 }
 
-TEST(Set_Capacity, size) {
-  std::set<int> std_set{3, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
-  s21::set<int> s21_set{3, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
+TEST(Set, size) {
+  std::set<int> std_set{13, 29, 34, 44, 56, 667, 24, 31, 0, 10, 5};
+  s21::set<int> s21_set{13, 29, 34, 44, 56, 667, 24, 31, 0, 10, 5};
   EXPECT_EQ(std_set.size(), s21_set.size());
 
   // пустое множество
@@ -418,7 +408,7 @@ TEST(Set_Capacity, size) {
   EXPECT_EQ(std_empty_set.size(), s21_empty_set.size());
 }
 
-TEST(Set_Capacity, max_size) {
+TEST(Set, max_size) {
   std::set<int, char> std_empty_set{};
   std::set<int, char> s21_empty_set{};
   EXPECT_EQ(std_empty_set.max_size(), s21_empty_set.max_size());
@@ -426,9 +416,9 @@ TEST(Set_Capacity, max_size) {
 
 // ------- Set Modifiers -------
 
-TEST(Set_Modifiers, clear) {
-  std::set<int> std_set{3, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
-  s21::set<int> s21_set{3, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
+TEST(Set, clear) {
+  std::set<int> std_set{13, 29, 34, 44, 56, 667, 24, 31, 0, 10, 5};
+  s21::set<int> s21_set{13, 29, 34, 44, 56, 667, 24, 31, 0, 10, 5};
 
   std_set.clear();
   s21_set.clear();
@@ -440,9 +430,9 @@ TEST(Set_Modifiers, clear) {
   EXPECT_EQ(s21_set.size(), s21_empty_set.size());
 }
 
-TEST(Set_Modifiers, insert) {
-  std::set<int> std_set{3, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
-  s21::set<int> s21_set{3, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
+TEST(Set, insert) {
+  std::set<int> std_set{13, 29, 34, 44, 56, 667, 24, 31, 0, 10, 5};
+  s21::set<int> s21_set{13, 29, 34, 44, 56, 667, 24, 31, 0, 10, 5};
 
   auto std_insert_pair = std_set.insert(350);
   auto s21_insert_pair = s21_set.insert(350);
@@ -456,9 +446,9 @@ TEST(Set_Modifiers, insert) {
     EXPECT_EQ(*std_it, *s21_it);
 }
 
-TEST(Set_Modifiers, erase) {
-  std::set<int> std_set{3, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
-  s21::set<int> s21_set{3, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
+TEST(Set, erase) {
+  std::set<int> std_set{13, 29, 34, 44, 56, 667, 24, 31, 0, 10, 5};
+  s21::set<int> s21_set{13, 29, 34, 44, 56, 667, 24, 31, 0, 10, 5};
 
   auto std_it = std_set.begin();
   auto s21_it = s21_set.begin();
@@ -472,9 +462,9 @@ TEST(Set_Modifiers, erase) {
     EXPECT_EQ(*std_it, *s21_it);
 }
 
-TEST(Set_Modifier, swap) {
-  std::set<int> std_set{3, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
-  s21::set<int> s21_set{3, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
+TEST(Set, swap) {
+  std::set<int> std_set{13, 29, 34, 44, 56, 667, 24, 31, 0, 10, 5};
+  s21::set<int> s21_set{13, 29, 34, 44, 56, 667, 24, 31, 0, 10, 5};
 
   std::set<int> std_set_2{551, 843, 745, 263, 456, 142, -1123};
   s21::set<int> s21_set_2{551, 843, 745, 263, 456, 142, -1123};
@@ -494,7 +484,7 @@ TEST(Set_Modifier, swap) {
     EXPECT_EQ(*std_it, *s21_it);
 }
 
-TEST(Set_Modifier, merge) {
+TEST(Set, merge) {
   std::set<int> std_set{3, 2, 0, 5, 3, 2, 9, -10, 9, 0};
   s21::set<int> s21_set{3, 2, 0, 5, 3, 2, 9, -10, 9, 0};
 
@@ -510,9 +500,7 @@ TEST(Set_Modifier, merge) {
     EXPECT_EQ(*std_it, *s21_it);
 }
 
-// ------- Set Lookup -------
-
-TEST(Set_Lookup, find) {
+TEST(Set, find) {
   std::set<int> std_set{551, 843, 745, 263, 456, 142, -1123, 9};
   s21::set<int> s21_set{551, 843, 745, 263, 456, 142, -1123, 9};
 
@@ -521,15 +509,13 @@ TEST(Set_Lookup, find) {
   EXPECT_EQ(*std_it, *s21_it);
 }
 
-TEST(Set_Lookup, contains) {
+TEST(Set, contains) {
   std::set<int> std_set{551, 843, 745, 263, 456, 142, -1123, -10};
   s21::set<int> s21_set{551, 843, 745, 263, 456, 142, -1123, -10};
 
   EXPECT_EQ(true, s21_set.contains(-10));
   EXPECT_EQ(false, s21_set.contains(9555));
 }
-
-
 
 int main(int argc, char **argv) {
   ::testing::InitGoogleTest(&argc, argv);

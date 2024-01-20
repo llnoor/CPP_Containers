@@ -23,10 +23,7 @@ public:
     using typename tree_type::iterator;
     using typename tree_type::const_iterator;
 
-    bool isMultiset() const override {  //virtual
-        // std::cout << "It is Multiset" << std::endl;
-        return true;
-    }
+    bool isMultiset() const override {return true;}
 
     multiset() : tree_type() {}
 
@@ -37,7 +34,6 @@ public:
         }
     }
 
-    // Проверить!
     std::pair<iterator, iterator> equal_range(const key_type &key) {
         node_type *node = tree_type::root();
         node_type *lowerNode = nullptr;
@@ -61,7 +57,6 @@ public:
                 node = node->left;
             } else node = node->right;
         }
-
         return std::pair<iterator, iterator>(iterator(lowerNode), iterator(upperNode));
     }
 
@@ -72,7 +67,6 @@ public:
         return n;
     }
 
-    // Проверить!
     iterator lower_bound(const key_type &key) {
         return equal_range(key).first;
     }

@@ -134,16 +134,11 @@ public:
 
     virtual bool contains(const TKey &key) { return (findNode(key)!=nullptr); }
 
-    /*void add(TKey key) {
-        node_type *node  = new node_type(key);
-        insertNode(node);
-    }*/
 
     std::pair<iterator, bool> insert(const TKey &key) {
       node_type *node = nullptr;
       bool temp_bool = false;
 
-      //  Проверить!!!!
       if (!isMultiset()) node = findNode(key);
 
       if (node == nullptr) {
@@ -157,7 +152,6 @@ public:
       node_type *node = nullptr;
       bool temp_bool = false;
 
-      //  Проверить!!!!
       if (!isMultiset()) node = findNode(key);
 
       if (node == nullptr) {
@@ -174,7 +168,7 @@ public:
 
         for (const TKey& item : items) {
             std::pair<node_type *, bool> temp_insert = tree_type::insertKey(item);
-            //std::pair<node_type *, bool> temp_insert = tree_type::insert(item);
+            //std::pair<node_type *, bool> temp_insert = tree_type::insert(item);  // do not del
             temp_vector.push_back(std::pair<iterator, bool>(iterator(temp_insert.first),temp_insert.second));
         }
         return temp_vector;
@@ -345,10 +339,6 @@ public:
             }
         } else header_ = nullptr;  // Если нет родителя, то сообщаем дереву, что оно пусто
 
-        /*if (header_ == replaceableNode) {
-            header_ = nullptr;
-        }*/
-
         num_nodes_ -= 1;
 
         return replaceableNode;
@@ -434,8 +424,7 @@ public:
         }
     }
 
-    virtual bool isMultiset() const {  //virtual
-        // std::cout << "It is not Multiset" << std::endl;
+    virtual bool isMultiset() const {
         return false;
     }
 
@@ -470,18 +459,6 @@ public:
         return node;
     }
 
-    // findNode without compareNode
-    /*node_type *findNode(TKey key) {
-        node_type *node = header_;
-        if (node==nullptr) return nullptr;
-
-        while (node != nullptr && key != node->key) {
-          if (key > node->key)  node = node->right;
-          else if (key < node->key) node = node->left;
-        }
-        return node;
-    }*/
-
     // Функция для добавления новый ноды без балансировки
     // Если ключ ноды меньше ключа рассмаотриваемого узла то добавляем как левый сын
     // Если больше то как правый сын
@@ -499,29 +476,14 @@ public:
                 else currentNode = parentNode->right;
                 if (0 == compareNode(node,parentNode) && !isMultiset()) return false;
                 if (currentNode != nullptr) parentNode = currentNode;
-                /*
-                if (node->key < parentNode->key) currentNode = parentNode->left;
-                else currentNode = parentNode->right;
-                if (node->key == parentNode->key) return false;
-                if (currentNode != nullptr) parentNode = currentNode;
-                */
             }
             node->red = (node == header_) ? false : true;
 
             if (compareNode(node,parentNode) < 0) parentNode->left = node;
             else parentNode->right = node;
-            /*
-            if (node->key < parentNode->key) parentNode->left = node;
-            else parentNode->right = node;
-            */
-
             node->parent = parentNode;
 
             treeBalancing(node);
-
-            /*while (header_->parent !=nullptr) {
-                header_ = header_->parent;
-            }*/
         }
         num_nodes_ += 1;
         return true;
@@ -627,8 +589,6 @@ public:
             node = node->left;
         return node;
     }
-
-
 private:
     TreeNode<TKey> *header_ = nullptr;
     size_type num_nodes_ = 0;
@@ -666,7 +626,6 @@ public:
         if (node_->right != nullptr) {
             node_ = tree_type::minNode(node_->right);
         } else {
-            // while (node_->parent != nullptr && tree_type::isRight(node_)) {
             while (node_->parent != nullptr && node_ == node_->parent->right) {
                 node_ = node_->parent;
             }
@@ -687,19 +646,12 @@ public:
         if (node_->left != nullptr) {
             node_ = tree_type::maxNode(node_->left);
         } else {
-            // while (node_->parent != nullptr && tree_type::isLeft(node_)) {
             while (node_->parent != nullptr && node_ == node_->parent->left) {
                 node_ = node_->parent;
             }
             node_ = node_->parent;
         }
-      } /*else {
-        assert(0);
-        assert(1);
-        if (tree_type::root() != nullptr) {
-            node_ = tree_type::maxNode(tree_type::root());
-        }
-      }*/
+      }
       return *this;
     }
 
@@ -710,7 +662,6 @@ public:
             return empty_key;
         }
     }
-
 protected:
     node_type *node_;
 };
