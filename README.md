@@ -11,3 +11,13 @@ List of classes: `list`, `map`, `queue`, `set`, `stack`, `vector`.
 
 List of classes: `array`, `multiset`.
 
+## Team
+
+| **Name** | **Github**                       | **Tasks**                 |
+|----------|----------------------------------|---------------------------|
+| Ilnur    | [llnoor](https://github.com/llnoor)       | Map, Set, Multiset, Tests |
+| Vlad     | [mirolyubovlad](https://github.com/mirolyubovlad) | Array, Vector, Tests      |
+| Dasha    | [grboff](https://github.com/grboff)        | Array, Vector, Tests      |
+| Murad    | [gseparate](https://github.com/gseparate)     | List, Queue, Stack, Tests |
+| Bulat    | [ryusandorosu](https://github.com/ryusandorosu)  | Tests                     |
+
