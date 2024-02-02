@@ -41,11 +41,11 @@ class Vector {
   const_reference back() const;         // access the last element
   T *data();                            // direct access to the underlying array
 
-  // Vector iterators
+  // vector iterators
   iterator begin();
   iterator end();
 
-  // Vector Capacity
+  // vector Capacity
   bool empty();          // checks whether the container is empty
   size_type size();      // returns the number of elements
   size_type max_size();  // returns the maximum possible number of elements
@@ -56,7 +56,7 @@ class Vector {
                          // currently allocated storage
   void shrink_to_fit();  // reduces memory usage by freeing unused memory
 
-  // Vector Modifiers
+  // vector Modifiers
   void clear();  // clears the contents
   iterator insert(
       iterator pos,
@@ -78,5 +78,5 @@ class Vector {
 };
 }  // namespace s21
 
-#include "S21_Vector.tpp"
+#include "s21_Vector.tpp"
 #endif  // CPP2_S21_CONTAINERS_VECTOR_S21_VECTOR_H

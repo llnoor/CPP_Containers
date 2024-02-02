@@ -1,8 +1,8 @@
-#include "S21_Vector.h"
+#include "s21_Vector.h"
 
 namespace s21 {
 
-/*     Vector Member functions      */
+/*     vector Member functions      */
 
 // конструктор по умолчанию
 template <typename value_type>
@@ -89,8 +89,8 @@ typename Vector<T>::iterator Vector<T>::insert(iterator pos,
 
 template <typename value_type>
 Vector<value_type> &Vector<value_type>::operator=(const Vector &other) {
-  if (this != &other) {  // Проверка на самоприсваивание
-    delete[] data_;      // Очищаем старые данные
+  if (this != &other) {
+    delete[] data_;
 
     size_ = other.size_;
     capacity_ = other.capacity_;
@@ -104,6 +104,7 @@ Vector<value_type> &Vector<value_type>::operator=(const Vector &other) {
 template <typename value_type>
 typename Vector<value_type>::reference Vector<value_type>::operator[](
     size_type pos) {
+  if (pos > size_) throw std::out_of_range("Iterator position out of range");
   return data_[pos];
 }
 
@@ -175,17 +176,18 @@ void Vector<value_type>::clear() {
 
 template <typename value_type>
 void Vector<value_type>::shrink_to_fit() {
-  size_type count_ = this->size_;
-  while (count_--) {
-    this->capacity_--;
-  }
+  capacity_ = size_;
+  value_type *newData = new value_type[size_];
+  std::copy(newData, newData + size_, data_);
+  delete[] data_;
+  data_ = newData;
+  newData = nullptr;
 }
 
 // erases element at pos стирает элемент в позиции
 template <typename value_type>
 void Vector<value_type>::erase(iterator pos) {
   size_--;
-  capacity_ = size_ * 2;
   value_type *newData = new value_type[size_];
 
   size_type count = 0;
@@ -225,8 +227,8 @@ void Vector<value_type>::reserve(size_type newCapacity) {
     value_type *tmp = data_;
     data_ = new value_type[newCapacity];
     std::copy(tmp, tmp + size_, data_);
-    capacity_ = newCapacity;
     delete[] tmp;
+    capacity_ = newCapacity;
   }
 }
 

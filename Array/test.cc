@@ -1,4 +1,4 @@
-#include "S21_Array.h"
+#include "s21_Array.h"
 
 // using namespace s21;
 

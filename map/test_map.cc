@@ -474,10 +474,11 @@ TEST(Map, Emplace) {
       {"Hydrogen", 1}, {"Helium", 2}, {"Lithium", 3}, {"Beryllium", 4}};
   EXPECT_EQ(s21_map_temp.size(), std_map_temp.size());
   EXPECT_EQ(s21_map_temp.empty(), std_map_temp.empty());
-  auto v = s21_map_temp.insert_many(std::pair<std::string, int>{"Phosphorous", 25},
-                                std::pair<std::string, int>{"Sulfur", 17},
-                                std::pair<std::string, int>{"Chlorine", 15},
-                                std::pair<std::string, int>{"Chlorine", 15});
+  auto v =
+      s21_map_temp.insert_many(std::pair<std::string, int>{"Phosphorous", 25},
+                               std::pair<std::string, int>{"Sulfur", 17},
+                               std::pair<std::string, int>{"Chlorine", 15},
+                               std::pair<std::string, int>{"Chlorine", 15});
   std_map_temp.emplace("Phosphorous", 25);
   std_map_temp.emplace("Chlorine", 15);
   std_map_temp.emplace("Argon", 16);

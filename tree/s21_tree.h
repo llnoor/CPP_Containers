@@ -192,7 +192,7 @@ class Tree {
     return i;
   }
 
-    node_type *FindNode(TKey key) {
+  node_type *FindNode(TKey key) {
     node_type *node = header_;
     if (node == nullptr) return nullptr;
 
@@ -274,7 +274,7 @@ class Tree {
     return node;
   }
 
-private:
+ private:
   std::pair<node_type *, bool> InsertKey(const TKey &key) {
     node_type *node = nullptr;
     bool temp_bool = false;

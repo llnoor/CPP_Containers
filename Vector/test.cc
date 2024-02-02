@@ -1,4 +1,4 @@
-#include "S21_Vector.h"
+#include "s21_Vector.h"
 
 TEST(s21_Vector, insert_out_of_range) {
   // создаем в

@@ -586,7 +586,7 @@ TEST(SET, Addition4) {
   }
   EXPECT_EQ(number1.size(), number2.size());
   s21::set<double>::const_iterator it4 = number1.rbegin();
-  while(it4 != number1.begin()) {
+  while (it4 != number1.begin()) {
     it4--;
   }
   EXPECT_EQ(number1.size(), number2.size());

@@ -8,7 +8,7 @@
 
 namespace s21 {
 
-template <typename T, size_t S>
+template <typename T, size_t s>
 class Array {
  public:
   using value_type = T;
@@ -29,33 +29,33 @@ class Array {
   ~Array() { delete[] data_; }
   Array &operator=(Array &&a);
 
-  //  *Array Element access*
+  //  *array Element access*
   reference at(size_type pos);
   reference operator[](size_type pos);
   const_reference front() const;
   const_reference back() const;
   iterator data();
 
-  // *Array Iterators*
+  // *array Iterators*
   iterator begin();
   iterator end();
 
-  // *Array Capacity*
+  // *array Capacity*
   bool empty();
   size_type size() const;
   size_type max_size() const;
 
-  // *Array Modifiers*
+  // *array Modifiers*
   void swap(Array &other);
   void fill(const_reference value);
 
  private:
   value_type *data_;  // указатель на динамический массив
-  size_type size_ = S;  // размер массива
+  size_type size_ = s;  // размер массива
 };
 
 }  // namespace s21
 
-#include "S21_Array.tpp"
+#include "s21_Array.tpp"
 
 #endif  // CPP2_S21_CONTAINERS_Array_S21_Array_H
