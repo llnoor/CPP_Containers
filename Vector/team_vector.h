@@ -2,7 +2,7 @@
 #define CPP2_S21_CONTAINERS_VECTOR_S21_VECTOR_H
 #include <stdexcept>
 
-namespace s21 {
+namespace team {
 template <typename T>
 class Vector {
  public:
@@ -76,7 +76,7 @@ class Vector {
   size_type size_;
   size_type capacity_;
 };
-}  // namespace s21
+}  // namespace team
 
-#include "s21_Vector.tpp"
+#include "team_vector.tpp"
 #endif  // CPP2_S21_CONTAINERS_VECTOR_S21_VECTOR_H

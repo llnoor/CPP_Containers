@@ -6,9 +6,9 @@
 #include <stdexcept>
 #include <utility>
 
-#include "../tree/s21_tree.h"
+#include "../tree/team_tree.h"
 
-namespace s21 {
+namespace team {
 
 template <typename TKey>
 class multiset : public Tree<TKey> {
@@ -79,6 +79,6 @@ class multiset : public Tree<TKey> {
   iterator upper_bound(const key_type &key) { return equal_range(key).second; }
 };
 
-}  // namespace s21
+}  // namespace team
 
 #endif /* CONTAINERS_SRC_MULTISET_MULTISET_H_ */

@@ -1,10 +1,10 @@
-#include "s21_queue.h"
+#include "team_queue.h"
 
 class QueueTest : public ::testing::Test {
  protected:
   void SetUp() override {}
-  s21::queue<int> my_queue_empty_;
-  s21::queue<int> my_queue_full_{2, 5, 7, 10};
+  team::queue<int> my_queue_empty_;
+  team::queue<int> my_queue_full_{2, 5, 7, 10};
   struct new_type {
     char a_char = 'd';
     double a_double = 2.3;
@@ -24,7 +24,7 @@ TEST_F(QueueTest, list_constructor) {
 }
 
 TEST_F(QueueTest, copy_constructor) {
-  s21::queue<int> new_stack(my_queue_full_);
+  team::queue<int> new_stack(my_queue_full_);
   ASSERT_FALSE(new_stack.empty());
   ASSERT_EQ(new_stack.size(), 4);
   ASSERT_EQ(new_stack.front(), 10);
@@ -34,22 +34,22 @@ TEST_F(QueueTest, copy_constructor) {
 }
 
 TEST_F(QueueTest, move_contructor) {
-  s21::queue<int> new_stack(std::move(my_queue_full_));
+  team::queue<int> new_stack(std::move(my_queue_full_));
   ASSERT_EQ(new_stack.front(), 10);
   ASSERT_EQ(new_stack.size(), 4);
   ASSERT_FALSE(new_stack.empty());
-  s21::queue<int> new_stack_empty(std::move(my_queue_empty_));
+  team::queue<int> new_stack_empty(std::move(my_queue_empty_));
   ASSERT_TRUE(new_stack_empty.empty());
   ASSERT_EQ(new_stack_empty.size(), 0);
 }
 
 TEST_F(QueueTest, over_operator_move) {
-  s21::queue<int> new_stack_empty;
+  team::queue<int> new_stack_empty;
   new_stack_empty = std::move(my_queue_full_);
   ASSERT_EQ(new_stack_empty.size(), 4);
   ASSERT_FALSE(new_stack_empty.empty());
   ASSERT_EQ(new_stack_empty.front(), 10);
-  s21::queue<int> temp_stack{1, 2, 3, 4, 5};
+  team::queue<int> temp_stack{1, 2, 3, 4, 5};
   new_stack_empty = std::move(temp_stack);
   ASSERT_EQ(new_stack_empty.size(), 5);
   ASSERT_FALSE(new_stack_empty.empty());
@@ -64,7 +64,7 @@ TEST_F(QueueTest, over_operator_copy) {
   ASSERT_FALSE(my_queue_full_.empty());
   ASSERT_EQ(my_queue_full_.front(), 10);
   ASSERT_EQ(my_queue_full_.size(), 4);
-  s21::queue<int> new_stack_full{10, 20, 30};
+  team::queue<int> new_stack_full{10, 20, 30};
   new_stack_full = my_queue_full_;
   ASSERT_FALSE(my_queue_full_.empty());
   ASSERT_EQ(my_queue_full_.front(), 10);
@@ -103,8 +103,8 @@ TEST_F(QueueTest, swap_function) {
   new_type buff_1;
   buff_1.a_char = 's';
   buff_1.a_double = 100.12;
-  s21::queue<new_type> buff_new_type{buff, buff};
-  s21::queue<new_type> buff_new_type_1{buff_1, buff_1, buff_1};
+  team::queue<new_type> buff_new_type{buff, buff};
+  team::queue<new_type> buff_new_type_1{buff_1, buff_1, buff_1};
   buff_new_type.swap(buff_new_type_1);
   ASSERT_EQ(buff_new_type.front().a_double, 100.12);
   ASSERT_EQ(buff_new_type.front().a_char, 's');
@@ -129,11 +129,11 @@ TEST_F(QueueTest, emplace_many_arg_function) {
 }
 
 TEST(QueueFrontTest, EmptyQueue) {
-  s21::queue<int> q;
+  team::queue<int> q;
   EXPECT_EQ(q.front(), 0);
 }
 
 TEST(QueueBackTest, EmptyQueue) {
-  s21::queue<int> q;
+  team::queue<int> q;
   EXPECT_EQ(q.back(), 0);
 }

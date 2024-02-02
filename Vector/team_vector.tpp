@@ -1,6 +1,6 @@
-#include "s21_Vector.h"
+#include "team_vector.h"
 
-namespace s21 {
+namespace team {
 
 /*     vector Member functions      */
 
@@ -132,7 +132,7 @@ typename Vector<value_type>::const_reference Vector<value_type>::back() const {
 }
 
 template <typename T>
-T *s21::Vector<T>::data() {
+T *team::Vector<T>::data() {
   return data_;
 }
 
@@ -232,4 +232,4 @@ void Vector<value_type>::reserve(size_type newCapacity) {
   }
 }
 
-}  // namespace s21
+}  // namespace team

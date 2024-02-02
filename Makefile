@@ -2,7 +2,7 @@ CC = g++
 FLAGS = -Wall -Wextra -g -std=c++17 -Werror
 GCOV = --coverage
 TEST = tests.cc
-A = s21_containers.a
+A = team_containers.a
 O = *.o
 GTEST = gtest
 OS = $(shell uname)
@@ -19,11 +19,11 @@ test:
 	$(CC) $(FLAGS) $(TEST) $(LIBFLAGS) -o $(GTEST)
 	./$(GTEST)
 
-s21_containers.a: clean
+team_containers.a: clean
 	$(CC) $(FLAGS) -c $(TEST)
 	ar rcs $(A) $(O)
 
-gcov_report: s21_containers.a
+gcov_report: team_containers.a
 	$(CC) $(FLAGS) $(GCOV) $(TEST) $(A) $(LIBFLAGS) -o $(GTEST)
 	./$(GTEST)
 	lcov -t "./test" -o report.info --no-external -c -d . --ignore-errors mismatch

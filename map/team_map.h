@@ -7,9 +7,9 @@
 #include <stdexcept>
 #include <utility>
 
-#include "../tree/s21_tree.h"
+#include "../tree/team_tree.h"
 
-namespace s21 {
+namespace team {
 
 template <typename TKey, typename TValue>
 class map : public Tree<std::pair<TKey, TValue>> {
@@ -91,6 +91,6 @@ class map : public Tree<std::pair<TKey, TValue>> {
   }
 };
 
-}  // namespace s21
+}  // namespace team
 
 #endif /* CONTAINERS_SRC_MAP_MAP_H_ */

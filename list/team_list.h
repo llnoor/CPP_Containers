@@ -4,7 +4,7 @@
 
 #include <iostream>
 #include <limits>
-namespace s21 {
+namespace team {
 template <class T>
 class list {
  public:
@@ -108,7 +108,7 @@ class list {
   void Moving(list &&l);
   iterator TakeIter(iterator other, int x);
 };
-#include "s21_iterator.tpp"
-#include "s21_list.tpp"
-}  // namespace s21
+#include "team_iterator.tpp"
+#include "team_list.tpp"
+}  // namespace team
 #endif

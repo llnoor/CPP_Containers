@@ -1,4 +1,4 @@
-namespace s21 {
+namespace team {
 
 template <typename T, size_t N>
 Array<T, N>& Array<T, N>::operator=(Array&& a) {
@@ -71,4 +71,4 @@ void Array<T, s>::fill(const_reference value) {
   std::fill(size_, size_ + s, value);
 }
 
-}  // namespace s21
+}  // namespace team

@@ -1,7 +1,7 @@
 #ifndef TRYES_MAI_H
 #define TRYES_MAI_H
-#include "../list/s21_list.h"
-namespace s21 {
+#include "../list/team_list.h"
+namespace team {
 template <class T>
 class queue : private list<T> {
  public:
@@ -28,6 +28,6 @@ class queue : private list<T> {
   template <class... Args>
   void emplace_back(Args &&...args);
 };
-#include "s21_queue.tpp"
-}  // namespace s21
+#include "team_queue.tpp"
+}  // namespace team
 #endif

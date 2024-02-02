@@ -6,9 +6,9 @@
 #include <stdexcept>
 #include <utility>
 
-#include "../tree/s21_tree.h"
+#include "../tree/team_tree.h"
 
-namespace s21 {
+namespace team {
 
 template <typename TKey>
 class set : public Tree<TKey> {
@@ -33,6 +33,6 @@ class set : public Tree<TKey> {
   }
 };
 
-}  // namespace s21
+}  // namespace team
 
 #endif /* CONTAINERS_SRC_SET_SET_H_ */

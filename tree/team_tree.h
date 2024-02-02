@@ -6,7 +6,7 @@
 #include <utility>
 #include <vector>
 
-namespace s21 {
+namespace team {
 
 template <typename TTree>
 class TreeConstIterator;
@@ -738,6 +738,6 @@ class TreeNode {
         key(node->key) {}
 };
 
-}  // namespace s21
+}  // namespace team
 
 #endif /* CONTAINERS_SRC_TREE_TREE_H_ */

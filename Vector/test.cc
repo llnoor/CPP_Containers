@@ -1,103 +1,103 @@
-#include "s21_Vector.h"
+#include "team_vector.h"
 
-TEST(s21_Vector, insert_out_of_range) {
+TEST(team_vector, insert_out_of_range) {
   // создаем в
-  s21::Vector<int> s21vector{1, 2, 3};
+  team::Vector<int> teamvector{1, 2, 3};
 
   // вставить элемент за пределы вектора
-  ASSERT_THROW(s21vector.insert(s21vector.begin() + 10, 4), std::out_of_range);
+  ASSERT_THROW(teamvector.insert(teamvector.begin() + 10, 4), std::out_of_range);
 }
 
-TEST(s21_Vector, at_out_of_range) {
-  s21::Vector<int> s21vector{1, 2, 3};
+TEST(team_vector, at_out_of_range) {
+  team::Vector<int> teamvector{1, 2, 3};
 
-  ASSERT_THROW(s21vector.at(10), std::out_of_range);
+  ASSERT_THROW(teamvector.at(10), std::out_of_range);
 }
-TEST(s21_Vector, front_empty) {
-  s21::Vector<int> s21vector;
+TEST(team_vector, front_empty) {
+  team::Vector<int> teamvector;
 
-  ASSERT_THROW(s21vector.front(), std::out_of_range);
+  ASSERT_THROW(teamvector.front(), std::out_of_range);
 }
 
-TEST(s21_Vector, front_none_empty) {
-  s21::Vector<int> s21vector{1, 2, 3};
+TEST(team_vector, front_none_empty) {
+  team::Vector<int> teamvector{1, 2, 3};
 
   ASSERT_NO_THROW({
-    const int& frontEl = s21vector.front();
+    const int& frontEl = teamvector.front();
     ASSERT_EQ(frontEl, 1);
   });
 }
 
-TEST(s21_Vector_constructor, default_constructor) {
-  s21::Vector<int> s21Vector;
+TEST(team_vector_constructor, default_constructor) {
+  team::Vector<int> teamVector;
   std::vector<int> stdvector;
-  ASSERT_EQ(s21Vector.empty(), stdvector.empty());
-  ASSERT_EQ(s21Vector.size(), stdvector.size());
+  ASSERT_EQ(teamVector.empty(), stdvector.empty());
+  ASSERT_EQ(teamVector.size(), stdvector.size());
 }
 
-TEST(s21_vector, move2) {
-  s21::Vector<int> s21vector{1, 2, 3};
-  s21::Vector<int> stdvector{3, 2, 1};
-  stdvector = std::move(s21vector);
+TEST(team_vector, move2) {
+  team::Vector<int> teamvector{1, 2, 3};
+  team::Vector<int> stdvector{3, 2, 1};
+  stdvector = std::move(teamvector);
 }
 
-TEST(s21_vector, copy) {
-  s21::Vector<int> s21vector{1, 2, 3};
-  s21::Vector<int> stdvector{2, 3, 4};
-  s21vector = stdvector;
+TEST(team_vector, copy) {
+  team::Vector<int> teamvector{1, 2, 3};
+  team::Vector<int> stdvector{2, 3, 4};
+  teamvector = stdvector;
 
   // нужна перегрузка оператора
-  ASSERT_EQ(s21vector.empty(), stdvector.empty());
-  ASSERT_EQ(s21vector.size(), stdvector.size());
+  ASSERT_EQ(teamvector.empty(), stdvector.empty());
+  ASSERT_EQ(teamvector.size(), stdvector.size());
 }
 
-TEST(s21_Vector, OperatorSqBrackets) {
-  s21::Vector<int> intVector{1, 2, 3, 4, 5};
+TEST(team_vector, OperatorSqBrackets) {
+  team::Vector<int> intVector{1, 2, 3, 4, 5};
   for (std::size_t i = 0; i < intVector.size(); ++i) {
     EXPECT_EQ(intVector[i], static_cast<int>(i) + 1);
   }
 
-  s21::Vector<double> doubleVector{1.1, 2.2, 3.3, 4.4, 5.5};
+  team::Vector<double> doubleVector{1.1, 2.2, 3.3, 4.4, 5.5};
   for (std::size_t i = 0; i < doubleVector.size(); ++i) {
     EXPECT_DOUBLE_EQ(doubleVector[i], (i + 1) * 1.1);
   }
 
-  s21::Vector<std::string> stringVector{"one", "two", "three", "four", "five"};
+  team::Vector<std::string> stringVector{"one", "two", "three", "four", "five"};
   EXPECT_EQ(stringVector[2], "three");
 }
 
-TEST(s21_vector_at, valid_index) {
-  s21::Vector<int> myVector{1, 2, 3, 4, 5};
+TEST(team_vector_at, valid_index) {
+  team::Vector<int> myVector{1, 2, 3, 4, 5};
   int expected_value = 3;
 
   // Проверяем, что элемент с индексом 2 равен ожидаемому значению
   ASSERT_EQ(myVector.at(2), expected_value);
 }
 
-TEST(s21_vector_front, valid) {
+TEST(team_vector_front, valid) {
   std::vector<char> letters{'a', 'b', 'c', 'd', 'e', 'f'};
-  s21::Vector<char> let{'a', 'b', 'c', 'd', 'e', 'f'};
+  team::Vector<char> let{'a', 'b', 'c', 'd', 'e', 'f'};
   ASSERT_EQ(letters.front(), let.front());
 }
 
-TEST(s21_vector_front, valid1) {
+TEST(team_vector_front, valid1) {
   std::vector<char> letters{'a', 'b', 'c', 'd', 'e', 'f'};
-  s21::Vector<char> let{'a', 'b', 'c', 'd', 'e', 'f'};
+  team::Vector<char> let{'a', 'b', 'c', 'd', 'e', 'f'};
 
   for (std::size_t i = 0; i < letters.size(); ++i) {
     ASSERT_EQ(letters[i], let[i]);
   }
 }
 
-TEST(s21_vector_back, valid) {
+TEST(team_vector_back, valid) {
   std::vector<char> letters{'a', 'b', 'c', 'd', 'e', 'f'};
-  s21::Vector<char> let{'a', 'b', 'c', 'd', 'e', 'f'};
+  team::Vector<char> let{'a', 'b', 'c', 'd', 'e', 'f'};
   ASSERT_EQ(letters.back(), let.back());
 }
 
 TEST(VectorDataTest, ReturnsCorrectPointer) {
   // Создаем вектор
-  s21::Vector<int> myVector{1, 2, 3, 4, 5};
+  team::Vector<int> myVector{1, 2, 3, 4, 5};
 
   // Получаем указатель на массив элементов с использованием метода data()
   int* dataPtr = myVector.data();
@@ -112,7 +112,7 @@ TEST(VectorDataTest, ReturnsCorrectPointer) {
 }
 
 TEST(VectorEraseTest, Erase) {
-  s21::Vector<int> vec = {1, 2, 3, 4, 5};
+  team::Vector<int> vec = {1, 2, 3, 4, 5};
 
   vec.erase(vec.begin() + 2);
 
@@ -125,7 +125,7 @@ TEST(VectorEraseTest, Erase) {
 }
 
 TEST(VectorPopBackTest, PopBack) {
-  s21::Vector<int> vec = {1, 2, 3, 4, 5};
+  team::Vector<int> vec = {1, 2, 3, 4, 5};
 
   vec.pop_back();
 
@@ -138,11 +138,11 @@ TEST(VectorPopBackTest, PopBack) {
 }
 
 TEST(VectorSwapTest, Swap) {
-  s21::Vector<int> vec1 = {1, 2, 3, 4, 5};
-  s21::Vector<int> vec2 = {10, 20, 30};
+  team::Vector<int> vec1 = {1, 2, 3, 4, 5};
+  team::Vector<int> vec2 = {10, 20, 30};
 
-  s21::Vector<int> originalVec1 = vec1;
-  s21::Vector<int> originalVec2 = vec2;
+  team::Vector<int> originalVec1 = vec1;
+  team::Vector<int> originalVec2 = vec2;
 
   vec1.swap(vec2);
 
@@ -159,11 +159,11 @@ TEST(VectorSwapTest, Swap) {
 }
 
 TEST(VectorMove, Move) {
-  s21::Vector<int> original = {1, 2, 3, 4, 5};
-  s21::Vector<int> other = {10, 20, 30};
+  team::Vector<int> original = {1, 2, 3, 4, 5};
+  team::Vector<int> other = {10, 20, 30};
 
-  s21::Vector<int> originalCopy = original;
-  s21::Vector<int> otherCopy = other;
+  team::Vector<int> originalCopy = original;
+  team::Vector<int> otherCopy = other;
 
   original = std::move(other);
 
@@ -182,9 +182,9 @@ TEST(VectorMove, Move) {
 }
 
 TEST(VectorInsert, Insert) {
-  s21::Vector<int> vec = {1, 2, 3, 4, 5};
+  team::Vector<int> vec = {1, 2, 3, 4, 5};
 
-  s21::Vector<int>::iterator it = vec.insert(vec.begin() + 2, 10);
+  team::Vector<int>::iterator it = vec.insert(vec.begin() + 2, 10);
 
   EXPECT_EQ(vec.size(), 6);
 

@@ -1,7 +1,7 @@
 #ifndef TRYES_MAO_H
 #define TRYES_MAO_H
-#include "../list/s21_list.h"
-namespace s21 {
+#include "../list/team_list.h"
+namespace team {
 template <class T>
 class stack : private list<T> {
  public:
@@ -27,6 +27,6 @@ class stack : private list<T> {
   template <class... Args>
   void emplace_front(Args &&...args);
 };
-#include "s21_stack.tpp"
-}  // namespace s21
+#include "team_stack.tpp"
+}  // namespace team
 #endif

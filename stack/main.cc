@@ -1,10 +1,10 @@
-#include "s21_stack.h"
+#include "team_stack.h"
 
 class StackTest : public ::testing::Test {
  protected:
   void SetUp() override {}
-  s21::stack<int> my_stack_empty_;
-  s21::stack<int> my_stack_full_{2, 5, 7, 10};
+  team::stack<int> my_stack_empty_;
+  team::stack<int> my_stack_full_{2, 5, 7, 10};
   struct new_type {
     char a_char = 'd';
     double a_double = 2.3;
@@ -24,7 +24,7 @@ TEST_F(StackTest, list_constructor) {
 }
 
 TEST_F(StackTest, copy_constructor) {
-  s21::stack<int> new_stack(my_stack_full_);
+  team::stack<int> new_stack(my_stack_full_);
   ASSERT_FALSE(new_stack.empty());
   ASSERT_EQ(new_stack.size(), 4);
   ASSERT_EQ(new_stack.top(), 2);
@@ -34,22 +34,22 @@ TEST_F(StackTest, copy_constructor) {
 }
 
 TEST_F(StackTest, move_contructor) {
-  s21::stack<int> new_stack(std::move(my_stack_full_));
+  team::stack<int> new_stack(std::move(my_stack_full_));
   ASSERT_EQ(new_stack.top(), 10);
   ASSERT_EQ(new_stack.size(), 4);
   ASSERT_FALSE(new_stack.empty());
-  s21::stack<int> new_stack_empty(std::move(my_stack_full_));
+  team::stack<int> new_stack_empty(std::move(my_stack_full_));
   ASSERT_TRUE(new_stack_empty.empty());
   ASSERT_EQ(new_stack_empty.size(), 0);
 }
 
 TEST_F(StackTest, over_operator_move) {
-  s21::stack<int> new_stack_empty;
+  team::stack<int> new_stack_empty;
   new_stack_empty = std::move(my_stack_full_);
   ASSERT_EQ(new_stack_empty.size(), 4);
   ASSERT_FALSE(new_stack_empty.empty());
   ASSERT_EQ(new_stack_empty.top(), 10);
-  s21::stack<int> temp_stack{1, 2, 3, 4, 5};
+  team::stack<int> temp_stack{1, 2, 3, 4, 5};
   new_stack_empty = std::move(temp_stack);
   ASSERT_EQ(new_stack_empty.size(), 5);
   ASSERT_FALSE(new_stack_empty.empty());
@@ -64,7 +64,7 @@ TEST_F(StackTest, over_operator_copy) {
   ASSERT_FALSE(my_stack_full_.empty());
   ASSERT_EQ(my_stack_full_.top(), 10);
   ASSERT_EQ(my_stack_full_.size(), 4);
-  s21::stack<int> new_stack_full{10, 20, 30};
+  team::stack<int> new_stack_full{10, 20, 30};
   new_stack_full = my_stack_full_;
   ASSERT_FALSE(my_stack_full_.empty());
   ASSERT_EQ(my_stack_full_.top(), 10);
@@ -103,8 +103,8 @@ TEST_F(StackTest, swap_function) {
   new_type buff_1;
   buff_1.a_char = 's';
   buff_1.a_double = 100.12;
-  s21::stack<new_type> buff_new_type{buff, buff};
-  s21::stack<new_type> buff_new_type_1{buff_1, buff_1, buff_1};
+  team::stack<new_type> buff_new_type{buff, buff};
+  team::stack<new_type> buff_new_type_1{buff_1, buff_1, buff_1};
   buff_new_type.swap(buff_new_type_1);
   ASSERT_EQ(buff_new_type.top().a_double, 100.12);
   ASSERT_EQ(buff_new_type.top().a_char, 's');

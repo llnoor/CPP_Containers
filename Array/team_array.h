@@ -6,7 +6,7 @@
 #include <limits>
 #include <stdexcept>
 
-namespace s21 {
+namespace team {
 
 template <typename T, size_t s>
 class Array {
@@ -54,8 +54,8 @@ class Array {
   size_type size_ = s;  // размер массива
 };
 
-}  // namespace s21
+}  // namespace team
 
-#include "s21_Array.tpp"
+#include "team_array.tpp"
 
 #endif  // CPP2_S21_CONTAINERS_Array_S21_Array_H
