@@ -1,6 +1,0 @@
-#include "list/team_list.h"
-#include "map/team_map.h"
-#include "queue/team_queue.h"
-#include "set/team_set.h"
-#include "stack/team_stack.h"
-#include "vector/team_vector.h"
