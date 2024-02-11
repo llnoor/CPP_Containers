@@ -1,5 +1,7 @@
 #include "unit_tests.h"
 
+// there is no char and string type tests, maybe it is better for other tests too
+
 TEST(Iterators, ArithmeticsPlus) {
   s21::list<int> test{1, 2, 3, 4, 5};
   auto it_1 = test.begin();
@@ -153,4 +155,22 @@ TEST(Iterators, NotEqualCompare) {
   EXPECT_TRUE(*s21_it_b != *std_it_e);
   EXPECT_TRUE(*std_it_b != *std_it_e);
   EXPECT_TRUE(*std_it_b != *s21_it_e);
+}
+
+TEST(Iterators, EmptyListBeginDereferencing) {
+  s21::list<int> s21_test;
+  std::list<int> std_test;
+  auto s21_it = s21_test.begin();
+  auto std_it = std_test.begin();
+  EXPECT_TRUE(*s21_it == 0);
+  EXPECT_TRUE(*s21_it == *std_it);
+}
+
+TEST(Iterators, EmptyListEndDereferencing) {
+  s21::list<int> s21_test;
+  std::list<int> std_test;
+  auto s21_it = s21_test.end();
+  auto std_it = std_test.end();
+  EXPECT_TRUE(*s21_it == 0);
+  EXPECT_TRUE(*s21_it == *std_it);
 }

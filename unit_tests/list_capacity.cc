@@ -1,5 +1,7 @@
 #include "unit_tests.h"
 
+/* empty */
+
 TEST(Capacity, IsEmptyCorrectInt) {
   s21::list<int> emptyList;
   EXPECT_TRUE(emptyList.empty());
@@ -117,6 +119,8 @@ TEST(Capacity, IsntEmptyFrontCompareStr) {
   EXPECT_TRUE(!s21_nonEmptyList.empty() == !std_nonEmptyList.empty());
 }
 
+/* size */
+
 TEST(Capacity, SizeEmptyInt) {
   s21::list<int> emptyList;
   EXPECT_TRUE(emptyList.size() == 0);
@@ -232,4 +236,24 @@ TEST(Capacity, SizeCompareFrontStr) {
   s21_nonEmptyList.push_front("ABCD");
   std_nonEmptyList.push_front("ABCD");
   EXPECT_TRUE(s21_nonEmptyList.size() == std_nonEmptyList.size());
+}
+
+/* max_size */
+
+TEST(Capacity, MaxSizeCompareInt) {
+  s21::list<int> s21_test;
+  std::list<int> std_test;
+  EXPECT_TRUE(s21_test.max_size() == std_test.max_size());
+}
+
+TEST(Capacity, MaxSizeCompareChar) {
+  s21::list<char> s21_test;
+  std::list<char> std_test;
+  EXPECT_TRUE(s21_test.max_size() == std_test.max_size());
+}
+
+TEST(Capacity, MaxSizeCompareStr) {
+  s21::list<std::string> s21_test;
+  std::list<std::string> std_test;
+  EXPECT_TRUE(s21_test.max_size() == std_test.max_size());
 }

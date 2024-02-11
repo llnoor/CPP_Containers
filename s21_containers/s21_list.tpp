@@ -2,12 +2,15 @@
 
 namespace s21 {
 
+  template <typename value_type>
+  typename list<value_type>::value_type list<value_type>::default_value;
+
   /* element access */
   
   template <typename value_type>
   typename list<value_type>::const_reference list<value_type>::front() const {
     if (empty()) {
-      throw std::out_of_range("error: list is empty, cannot access the front element.");
+      return default_value;
     }
     return head->data_;
   }
@@ -15,7 +18,7 @@ namespace s21 {
   template <typename value_type>
   typename list<value_type>::const_reference list<value_type>::back() const {
     if (empty()) {
-      throw std::out_of_range("error: list is empty, cannot access the back element.");
+      return default_value;
     }
     return tail->data_;
   }
@@ -32,6 +35,11 @@ namespace s21 {
     return size_;
   }
 
+  template <typename value_type>
+  typename list<value_type>::size_type list<value_type>::max_size() const {
+    return std::numeric_limits<size_type>::max() / sizeof(Node<value_type>) / 2;
+  }
+
   /* iterators */
 
   template <typename value_type>
@@ -41,7 +49,7 @@ namespace s21 {
 
   template <typename value_type>
   typename list<value_type>::iterator list<value_type>::end() {
-    return iterator(tail);  // nullptr?
+    return iterator(tail);
   }
 
   template <typename value_type>
@@ -51,7 +59,7 @@ namespace s21 {
 
   template <typename value_type>
   typename list<value_type>::const_iterator list<value_type>::cend() const {
-    return const_iterator(tail);  // nullptr?
+    return const_iterator(tail);
   }
 
   /* additional */
@@ -79,7 +87,7 @@ namespace s21 {
       std::cout << "  prev: " << current->prev_ << ", next: " << current->next_ << std::endl;
       
       current = current->next_;
-      if (current == head) {  // exit the loop if we've come back to the head
+      if (current == head) {
         break;
       }
     }

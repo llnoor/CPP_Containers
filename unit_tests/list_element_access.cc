@@ -42,18 +42,16 @@ TEST(ElementAccess, BackCorrectStr) {
   EXPECT_TRUE(test.back() == "magog");
 }
 
-//C++ exception with description "error: list is empty, cannot access the front element." thrown in the test body.
-// TEST(ElementAccess, FrontStringLeaksCheck) {
-//   // leaks check, original list is broken on strings
-//   s21::list<std::string> s21_test;
-//   EXPECT_TRUE(s21_test.size() == s21_test.size());
-//   EXPECT_TRUE(s21_test.front() == s21_test.front());
-// }
+TEST(ElementAccess, FrontStringLeaksCheck) {
+  // leaks check, original list is broken on strings
+  s21::list<std::string> s21_test;
+  EXPECT_TRUE(s21_test.size() == s21_test.size());
+  EXPECT_TRUE(s21_test.front() == s21_test.front());
+}
 
-//C++ exception with description "error: list is empty, cannot access the back element." thrown in the test body.
-// TEST(ElementAccess, BackStringLeaksCheck) {
-//   // leaks check, original list is broken on strings
-//   s21::list<std::string> s21_test;
-//   EXPECT_TRUE(s21_test.size() == s21_test.size());
-//   EXPECT_TRUE(s21_test.back() == s21_test.back());
-// }
+TEST(ElementAccess, BackStringLeaksCheck) {
+  // leaks check, original list is broken on strings
+  s21::list<std::string> s21_test;
+  EXPECT_TRUE(s21_test.size() == s21_test.size());
+  EXPECT_TRUE(s21_test.back() == s21_test.back());
+}

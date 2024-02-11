@@ -1,10 +1,15 @@
 CC = g++
 FLAGS = -Wall -Werror -Wextra -std=c++17
 LIBS = -lgtest
+OS=$(shell uname -s)
 
 PROJECT = s21_containers
 TARGET = $(PROJECT).a
-SOURCES = $(wildcard $(PROJECT)/*.cc) $(wildcard $(PROJECT)/*.tpp)
+ifeq ($(OS), Linux)
+	SOURCES = $(wildcard $(PROJECT)/*.cc)
+else
+	SOURCES = $(wildcard $(PROJECT)/*.cc) $(wildcard $(PROJECT)/*.tpp)
+endif
 OBJECTS = $(patsubst %.cc, %.o, $(SOURCES))
 
 TESTDIR = unit_tests
