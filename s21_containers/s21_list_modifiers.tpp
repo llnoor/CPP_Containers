@@ -73,10 +73,34 @@ namespace s21 {
 
     auto it = other.begin();
     iterator p(pos.getCurrent());
+    
     for (size_type i = 1; i <= other.size(); ++i, ++it) {
       insert(p, *it);
     }
     other.clear();
+  }
+
+  template <typename value_type>
+  void list<value_type>::merge(list& other) {
+    if (empty()) {
+      swap(other);
+      return;
+    }
+    if (other.empty()) { return; }
+    if (this == &other) { return; }
+    
+    auto it_this = begin();
+    auto it_other = other.begin();
+
+    while (!other.empty()) {
+      if (*it_other < *it_this || it_this == end()) {
+        insert(it_this, *it_other);
+        other.erase(it_other);
+        ++it_other;
+      } else {
+        ++it_this;
+      }
+    }
   }
 
   /* element deleting */
@@ -123,12 +147,16 @@ namespace s21 {
 
   template <typename value_type>
   void list<value_type>::clear() {
-    while (!empty()) { pop_back(); }
+    while (!empty()) {
+      pop_back();
+    }
   }
 
   template <typename value_type>
   void list<value_type>::erase(iterator pos) {
-    if (empty()) { return; }
+    if (empty()) {
+      return;
+    }
 
     Node<value_type>* posNode = pos.getCurrent();
     Node<value_type>* prevNode = posNode->prev_;
@@ -172,16 +200,42 @@ namespace s21 {
 
   template <typename value_type>
   void list<value_type>::reverse() {
-    if (size_ <= 1) { return; }
+    if (size_ <= 1) {
+      return;
+    }
 
     Node<value_type> *front = head;
     Node<value_type> *back = tail;
 
     while (front != back) {
       std::swap(front->data_, back->data_);
-      if (front->next_ == back) { break; }
+      if (front->next_ == back) {
+        break;
+      }
       front = front->next_;
       back = back->prev_;
+    }
+  }
+
+  template <typename value_type>
+  void list<value_type>::sort() {
+    if (size_ <= 1) { return; }
+
+    bool swapped = true;
+
+    while (swapped) {
+      swapped = false;
+      Node<value_type>* current = head;
+      Node<value_type>* last = tail->next_;
+
+      while (current->next_ != last) {
+        if (current->data_ > current->next_->data_) {
+          std::swap(current->data_, current->next_->data_);
+          swapped = true;
+        }
+        current = current->next_;
+      }
+      last = current;
     }
   }
 

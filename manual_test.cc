@@ -2,25 +2,31 @@
 #include "s21_containers/s21_list.h"
 
 int main() {
-  s21::list<int> test{1, 2, 3, 4, 5};
-  s21::list<int> source{10, 20, 30};
-  // std::list<int> test{1, 2, 3, 4, 5};
-  // std::list<int> source{10, 20, 30};
+  /* merge */
+  s21::list<int> s21_test_dest = {1, 2, 3};
+  s21::list<int> s21_test_src = {20, 10};
+  // s21::list<int> s21_test_dest = {5, 9, 1, 3, 3};
+  // s21::list<int> s21_test_src = {8, 7, 2, 3, 4, 4};
+  // s21::list<char> s21_test_dest = {'a', 'b', 'c', 'd', 'e'};
+  // s21::list<char> s21_test_src = {'Z', 'Y', 'X'};
+  // s21::list<std::string> s21_test_dest = {"sus", "amogus", "ABOBA", "sus"};
+  // s21::list<std::string> s21_test_src = {"sugoma", "BAOBAB", "same"};
 
-  auto it = test.cend();  //5 s21 cend, stl cend: 1 2 3 4 5 10 20 30 
-  // --it; //5 before cend:  1 2 3 4 10 20 30 5 
-  // auto it = test.cbegin();  //1:  10 20 30 1 2 3 4 5 
-  // ++it; //2:  1 10 20 30 2 3 4 5 
-  // ++it; //3:  1 2 10 20 30 3 4 5 
-  // ++it; //4, before cend s21 --it:  1 2 3 10 20 30 4 5 
-  // ++it; //5 s21 cend, stl --it cend: 1 2 3 4 10 20 30 5 
-  // ++it; //5(1) s21 cbegin, stl cend: 1 2 3 4 5 10 20 30 
-  std::cout << *it << std::endl;
-  test.splice(it, source);
-  test.print();  // s21
+  std::list<int> std_test_dest = {1, 2, 3};
+  std::list<int> std_test_src = {20, 10};
+  // std::list<int> std_test_dest = {5, 9, 1, 3, 3};
+  // std::list<int> std_test_src = {8, 7, 2, 3, 4, 4};
+  // std::list<char> std_test_dest = {'a', 'b', 'c', 'd', 'e'};
+  // std::list<char> std_test_src = {'Z', 'Y', 'X'};
+  // std::list<std::string> std_test_dest = {"sus", "amogus", "ABOBA", "sus"};
+  // std::list<std::string> std_test_src = {"sugoma", "BAOBAB", "same"};
 
-  // for (const auto& value : test) {  // for std
-  //   std::cout << value << " ";
-  // }
-  // std::cout << std::endl;
+  s21_test_dest.merge(s21_test_src);
+  std_test_dest.merge(std_test_src);
+
+  s21_test_dest.print();  // s21
+  for (const auto& value : std_test_dest) {  // for std
+    std::cout << value << " ";
+  }
+  std::cout << std::endl;
 }

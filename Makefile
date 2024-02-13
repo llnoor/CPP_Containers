@@ -12,15 +12,19 @@ else
 endif
 OBJECTS = $(patsubst %.cc, %.o, $(SOURCES))
 
+# MANTEST = manual_test.cc 
+MANTEST = manual_test_insert.cc 
+#MANTEST = manual_test_splice.cc 
+
 TESTDIR = unit_tests
 TESTEXE = $(TESTDIR)/$(TESTDIR).out
 TESTSRC = $(wildcard $(TESTDIR)/*.cc)
 TESTOBJ = $(patsubst %.cc, %.o, $(TESTSRC))
 
 mantest:
-#	$(CC) $(FLAGS) $(SOURCES) manual_test.cc
-	$(CC) $(FLAGS) manual_test.cc
-#	$(CC) $(FLAGS) -fsanitize=address manual_test.cc
+#	$(CC) $(FLAGS) $(SOURCES) $(MANTEST)
+	$(CC) $(FLAGS) -g $(MANTEST)
+#	$(CC) $(FLAGS) -fsanitize=address $(MANTEST)
 	./a.out
 
 $(TARGET): clean $(OBJECTS)
@@ -38,4 +42,4 @@ clean_objects:
 	rm -rf *.o $(PROJECT)/*.o $(TESTDIR)/*.o
 
 clean_other:
-	rm -rf *.out *.a $(TESTEXE) #$(TESTCOV) $(TESTREP)
+	rm -rf *.out *.a *.dSYM $(TESTEXE) #$(TESTCOV) $(TESTREP)

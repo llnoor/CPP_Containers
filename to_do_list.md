@@ -8,3 +8,4 @@ seem like not very needed technically, only logically?
 - decompose tests before modifiers->reverse using listsequal function  
 - seems like i forgot about tests of the assignment operator  
 - add a tests for iterators: empty list (in/de)crementation  
+- decompose the file structure of project, split tests  
