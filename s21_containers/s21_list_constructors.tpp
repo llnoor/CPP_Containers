@@ -4,12 +4,15 @@ namespace s21 {
   
   // default
   template <typename value_type>
-  list<value_type>::list() : head(nullptr), tail(nullptr), size_(0) {}
+  list<value_type>::list() : head(nullptr), tail(nullptr), size_(0) {
+    cycle = new Node<value_type>;
+  }
 
   // destructor
   template <typename value_type>
   list<value_type>::~list() {
     clear();
+    delete cycle;
   }
 
   // parameterized
@@ -37,16 +40,14 @@ namespace s21 {
     for (auto it = l.cbegin(); it != l.cend(); ++it) {
       push_back(*it);
     }
-    if (!l.empty()) {
-      push_back(*l.cend());
-    }
   }
 
   // move
   template <typename value_type>
-  list<value_type>::list(list &&l) : head(l.head), tail(l.tail), size_(l.size_) {
+  list<value_type>::list(list &&l) : head(l.head), tail(l.tail), cycle(l.cycle), size_(l.size_) {
     l.head = nullptr;
     l.tail = nullptr;
+    l.cycle = nullptr;
     l.size_ = 0;
   }
 

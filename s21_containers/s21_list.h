@@ -28,6 +28,8 @@ class list {
     using const_iterator = ListConstIterator;
     using size_type = size_t;
 
+    static value_type default_value;
+
     class ListIterator {
       public:
         ListIterator(Node<value_type> *object) : current(object) {}
@@ -113,11 +115,11 @@ class list {
     /* additional */
     void print() const;
     void print_debug() const;
+    void updateEmptyNode();
 
   private:
-    Node<value_type> *head, *tail;
+    Node<value_type> *head, *tail, *cycle;
     size_type size_;
-    static value_type default_value;
 };  // class list
 
 }  // namespace s21
@@ -127,4 +129,6 @@ class list {
 #include "s21_list_class_iterator_const.tpp"
 #include "s21_list_constructors.tpp"
 #include "s21_list_modifiers.tpp"
+#include "s21_list_modifiers_adding.tpp"
+#include "s21_list_modifiers_deleting.tpp"
 #endif // SRC_S21_CONTAINERS_S21_LIST_H

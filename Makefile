@@ -13,8 +13,11 @@ endif
 OBJECTS = $(patsubst %.cc, %.o, $(SOURCES))
 
 # MANTEST = manual_test.cc 
-MANTEST = manual_test_insert.cc 
-#MANTEST = manual_test_splice.cc 
+# MANTEST = manual_test_erase.cc 
+# MANTEST = manual_test_insert.cc 
+# MANTEST = manual_test_splice.cc 
+MANTEST = manual_test_merge.cc 
+# MANTEST = manual_test_swap.cc 
 
 TESTDIR = unit_tests
 TESTEXE = $(TESTDIR)/$(TESTDIR).out

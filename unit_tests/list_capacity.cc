@@ -35,103 +35,67 @@ TEST(Capacity, IsEmptyCompareStr) {
   EXPECT_TRUE(s21_emptyList.empty() == std_emptyList.empty());
 }
 
-TEST(Capacity, IsntEmptyBackInt) {
-  s21::list<int> nonEmptyList;
-  nonEmptyList.push_back(42);
-  EXPECT_FALSE(nonEmptyList.empty());
+TEST(Capacity, IsntEmptyCorrectInt) {
+  s21::list<int> nonEmptyListP(1);
+  s21::list<int> nonEmptyListI{1};
+  EXPECT_FALSE(nonEmptyListP.empty());
+  EXPECT_FALSE(nonEmptyListI.empty());
 }
 
-TEST(Capacity, IsntEmptyBackChar) {
-  s21::list<char> nonEmptyList;
-  nonEmptyList.push_back('a');
-  EXPECT_FALSE(nonEmptyList.empty());
+TEST(Capacity, IsntEmptyCorrectChar) {
+  s21::list<char> nonEmptyListP(1);
+  s21::list<char> nonEmptyListI{'a'};
+  EXPECT_FALSE(nonEmptyListP.empty());
+  EXPECT_FALSE(nonEmptyListI.empty());
 }
 
-TEST(Capacity, IsntEmptyBackStr) {
-  s21::list<std::string> nonEmptyList;
-  nonEmptyList.push_back("asd");
-  EXPECT_FALSE(nonEmptyList.empty());
+TEST(Capacity, IsntEmptyCorrectStr) {
+  s21::list<std::string> nonEmptyListP(1);
+  s21::list<std::string> nonEmptyListI{"asd"};
+  EXPECT_FALSE(nonEmptyListP.empty());
+  EXPECT_FALSE(nonEmptyListI.empty());
 }
 
-TEST(Capacity, IsntEmptyFrontInt) {
-  s21::list<int> nonEmptyList;
-  nonEmptyList.push_front(42);
-  EXPECT_FALSE(nonEmptyList.empty());
+TEST(Capacity, IsntEmptyCompareInt) {
+  s21::list<int> s21_nonEmptyListP(1);
+  std::list<int> std_nonEmptyListP(1);
+  s21::list<int> s21_nonEmptyListI{1};
+  std::list<int> std_nonEmptyListI{1};
+  EXPECT_TRUE(!s21_nonEmptyListP.empty() == !std_nonEmptyListP.empty());
+  EXPECT_TRUE(!s21_nonEmptyListI.empty() == !std_nonEmptyListI.empty());
 }
 
-TEST(Capacity, IsntEmptyFrontChar) {
-  s21::list<char> nonEmptyList;
-  nonEmptyList.push_front('a');
-  EXPECT_FALSE(nonEmptyList.empty());
+TEST(Capacity, IsntEmptyCompareChar) {
+  s21::list<char> s21_nonEmptyListP(1);
+  std::list<char> std_nonEmptyListP(1);
+  s21::list<char> s21_nonEmptyListI{'a'};
+  std::list<char> std_nonEmptyListI{'a'};
+  EXPECT_TRUE(!s21_nonEmptyListP.empty() == !std_nonEmptyListP.empty());
+  EXPECT_TRUE(!s21_nonEmptyListI.empty() == !std_nonEmptyListI.empty());
 }
 
-TEST(Capacity, IsntEmptyFrontStr) {
-  s21::list<std::string> nonEmptyList;
-  nonEmptyList.push_front("asd");
-  EXPECT_FALSE(nonEmptyList.empty());
-}
-
-TEST(Capacity, IsntEmptyBackCompareInt) {
-  s21::list<int> s21_nonEmptyList;
-  std::list<int> std_nonEmptyList;
-  s21_nonEmptyList.push_back(42);
-  std_nonEmptyList.push_back(42);
-  EXPECT_TRUE(!s21_nonEmptyList.empty() == !std_nonEmptyList.empty());
-}
-
-TEST(Capacity, IsntEmptyBackCompareChar) {
-  s21::list<char> s21_nonEmptyList;
-  std::list<char> std_nonEmptyList;
-  s21_nonEmptyList.push_back('a');
-  std_nonEmptyList.push_back('a');
-  EXPECT_TRUE(!s21_nonEmptyList.empty() == !std_nonEmptyList.empty());
-}
-
-TEST(Capacity, IsntEmptyBackCompareStr) {
-  s21::list<std::string> s21_nonEmptyList;
-  std::list<std::string> std_nonEmptyList;
-  s21_nonEmptyList.push_back("asd");
-  std_nonEmptyList.push_back("asd");
-  EXPECT_TRUE(!s21_nonEmptyList.empty() == !std_nonEmptyList.empty());
-}
-
-TEST(Capacity, IsntEmptyFrontCompareInt) {
-  s21::list<int> s21_nonEmptyList;
-  std::list<int> std_nonEmptyList;
-  s21_nonEmptyList.push_front(42);
-  std_nonEmptyList.push_front(42);
-  EXPECT_TRUE(!s21_nonEmptyList.empty() == !std_nonEmptyList.empty());
-}
-
-TEST(Capacity, IsntEmptyFrontCompareChar) {
-  s21::list<char> s21_nonEmptyList;
-  std::list<char> std_nonEmptyList;
-  s21_nonEmptyList.push_front('a');
-  std_nonEmptyList.push_front('a');
-  EXPECT_TRUE(!s21_nonEmptyList.empty() == !std_nonEmptyList.empty());
-}
-
-TEST(Capacity, IsntEmptyFrontCompareStr) {
-  s21::list<std::string> s21_nonEmptyList;
-  std::list<std::string> std_nonEmptyList;
-  s21_nonEmptyList.push_front("asd");
-  std_nonEmptyList.push_front("asd");
-  EXPECT_TRUE(!s21_nonEmptyList.empty() == !std_nonEmptyList.empty());
+TEST(Capacity, IsntEmptyCompareStr) {
+  s21::list<std::string> s21_nonEmptyListP(1);
+  std::list<std::string> std_nonEmptyListP(1);
+  s21::list<std::string> s21_nonEmptyListI{"asd"};
+  std::list<std::string> std_nonEmptyListI{"asd"};
+  EXPECT_TRUE(!s21_nonEmptyListP.empty() == !std_nonEmptyListP.empty());
+  EXPECT_TRUE(!s21_nonEmptyListI.empty() == !std_nonEmptyListI.empty());
 }
 
 /* size */
 
-TEST(Capacity, SizeEmptyInt) {
+TEST(Capacity, SizeEmptyCorrectInt) {
   s21::list<int> emptyList;
   EXPECT_TRUE(emptyList.size() == 0);
 }
 
-TEST(Capacity, SizeEmptyChar) {
+TEST(Capacity, SizeEmptyCorrectChar) {
   s21::list<char> emptyList;
   EXPECT_TRUE(emptyList.size() == 0);
 }
 
-TEST(Capacity, SizeEmptyStr) {
+TEST(Capacity, SizeEmptyCorrectStr) {
   s21::list<std::string> emptyList;
   EXPECT_TRUE(emptyList.size() == 0);
 }
@@ -154,88 +118,52 @@ TEST(Capacity, SizeEmptyCompareStr) {
   EXPECT_TRUE(s21_emptyList.size() == std_emptyList.size());
 }
 
-TEST(Capacity, SizeCorrectBackInt) {
-  s21::list<int> nonEmptyList;
-  nonEmptyList.push_back(42);
-  EXPECT_TRUE(nonEmptyList.size() == 1);
+TEST(Capacity, SizeCorrectInt) {
+  s21::list<int> nonEmptyListP(1);
+  s21::list<int> nonEmptyListI{42};
+  EXPECT_TRUE(nonEmptyListP.size() == 1);
+  EXPECT_TRUE(nonEmptyListI.size() == 1);
 }
 
-TEST(Capacity, SizeCorrectBackChar) {
-  s21::list<char> nonEmptyList;
-  nonEmptyList.push_back('a');
-  EXPECT_TRUE(nonEmptyList.size() == 1);
+TEST(Capacity, SizeCorrectChar) {
+  s21::list<char> nonEmptyListP(1);
+  s21::list<char> nonEmptyListI{'a'};
+  EXPECT_TRUE(nonEmptyListP.size() == 1);
+  EXPECT_TRUE(nonEmptyListI.size() == 1);
 }
 
-TEST(Capacity, SizeCorrectBackStr) {
-  s21::list<std::string> nonEmptyList;
-  nonEmptyList.push_back("abcd");
-  EXPECT_TRUE(nonEmptyList.size() == 1);
+TEST(Capacity, SizeCorrectStr) {
+  s21::list<std::string> nonEmptyListP(1);
+  s21::list<std::string> nonEmptyListI{"abcd"};
+  EXPECT_TRUE(nonEmptyListP.size() == 1);
+  EXPECT_TRUE(nonEmptyListI.size() == 1);
 }
 
-TEST(Capacity, SizeCorrectFrontInt) {
-  s21::list<int> nonEmptyList;
-  nonEmptyList.push_front(42);
-  EXPECT_TRUE(nonEmptyList.size() == 1);
+TEST(Capacity, SizeCompareInt) {
+  s21::list<int> s21_nonEmptyListP(1);
+  std::list<int> std_nonEmptyListP(1);
+  s21::list<int> s21_nonEmptyListI{42};
+  std::list<int> std_nonEmptyListI{42};
+  EXPECT_TRUE(s21_nonEmptyListP.size() == std_nonEmptyListP.size());
+  EXPECT_TRUE(s21_nonEmptyListI.size() == std_nonEmptyListI.size());
 }
 
-TEST(Capacity, SizeCorrectFrontChar) {
-  s21::list<char> nonEmptyList;
-  nonEmptyList.push_front('a');
-  EXPECT_TRUE(nonEmptyList.size() == 1);
+TEST(Capacity, SizeCompareChar) {
+  s21::list<char> s21_nonEmptyListP(1);
+  std::list<char> std_nonEmptyListP(1);
+  s21::list<char> s21_nonEmptyListI{'a'};
+  std::list<char> std_nonEmptyListI{'a'};
+  EXPECT_TRUE(s21_nonEmptyListP.size() == std_nonEmptyListP.size());
+  EXPECT_TRUE(s21_nonEmptyListI.size() == std_nonEmptyListI.size());
 }
 
-TEST(Capacity, SizeCorrectFrontStr) {
-  s21::list<std::string> nonEmptyList;
-  nonEmptyList.push_front("abcd");
-  EXPECT_TRUE(nonEmptyList.size() == 1);
-}
-
-TEST(Capacity, SizeCompareBackInt) {
-  s21::list<int> s21_nonEmptyList;
-  std::list<int> std_nonEmptyList;
-  s21_nonEmptyList.push_back(42);
-  std_nonEmptyList.push_back(42);
-  EXPECT_TRUE(s21_nonEmptyList.size() == std_nonEmptyList.size());
-}
-
-TEST(Capacity, SizeCompareBackChar) {
-  s21::list<char> s21_nonEmptyList;
-  std::list<char> std_nonEmptyList;
-  s21_nonEmptyList.push_back('a');
-  std_nonEmptyList.push_back('a');
-  EXPECT_TRUE(s21_nonEmptyList.size() == std_nonEmptyList.size());
-}
-
-TEST(Capacity, SizeCompareBackStr) {
-  s21::list<std::string> s21_nonEmptyList;
-  std::list<std::string> std_nonEmptyList;
-  s21_nonEmptyList.push_back("ABCD");
-  std_nonEmptyList.push_back("ABCD");
-  EXPECT_TRUE(s21_nonEmptyList.size() == std_nonEmptyList.size());
-}
-
-TEST(Capacity, SizeCompareFrontInt) {
-  s21::list<int> s21_nonEmptyList;
-  std::list<int> std_nonEmptyList;
-  s21_nonEmptyList.push_front(42);
-  std_nonEmptyList.push_front(42);
-  EXPECT_TRUE(s21_nonEmptyList.size() == std_nonEmptyList.size());
-}
-
-TEST(Capacity, SizeCompareFrontChar) {
-  s21::list<char> s21_nonEmptyList;
-  std::list<char> std_nonEmptyList;
-  s21_nonEmptyList.push_front('a');
-  std_nonEmptyList.push_front('a');
-  EXPECT_TRUE(s21_nonEmptyList.size() == std_nonEmptyList.size());
-}
-
-TEST(Capacity, SizeCompareFrontStr) {
-  s21::list<std::string> s21_nonEmptyList;
-  std::list<std::string> std_nonEmptyList;
-  s21_nonEmptyList.push_front("ABCD");
-  std_nonEmptyList.push_front("ABCD");
-  EXPECT_TRUE(s21_nonEmptyList.size() == std_nonEmptyList.size());
+TEST(Capacity, SizeCompareStr) {
+  s21::list<std::string> s21_nonEmptyListP(1);
+  std::list<std::string> std_nonEmptyListP(1);
+  s21::list<std::string> s21_nonEmptyListI{"ABCD"};
+  std::list<std::string> std_nonEmptyListI{"ABCD"};
+  EXPECT_TRUE(s21_nonEmptyListP.size() == std_nonEmptyListP.size());
+  EXPECT_TRUE(s21_nonEmptyListI.size() == std_nonEmptyListI.size());
 }
 
 /* max_size */

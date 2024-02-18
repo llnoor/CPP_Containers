@@ -5,8 +5,8 @@
 #include <list>
 #include "../s21_containers/s21_list.h"
 
-template<typename T>
-bool listsEqual(const s21::list<T>& list1, const s21::list<T>& list2) {
+template <typename T>
+bool equalLists(const s21::list<T>& list1, const s21::list<T>& list2) {
   if (list1.size() != list2.size()) {
     return false;
   }
@@ -23,8 +23,8 @@ bool listsEqual(const s21::list<T>& list1, const s21::list<T>& list2) {
   return true;
 }
 
-template<typename T>
-bool listsEqual(const s21::list<T>& list1, const std::list<T>& list2) {
+template <typename T>
+bool equalLists(const s21::list<T>& list1, const std::list<T>& list2) {
   if (list1.size() != list2.size()) {
     return false;
   }

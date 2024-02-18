@@ -44,22 +44,24 @@ namespace s21 {
 
   template <typename value_type>
   typename list<value_type>::iterator list<value_type>::begin() {
+    if (empty()) { return iterator(cycle); }
     return iterator(head);
   }
 
   template <typename value_type>
   typename list<value_type>::iterator list<value_type>::end() {
-    return iterator(tail);
+    return iterator(cycle);
   }
 
   template <typename value_type>
   typename list<value_type>::const_iterator list<value_type>::cbegin() const {
+    if (empty()) { return const_iterator(cycle); }
     return const_iterator(head);
   }
 
   template <typename value_type>
   typename list<value_type>::const_iterator list<value_type>::cend() const {
-    return const_iterator(tail);
+    return const_iterator(cycle);
   }
 
   /* additional */
@@ -68,7 +70,7 @@ namespace s21 {
   void list<value_type>::print() const {
     Node<value_type> *current = head;
 
-    while (current != nullptr) {
+    while (current != cycle) {
       std::cout << current->data_ << " ";
       current = current->next_;
       if (current == head) {  // exit the loop if we've come back to the head
@@ -82,7 +84,7 @@ namespace s21 {
   void list<value_type>::print_debug() const {
     Node<value_type> *current = head;
 
-    while (current != nullptr) {
+    while (current != cycle) {
       std::cout << current << ": " << current->data_ << std::endl;
       std::cout << "  prev: " << current->prev_ << ", next: " << current->next_ << std::endl;
       
@@ -92,6 +94,15 @@ namespace s21 {
       }
     }
     std::cout << std::endl;
+  }
+
+  template <typename value_type>
+  void list<value_type>::updateEmptyNode() {
+    head->prev_ = cycle;
+    tail->next_ = cycle;
+    cycle->next_ = head;
+    cycle->prev_ = tail;
+    cycle->data_ = cycle->prev_->data_;
   }
 
 } // namespace 21
