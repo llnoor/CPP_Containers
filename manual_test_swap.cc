@@ -22,7 +22,7 @@ int main() {
 
   auto it_2 = test_2.begin();
   std::cout << "*it_2 = " << *it_2 << std::endl;  // = 0
-  test_2.print(); // segmentation fault here
+  test_2.print();
   // for (const auto& value : test_2) {  // for std
   //   std::cout << value << " ";
   // }

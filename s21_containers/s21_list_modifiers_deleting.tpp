@@ -14,9 +14,7 @@ namespace s21 {
       head = tail = nullptr;
     } else {
       tail = tail->prev_;
-      tail->next_ = nullptr; //new
-      // tail->next_ = head; //cycle
-      // head->prev_ = tail; //cycle
+      tail->next_ = nullptr;
       updateEmptyNode();
     }
 
@@ -36,9 +34,7 @@ namespace s21 {
       head = tail = nullptr;
     } else {
       head = head->next_;
-      head->prev_ = nullptr; //new
-      // head->prev_ = tail; //cycle
-      // tail->next_ = head; //cycle
+      head->prev_ = nullptr;
       updateEmptyNode();
     }
 
@@ -48,17 +44,12 @@ namespace s21 {
 
   template <typename value_type>
   void list<value_type>::clear() {
-    while (!empty()) {
-      pop_back();
-    }
-    // delete cycle;
+    while (!empty()) { pop_back(); }
   }
 
   template <typename value_type>
   void list<value_type>::erase(iterator pos) {
-    if (empty()) {
-      return;
-    }
+    if (empty()) { return; }
 
     Node<value_type>* posNode = pos.getCurrent();
     Node<value_type>* prevNode = posNode->prev_;
@@ -89,4 +80,4 @@ namespace s21 {
     }
   }
 
-}
+} // namespace 21

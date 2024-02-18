@@ -127,6 +127,36 @@ TEST(Constructor, ParameterizedCompareZeroStr) {
   EXPECT_TRUE(s21_test.empty() == std_test.empty());
 }
 
+TEST(Constructor, IParameterizedMaxSizeExceededInt) {
+  s21::list<int> temp;
+  EXPECT_THROW(s21::list<int> test(temp.max_size() + 1), std::out_of_range);
+}
+
+TEST(Constructor, ParameterizedMaxSizeExceededChar) {
+  s21::list<char> temp;
+  EXPECT_THROW(s21::list<char> test(temp.max_size() + 1), std::out_of_range);
+}
+
+TEST(Constructor, ParameterizedMaxSizeExceededStr) {
+  s21::list<std::string> temp;
+  EXPECT_THROW(s21::list<std::string> test(temp.max_size() + 1), std::out_of_range);
+}
+
+TEST(Constructor, ParameterizedNegativeInt) {
+  const size_t val = -1;
+  EXPECT_THROW(s21::list<int> test(val), std::out_of_range);
+}
+
+TEST(Constructor, ParameterizedNegativeChar) {
+  const size_t val = -1;
+  EXPECT_THROW(s21::list<char> test(val), std::out_of_range);
+}
+
+TEST(Constructor, ParameterizedNegativeStr) {
+  const size_t val = -1;
+  EXPECT_THROW(s21::list<std::string> test(val), std::out_of_range);
+}
+
 /* initializer list */
 
 TEST(Constructor, InitListCorrectInt) {
@@ -180,21 +210,18 @@ TEST(Constructor, InitListCorrectStr) {
 TEST(Constructor, InitListCompareInt) {
   s21::list<int> s21_test = {1, 2, 3, 4, 5};
   std::list<int> std_test = {1, 2, 3, 4, 5};
-  EXPECT_TRUE(s21_test.size() == std_test.size());
   EXPECT_TRUE(equalLists(s21_test, std_test));
 }
 
 TEST(Constructor, InitListCompareChar) {
   s21::list<char> s21_test = {'a', 'b', 'c', 'd', 'e'};
   std::list<char> std_test = {'a', 'b', 'c', 'd', 'e'};
-  EXPECT_TRUE(s21_test.size() == std_test.size());
   EXPECT_TRUE(equalLists(s21_test, std_test));
 }
 
 TEST(Constructor, InitListCompareString) {
   s21::list<std::string> s21_test = {"aboba", "sus", "amogus", "LOL", "KEK"};
   std::list<std::string> std_test = {"aboba", "sus", "amogus", "LOL", "KEK"};
-  EXPECT_TRUE(s21_test.size() == std_test.size());
   EXPECT_TRUE(equalLists(s21_test, std_test));
 }
 
@@ -222,43 +249,19 @@ TEST(Constructor, InitListCorrectTwoStr) {
 TEST(Constructor, InitListCompareTwoInt) {
   s21::list<int> s21_test = {42, 99};
   std::list<int> std_test = {42, 99};
-  EXPECT_TRUE(s21_test.size() == std_test.size());
-  EXPECT_TRUE(s21_test.front() == std_test.front());
-  EXPECT_TRUE(s21_test.back() == std_test.back());
   EXPECT_TRUE(equalLists(s21_test, std_test));
 }
 
 TEST(Constructor, InitListCompareTwoChar) {
   s21::list<char> s21_test = {'a', 'z'};
   std::list<char> std_test = {'a', 'z'};
-  EXPECT_TRUE(s21_test.size() == std_test.size());
-  EXPECT_TRUE(s21_test.front() == std_test.front());
-  EXPECT_TRUE(s21_test.back() == std_test.back());
   EXPECT_TRUE(equalLists(s21_test, std_test));
 }
 
 TEST(Constructor, InitListCompareTwoStr) {
   s21::list<std::string> s21_test = {"sussy", "Baka"};
   std::list<std::string> std_test = {"sussy", "Baka"};
-  EXPECT_TRUE(s21_test.size() == std_test.size());
-  EXPECT_TRUE(s21_test.front() == std_test.front());
-  EXPECT_TRUE(s21_test.back() == std_test.back());
   EXPECT_TRUE(equalLists(s21_test, std_test));
-}
-
-TEST(Constructor, InitListMaxSizeExceededInt) {
-  s21::list<int> temp;
-  EXPECT_THROW(s21::list<int> s21_test(temp.max_size() + 1), std::out_of_range);
-}
-
-TEST(Constructor, InitListMaxSizeExceededChar) {
-  s21::list<char> temp;
-  EXPECT_THROW(s21::list<char> s21_test(temp.max_size() + 1), std::out_of_range);
-}
-
-TEST(Constructor, InitListMaxSizeExceededStr) {
-  s21::list<std::string> temp;
-  EXPECT_THROW(s21::list<std::string> s21_test(temp.max_size() + 1), std::out_of_range);
 }
 
 /* copy */

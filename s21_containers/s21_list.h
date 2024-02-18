@@ -114,7 +114,6 @@ class list {
 
     /* additional */
     void print() const;
-    void print_debug() const;
     void updateEmptyNode();
 
   private:

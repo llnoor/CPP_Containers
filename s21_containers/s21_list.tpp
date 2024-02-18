@@ -9,17 +9,13 @@ namespace s21 {
   
   template <typename value_type>
   typename list<value_type>::const_reference list<value_type>::front() const {
-    if (empty()) {
-      return default_value;
-    }
+    if (empty()) { return default_value; }
     return head->data_;
   }
 
   template <typename value_type>
   typename list<value_type>::const_reference list<value_type>::back() const {
-    if (empty()) {
-      return default_value;
-    }
+    if (empty()) { return default_value; }
     return tail->data_;
   }
 
@@ -68,28 +64,21 @@ namespace s21 {
 
   template <typename value_type>
   void list<value_type>::print() const {
+    if (!head) {
+      std::cout << std::endl;
+      return;
+    }
     Node<value_type> *current = head;
 
     while (current != cycle) {
       std::cout << current->data_ << " ";
-      current = current->next_;
-      if (current == head) {  // exit the loop if we've come back to the head
-        break;
-      }
-    }
-    std::cout << std::endl;
-  }
-
-  template <typename value_type>
-  void list<value_type>::print_debug() const {
-    Node<value_type> *current = head;
-
-    while (current != cycle) {
+      /*// pointer debugging
       std::cout << current << ": " << current->data_ << std::endl;
       std::cout << "  prev: " << current->prev_ << ", next: " << current->next_ << std::endl;
-      
+      */
+
       current = current->next_;
-      if (current == head) {
+      if (current == head) {  // exit the loop if we've come back to the head
         break;
       }
     }

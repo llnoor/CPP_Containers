@@ -24,7 +24,7 @@ TEST(ModifiersMerge, TwoListsCorrectStr) {
   EXPECT_TRUE(equalLists(dest, compare));
 }
 
-TEST(ModifiersMerge, TwoListsComparetInt) {
+TEST(ModifiersMerge, TwoListsCompareInt) {
   s21::list<int> s21_dest = {1, 2, 3, 4, 5};
   s21::list<int> s21_src = {30, 20, 10};
   std::list<int> std_dest = {1, 2, 3, 4, 5};

@@ -18,8 +18,11 @@ namespace s21 {
   // parameterized
   template <typename value_type>
   list<value_type>::list(size_type n) : list() {
-    if (n >= max_size()) {  // actually it's hard even to reach this value
-      throw std::out_of_range("error: trying to create a list which given size exceeds its max capacity");
+    if (n >= max_size()) {
+      // actually it's hard even to reach this value
+      // could only create 384307168202282325 / 10000000000 or lesser
+      // theoretically this check is also needed in init list constructor and push methods
+      throw std::out_of_range("error: trying to create a list which given size exceeds its max capacity or negative");
     }
     for (size_type i = 0; i < n; ++i) {
       push_back(value_type{});

@@ -4,9 +4,7 @@ namespace s21 {
 
   template <typename value_type>
   typename list<value_type>::const_reference list<value_type>::const_iterator::operator*() {
-    if (current == nullptr) {
-      return default_value;
-    }
+    if (current == nullptr) { return default_value; }
     return current->data_; 
   }
 

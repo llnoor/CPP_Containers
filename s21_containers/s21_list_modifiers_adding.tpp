@@ -8,12 +8,9 @@ namespace s21 {
 
     if (empty()) {
       head = tail = newNode;
-      // head->prev_ = tail->next_ = nullptr;  //cycle
     } else {
       tail->next_ = newNode;
       newNode->prev_ = tail;
-      // newNode->next_ = head;  //cycle
-      // head->prev_ = newNode;  //cycle
       tail = newNode;
     }
     updateEmptyNode();
@@ -27,12 +24,9 @@ namespace s21 {
 
     if (empty()) {
       head = tail = newNode;
-      // head->prev_ = tail->next_ = nullptr;  //cycle
     } else {
       newNode->next_ = head;
       head->prev_ = newNode;
-      // newNode->prev_ = tail;  //cycle
-      // tail->next_ = newNode;  //cycle
       head = newNode;
     }
     updateEmptyNode();
@@ -42,28 +36,29 @@ namespace s21 {
 
   template <typename value_type>
   typename list<value_type>::iterator list<value_type>::insert(iterator pos, const_reference value) {
-    Node<value_type> *newNode = new Node<value_type>(value);
     if (empty()) {
       push_front(value);
-      return iterator(newNode);
+      return pos;
     }
-
-    Node<value_type> *posNode = pos.getCurrent();
-    Node<value_type> *prevNode = posNode->prev_;
 
     if (pos == head) {
       push_front(value);
     } else if (pos == cycle) {  // end
       push_back(value);
     } else {
+      Node<value_type> *newNode = new Node<value_type>(value);
+      Node<value_type> *posNode = pos.getCurrent();
+      Node<value_type> *prevNode = posNode->prev_;
+
       newNode->prev_ = posNode->prev_;
       newNode->next_ = posNode;
       prevNode->next_ = newNode;
       posNode->prev_ = newNode;
+
       ++size_;
     }
 
-    return iterator(newNode);
+    return pos;
   }
 
   template <typename value_type>
@@ -74,11 +69,11 @@ namespace s21 {
       return;
     }
 
-    auto it = other.begin();
-    iterator p(pos.getCurrent());
+    auto it_other = other.begin();
+    auto it_this(pos.getCurrent());
     
-    for (size_type i = 1; i <= other.size(); ++i, ++it) {
-      insert(p, *it);
+    for (size_type i = 1; i <= other.size(); ++i, ++it_other) {
+      insert(it_this, *it_other);
     }
     other.clear();
   }
@@ -106,4 +101,4 @@ namespace s21 {
     }
   }
 
-}
+} // namespace 21

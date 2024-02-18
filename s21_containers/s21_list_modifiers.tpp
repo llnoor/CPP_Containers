@@ -16,18 +16,14 @@ namespace s21 {
 
   template <typename value_type>
   void list<value_type>::reverse() {
-    if (size_ <= 1) {
-      return;
-    }
+    if (size_ <= 1) { return; }
 
     Node<value_type> *front = head;
     Node<value_type> *back = tail;
 
     while (front != back) {
       std::swap(front->data_, back->data_);
-      if (front->next_ == back) {
-        break;
-      }
+      if (front->next_ == back) { break; }
       front = front->next_;
       back = back->prev_;
     }
