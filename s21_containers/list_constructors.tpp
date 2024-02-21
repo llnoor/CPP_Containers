@@ -64,4 +64,4 @@ namespace s21 {
     return *this;
   }
 
-} // namespace 21
+} // namespace s21

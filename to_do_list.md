@@ -1,1 +1,3 @@
-- is it necessary to check dereferenced iterators after clearing a container?  
+- list: is it necessary to check dereferenced iterators after clearing a container?  
+- list: running valgrind with -s flag reveals new errors  
+- all: add copy assignment operators (not necessary though)  

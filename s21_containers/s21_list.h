@@ -78,7 +78,8 @@ class list {
     list(list &&l);          // move constructor
     ~list();                 // destructor
 
-    list<value_type>& operator=(list &&l);      // assignment operator overload for moving object
+    list<value_type>& operator=(list &&l);
+      // assignment operator overload for moving object
 
     /* methods. element access */
     const_reference front() const;  // access the first element
@@ -98,7 +99,8 @@ class list {
     /* methods. modifiers */
     void clear();                   // clears the contents
     iterator insert(iterator pos, const_reference value);
-      // inserts element into concrete pos and returns the iterator that points to the new element
+      // inserts element into concrete pos
+      // and returns the iterator that points to the new element
     void erase(iterator pos);    // erases element at pos
     void push_back(const_reference value);  // adds an element to the end
     void pop_back();             // removes the last element
@@ -111,6 +113,16 @@ class list {
     void reverse();              // reverses the order of the elements
     void unique();               // removes consecutive duplicate elements
     void sort();                 // sorts the elements
+    /* bonus */
+    template <typename... Args>
+    iterator insert_many(const_iterator pos, Args&&... args);
+      // inserts new elements into the container directly before pos
+    template <typename... Args>
+    void insert_many_back(Args&&... args);
+      // appends new elements to the end of the container
+    template <typename... Args>
+    void insert_many_front(Args&&... args);
+      // appends new elements to the top of the container
 
     /* additional */
     void print() const;
@@ -123,11 +135,12 @@ class list {
 
 }  // namespace s21
 
-#include "s21_list.tpp"
-#include "s21_list_class_iterator.tpp"
-#include "s21_list_class_iterator_const.tpp"
-#include "s21_list_constructors.tpp"
-#include "s21_list_modifiers.tpp"
-#include "s21_list_modifiers_adding.tpp"
-#include "s21_list_modifiers_deleting.tpp"
+#include "list_other.tpp"
+#include "list_iterator.tpp"
+#include "list_iterator_const.tpp"
+#include "list_constructors.tpp"
+#include "list_modifiers.tpp"
+#include "list_modifiers_adding.tpp"
+#include "list_modifiers_deleting.tpp"
+#include "list_modifiers_adding_bonus.tpp"
 #endif // SRC_S21_CONTAINERS_S21_LIST_H

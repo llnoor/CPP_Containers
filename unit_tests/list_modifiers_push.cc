@@ -1,6 +1,6 @@
 #include "unit_tests.h"
 
-TEST(ModifiersPush, PushBackSizeCorrectInt) {
+TEST(ListModifiersPush, PushBackSizeCorrectInt) {
   s21::list<int> test;
   s21::list<int> compare{0, 1};
   test.push_back(0);
@@ -9,7 +9,7 @@ TEST(ModifiersPush, PushBackSizeCorrectInt) {
   EXPECT_TRUE(equalLists(test, compare));
 }
 
-TEST(ModifiersPush, PushBackSizeCorrectChar) {
+TEST(ListModifiersPush, PushBackSizeCorrectChar) {
   s21::list<char> test;
   s21::list<char> compare{'a', 'z'};
   test.push_back('a');
@@ -18,7 +18,7 @@ TEST(ModifiersPush, PushBackSizeCorrectChar) {
   EXPECT_TRUE(equalLists(test, compare));
 }
 
-TEST(ModifiersPush, PushBackSizeCorrectStr) {
+TEST(ListModifiersPush, PushBackSizeCorrectStr) {
   s21::list<std::string> test;
   s21::list<std::string> compare{"sussy baka", "amogus"};
   test.push_back("sussy baka");
@@ -27,7 +27,7 @@ TEST(ModifiersPush, PushBackSizeCorrectStr) {
   EXPECT_TRUE(equalLists(test, compare));
 }
 
-TEST(ModifiersPush, PushFrontSizeCorrectInt) {
+TEST(ListModifiersPush, PushFrontSizeCorrectInt) {
   s21::list<int> test;
   s21::list<int> compare{1, 0};
   test.push_front(0);
@@ -36,7 +36,7 @@ TEST(ModifiersPush, PushFrontSizeCorrectInt) {
   EXPECT_TRUE(equalLists(test, compare));
 }
 
-TEST(ModifiersPush, PushFrontSizeCorrectChar) {
+TEST(ListModifiersPush, PushFrontSizeCorrectChar) {
   s21::list<char> test;
   s21::list<char> compare{'z', 'a'};
   test.push_front('a');
@@ -45,7 +45,7 @@ TEST(ModifiersPush, PushFrontSizeCorrectChar) {
   EXPECT_TRUE(equalLists(test, compare));
 }
 
-TEST(ModifiersPush, PushFrontSizeCorrectStr) {
+TEST(ListModifiersPush, PushFrontSizeCorrectStr) {
   s21::list<std::string> test;
   s21::list<std::string> compare{"IMPOSTER", "among us"};
   test.push_front("among us");
@@ -54,7 +54,7 @@ TEST(ModifiersPush, PushFrontSizeCorrectStr) {
   EXPECT_TRUE(equalLists(test, compare));
 }
 
-TEST(ModifiersPush, PushBackCompareInt) {
+TEST(ListModifiersPush, PushBackCompareInt) {
   s21::list<int> s21_test;
   std::list<int> std_test;
   s21_test.push_back(0);
@@ -68,7 +68,7 @@ TEST(ModifiersPush, PushBackCompareInt) {
   EXPECT_TRUE(equalLists(s21_test, std_test));
 }
 
-TEST(ModifiersPush, PushBackCompareChar) {
+TEST(ListModifiersPush, PushBackCompareChar) {
   s21::list<char> s21_test;
   std::list<char> std_test;
   s21_test.push_back('a');
@@ -82,7 +82,7 @@ TEST(ModifiersPush, PushBackCompareChar) {
   EXPECT_TRUE(equalLists(s21_test, std_test));
 }
 
-TEST(ModifiersPush, PushBackCompareStr) {
+TEST(ListModifiersPush, PushBackCompareStr) {
   s21::list<std::string> s21_test;
   std::list<std::string> std_test;
   s21_test.push_back("aboba");
@@ -96,7 +96,7 @@ TEST(ModifiersPush, PushBackCompareStr) {
   EXPECT_TRUE(equalLists(s21_test, std_test));
 }
 
-TEST(ModifiersPush, PushFrontCompareInt) {
+TEST(ListModifiersPush, PushFrontCompareInt) {
   s21::list<int> s21_test;
   std::list<int> std_test;
   s21_test.push_front(0);
@@ -110,7 +110,7 @@ TEST(ModifiersPush, PushFrontCompareInt) {
   EXPECT_TRUE(equalLists(s21_test, std_test));
 }
 
-TEST(ModifiersPush, PushFrontCompareChar) {
+TEST(ListModifiersPush, PushFrontCompareChar) {
   s21::list<char> s21_test;
   std::list<char> std_test;
   s21_test.push_front('a');
@@ -124,7 +124,7 @@ TEST(ModifiersPush, PushFrontCompareChar) {
   EXPECT_TRUE(equalLists(s21_test, std_test));
 }
 
-TEST(ModifiersPush, PushFrontCompareStr) {
+TEST(ListModifiersPush, PushFrontCompareStr) {
   s21::list<std::string> s21_test;
   std::list<std::string> std_test;
   s21_test.push_front("LOL");

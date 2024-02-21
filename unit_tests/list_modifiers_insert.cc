@@ -1,6 +1,6 @@
 #include "unit_tests.h"
 
-TEST(ModifiersInsert, AddingToBeginCorrectInt) {
+TEST(ListModifiersInsert, AddingToBeginCorrectInt) {
   int value = 10;
   s21::list<int> test = {1, 2, 3, 4, 5};
   s21::list<int> compare = {value, 1, 2, 3, 4, 5};
@@ -9,7 +9,7 @@ TEST(ModifiersInsert, AddingToBeginCorrectInt) {
   EXPECT_TRUE(equalLists(test, compare));
 }
 
-TEST(ModifiersInsert, AddingToBeginCorrectChar) {
+TEST(ListModifiersInsert, AddingToBeginCorrectChar) {
   char value = 'Z';
   s21::list<char> test = {'a', 'b', 'c', 'd', 'e'};
   s21::list<char> compare = {value, 'a', 'b', 'c', 'd', 'e'};
@@ -18,7 +18,7 @@ TEST(ModifiersInsert, AddingToBeginCorrectChar) {
   EXPECT_TRUE(equalLists(test, compare));
 }
 
-TEST(ModifiersInsert, AddingToBeginCorrectStr) {
+TEST(ListModifiersInsert, AddingToBeginCorrectStr) {
   std::string value = "awoo";
   s21::list<std::string> test = {"amogus", "sus", "aboba"};
   s21::list<std::string> compare = {value, "amogus", "sus", "aboba"};
@@ -27,7 +27,7 @@ TEST(ModifiersInsert, AddingToBeginCorrectStr) {
   EXPECT_TRUE(equalLists(test, compare));
 }
 
-TEST(ModifiersInsert, AddingToBeginCompareInt) {
+TEST(ListModifiersInsert, AddingToBeginCompareInt) {
   int value = 10;
   s21::list<int> s21_test = {1, 2, 3, 4, 5};
   std::list<int> std_test = {1, 2, 3, 4, 5};
@@ -37,7 +37,7 @@ TEST(ModifiersInsert, AddingToBeginCompareInt) {
   EXPECT_TRUE(equalLists(s21_test, std_test));
 }
 
-TEST(ModifiersInsert, AddingToBeginCompareChar) {
+TEST(ListModifiersInsert, AddingToBeginCompareChar) {
   char value = 'Z';
   s21::list<char> s21_test = {'a', 'b', 'c', 'd', 'e'};
   std::list<char> std_test = {'a', 'b', 'c', 'd', 'e'};
@@ -47,7 +47,7 @@ TEST(ModifiersInsert, AddingToBeginCompareChar) {
   EXPECT_TRUE(equalLists(s21_test, std_test));
 }
 
-TEST(ModifiersInsert, AddingToBeginCompareStr) {
+TEST(ListModifiersInsert, AddingToBeginCompareStr) {
   std::string value = "awoo";
   s21::list<std::string> s21_test = {"amogus", "sus", "aboba"};
   std::list<std::string> std_test = {"amogus", "sus", "aboba"};
@@ -57,7 +57,7 @@ TEST(ModifiersInsert, AddingToBeginCompareStr) {
   EXPECT_TRUE(equalLists(s21_test, std_test));
 }
 
-TEST(ModifiersInsert, AddingToMiddleCorrectInt) {
+TEST(ListModifiersInsert, AddingToMiddleCorrectInt) {
   int value = 10;
   s21::list<int> test = {1, 2, 3, 4, 5};
   s21::list<int> compare = {1, 2, value, 3, 4, 5};
@@ -66,7 +66,7 @@ TEST(ModifiersInsert, AddingToMiddleCorrectInt) {
   EXPECT_TRUE(equalLists(test, compare));
 }
 
-TEST(ModifiersInsert, AddingToMiddleCorrectChar) {
+TEST(ListModifiersInsert, AddingToMiddleCorrectChar) {
   char value = 'Z';
   s21::list<char> test = {'a', 'b', 'c', 'd', 'e'};
   s21::list<char> compare = {'a', 'b', value, 'c', 'd', 'e'};
@@ -75,7 +75,7 @@ TEST(ModifiersInsert, AddingToMiddleCorrectChar) {
   EXPECT_TRUE(equalLists(test, compare));
 }
 
-TEST(ModifiersInsert, AddingToMiddleCorrectStr) {
+TEST(ListModifiersInsert, AddingToMiddleCorrectStr) {
   std::string value = "awoo";
   s21::list<std::string> test = {"amogus", "sus", "aboba"};
   s21::list<std::string> compare = {"amogus", "sus", value, "aboba"};
@@ -84,7 +84,7 @@ TEST(ModifiersInsert, AddingToMiddleCorrectStr) {
   EXPECT_TRUE(equalLists(test, compare));
 }
 
-TEST(ModifiersInsert, AddingToMiddleCompareInt) {
+TEST(ListModifiersInsert, AddingToMiddleCompareInt) {
   int value = 10;
   s21::list<int> s21_test = {1, 2, 3, 4, 5};
   std::list<int> std_test = {1, 2, 3, 4, 5};
@@ -94,7 +94,7 @@ TEST(ModifiersInsert, AddingToMiddleCompareInt) {
   EXPECT_TRUE(equalLists(s21_test, std_test));
 }
 
-TEST(ModifiersInsert, AddingToMiddleCompareChar) {
+TEST(ListModifiersInsert, AddingToMiddleCompareChar) {
   char value = 'Z';
   s21::list<char> s21_test = {'a', 'b', 'c', 'd', 'e'};
   std::list<char> std_test = {'a', 'b', 'c', 'd', 'e'};
@@ -104,7 +104,7 @@ TEST(ModifiersInsert, AddingToMiddleCompareChar) {
   EXPECT_TRUE(equalLists(s21_test, std_test));
 }
 
-TEST(ModifiersInsert, AddingToMiddleCompareStr) {
+TEST(ListModifiersInsert, AddingToMiddleCompareStr) {
   std::string value = "awoo";
   s21::list<std::string> s21_test = {"amogus", "sus", "aboba"};
   std::list<std::string> std_test = {"amogus", "sus", "aboba"};
@@ -114,7 +114,7 @@ TEST(ModifiersInsert, AddingToMiddleCompareStr) {
   EXPECT_TRUE(equalLists(s21_test, std_test));
 }
 
-TEST(ModifiersInsert, AddingToEndCorrectInt) {
+TEST(ListModifiersInsert, AddingToEndCorrectInt) {
   int value = 10;
   s21::list<int> test = {1, 2, 3, 4, 5};
   s21::list<int> compare = {1, 2, 3, 4, 5, value};
@@ -123,7 +123,7 @@ TEST(ModifiersInsert, AddingToEndCorrectInt) {
   EXPECT_TRUE(equalLists(test, compare));
 }
 
-TEST(ModifiersInsert, AddingToEndCorrectChar) {
+TEST(ListModifiersInsert, AddingToEndCorrectChar) {
   char value = 'Z';
   s21::list<char> test = {'a', 'b', 'c', 'd', 'e'};
   s21::list<char> compare = {'a', 'b', 'c', 'd', 'e', value};
@@ -132,7 +132,7 @@ TEST(ModifiersInsert, AddingToEndCorrectChar) {
   EXPECT_TRUE(equalLists(test, compare));
 }
 
-TEST(ModifiersInsert, AddingToEndCorrectStr) {
+TEST(ListModifiersInsert, AddingToEndCorrectStr) {
   std::string value = "awoo";
   s21::list<std::string> test = {"amogus", "sus", "aboba"};
   s21::list<std::string> compare = {"amogus", "sus", "aboba", value};
@@ -141,7 +141,7 @@ TEST(ModifiersInsert, AddingToEndCorrectStr) {
   EXPECT_TRUE(equalLists(test, compare));
 }
 
-TEST(ModifiersInsert, AddingToEndCompareInt) {
+TEST(ListModifiersInsert, AddingToEndCompareInt) {
   int value = 10;
   s21::list<int> s21_test = {1, 2, 3, 4, 5};
   std::list<int> std_test = {1, 2, 3, 4, 5};
@@ -151,7 +151,7 @@ TEST(ModifiersInsert, AddingToEndCompareInt) {
   EXPECT_TRUE(equalLists(s21_test, std_test));
 }
 
-TEST(ModifiersInsert, AddingToEndCompareChar) {
+TEST(ListModifiersInsert, AddingToEndCompareChar) {
   char value = 'Z';
   s21::list<char> s21_test = {'a', 'b', 'c', 'd', 'e'};
   std::list<char> std_test = {'a', 'b', 'c', 'd', 'e'};
@@ -161,7 +161,7 @@ TEST(ModifiersInsert, AddingToEndCompareChar) {
   EXPECT_TRUE(equalLists(s21_test, std_test));
 }
 
-TEST(ModifiersInsert, AddingToEndCompareStr) {
+TEST(ListModifiersInsert, AddingToEndCompareStr) {
   std::string value = "awoo";
   s21::list<std::string> s21_test = {"amogus", "sus", "aboba"};
   std::list<std::string> std_test = {"amogus", "sus", "aboba"};
@@ -171,7 +171,7 @@ TEST(ModifiersInsert, AddingToEndCompareStr) {
   EXPECT_TRUE(equalLists(s21_test, std_test));
 }
 
-TEST(ModifiersInsert, AddingToEmptyCorrectInt) {
+TEST(ListModifiersInsert, AddingToEmptyCorrectInt) {
   int value = 10;
   s21::list<int> test;
   test.insert(test.begin(), value);
@@ -180,7 +180,7 @@ TEST(ModifiersInsert, AddingToEmptyCorrectInt) {
   EXPECT_TRUE(*it == value);
 }
 
-TEST(ModifiersInsert, AddingToEmptyCorrectChar) {
+TEST(ListModifiersInsert, AddingToEmptyCorrectChar) {
   char value = 'A';
   s21::list<char> test;
   test.insert(test.begin(), value);
@@ -189,7 +189,7 @@ TEST(ModifiersInsert, AddingToEmptyCorrectChar) {
   EXPECT_TRUE(*it == value);
 }
 
-TEST(ModifiersInsert, AddingToEmptyCorrectStr) {
+TEST(ListModifiersInsert, AddingToEmptyCorrectStr) {
   std::string value = "test";
   s21::list<std::string> test;
   test.insert(test.begin(), value);
@@ -198,7 +198,7 @@ TEST(ModifiersInsert, AddingToEmptyCorrectStr) {
   EXPECT_TRUE(*it == value);
 }
 
-TEST(ModifiersInsert, AddingToEmptyCompareInt) {
+TEST(ListModifiersInsert, AddingToEmptyCompareInt) {
   int value = 10;
   s21::list<int> s21_test;
   std::list<int> std_test;
@@ -207,7 +207,7 @@ TEST(ModifiersInsert, AddingToEmptyCompareInt) {
   EXPECT_TRUE(s21_test.size() == std_test.size());
 }
 
-TEST(ModifiersInsert, AddingToEmptyCompareChar) {
+TEST(ListModifiersInsert, AddingToEmptyCompareChar) {
   char value = 'A';
   s21::list<char> s21_test;
   std::list<char> std_test;
@@ -216,7 +216,7 @@ TEST(ModifiersInsert, AddingToEmptyCompareChar) {
   EXPECT_TRUE(s21_test.size() == std_test.size());
 }
 
-TEST(ModifiersInsert, AddingToEmptyCompareStr) {
+TEST(ListModifiersInsert, AddingToEmptyCompareStr) {
   std::string value = "test";
   s21::list<std::string> s21_test;
   std::list<std::string> std_test;

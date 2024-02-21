@@ -1,5 +1,5 @@
 #include <list>
-#include "s21_containers/s21_list.h"
+#include "../s21_containers/s21_list.h"
 
 int main() {
   s21::list<int> test_1;

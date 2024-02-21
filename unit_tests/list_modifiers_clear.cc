@@ -1,27 +1,27 @@
 #include "unit_tests.h"
 
-TEST(ModifiersClear, ParameterizedSizeCorrectInt) {
+TEST(ListModifiersClear, ParameterizedSizeCorrectInt) {
   s21::list<int> test(3);
   EXPECT_FALSE(test.empty());
   test.clear();
   EXPECT_TRUE(test.empty());
 }
 
-TEST(ModifiersClear, ParameterizedSizeCorrectChar) {
+TEST(ListModifiersClear, ParameterizedSizeCorrectChar) {
   s21::list<char> test(3);
   EXPECT_FALSE(test.empty());
   test.clear();
   EXPECT_TRUE(test.empty());
 }
 
-TEST(ModifiersClear, ParameterizedSizeCorrectStr) {
+TEST(ListModifiersClear, ParameterizedSizeCorrectStr) {
   s21::list<std::string> test(3);
   EXPECT_FALSE(test.empty());
   test.clear();
   EXPECT_TRUE(test.empty());
 }
 
-TEST(ModifiersClear, ParameterizedSizeCompareInt) {
+TEST(ListModifiersClear, ParameterizedSizeCompareInt) {
   s21::list<int> s21_test(3);
   std::list<int> std_test(3);
   EXPECT_TRUE(!s21_test.empty() == !std_test.empty());
@@ -30,7 +30,7 @@ TEST(ModifiersClear, ParameterizedSizeCompareInt) {
   EXPECT_TRUE(s21_test.empty() == std_test.empty());
 }
 
-TEST(ModifiersClear, ParameterizedSizeCompareChar) {
+TEST(ListModifiersClear, ParameterizedSizeCompareChar) {
   s21::list<char> s21_test(3);
   std::list<char> std_test(3);
   EXPECT_TRUE(!s21_test.empty() == !std_test.empty());
@@ -39,7 +39,7 @@ TEST(ModifiersClear, ParameterizedSizeCompareChar) {
   EXPECT_TRUE(s21_test.empty() == std_test.empty());
 }
 
-TEST(ModifiersClear, ParameterizedSizeCompareStr) {
+TEST(ListModifiersClear, ParameterizedSizeCompareStr) {
   s21::list<std::string> s21_test(3);
   std::list<std::string> std_test(3);
   EXPECT_TRUE(!s21_test.empty() == !std_test.empty());
@@ -48,28 +48,28 @@ TEST(ModifiersClear, ParameterizedSizeCompareStr) {
   EXPECT_TRUE(s21_test.empty() == std_test.empty());
 }
 
-TEST(ModifiersClear, DefaultSizeCorrectInt) {
+TEST(ListModifiersClear, DefaultSizeCorrectInt) {
   s21::list<int> test;
   EXPECT_TRUE(test.empty());
   test.clear();
   EXPECT_TRUE(test.empty());
 }
 
-TEST(ModifiersClear, DefaultSizeCorrectChar) {
+TEST(ListModifiersClear, DefaultSizeCorrectChar) {
   s21::list<char> test;
   EXPECT_TRUE(test.empty());
   test.clear();
   EXPECT_TRUE(test.empty());
 }
 
-TEST(ModifiersClear, DefaultSizeCorrectStr) {
+TEST(ListModifiersClear, DefaultSizeCorrectStr) {
   s21::list<std::string> test;
   EXPECT_TRUE(test.empty());
   test.clear();
   EXPECT_TRUE(test.empty());
 }
 
-TEST(ModifiersClear, DefaultSizeCompareInt) {
+TEST(ListModifiersClear, DefaultSizeCompareInt) {
   s21::list<int> s21_test;
   std::list<int> std_test;
   EXPECT_TRUE(s21_test.empty() == std_test.empty());
@@ -78,7 +78,7 @@ TEST(ModifiersClear, DefaultSizeCompareInt) {
   EXPECT_TRUE(s21_test.empty() == std_test.empty());
 }
 
-TEST(ModifiersClear, DefaultSizeCompareChar) {
+TEST(ListModifiersClear, DefaultSizeCompareChar) {
   s21::list<char> s21_test;
   std::list<char> std_test;
   EXPECT_TRUE(s21_test.empty() == std_test.empty());
@@ -87,7 +87,7 @@ TEST(ModifiersClear, DefaultSizeCompareChar) {
   EXPECT_TRUE(s21_test.empty() == std_test.empty());
 }
 
-TEST(ModifiersClear, DefaultSizeCompareStr) {
+TEST(ListModifiersClear, DefaultSizeCompareStr) {
   s21::list<std::string> s21_test;
   std::list<std::string> std_test;
   EXPECT_TRUE(s21_test.empty() == std_test.empty());

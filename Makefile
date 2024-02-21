@@ -1,7 +1,7 @@
 CC = g++
 FLAGS = -Wall -Werror -Wextra -std=c++17
 LIBS = -lgtest
-OS=$(shell uname -s)
+OS = $(shell uname -s)
 
 PROJECT = s21_containers
 TARGET = $(PROJECT).a
@@ -12,14 +12,18 @@ else
 endif
 OBJECTS = $(patsubst %.cc, %.o, $(SOURCES))
 
-# MANTEST = manual_test.cc
-# MANTEST = manual_test_erase.cc
-# MANTEST = manual_test_insert.cc
-# MANTEST = manual_test_splice.cc
-# MANTEST = manual_test_merge.cc
-# MANTEST = manual_test_swap.cc
-MANTEST = manual_test_leaks.cc
-MANLEAK = manual_test_leaks.cc
+MTSTDIR = manual_tests
+MANTEST = $(MTSTDIR)/insert_many.cc
+# MANTEST = $(MTSTDIR)/stack.cc
+# MANTEST = $(MTSTDIR)/queue.cc
+# MANTEST = $(MTSTDIR)/list.cc
+# MANTEST = $(MTSTDIR)/list_erase.cc
+# MANTEST = $(MTSTDIR)/list_insert.cc
+# MANTEST = $(MTSTDIR)/list_splice.cc
+# MANTEST = $(MTSTDIR)/list_merge.cc
+# MANTEST = $(MTSTDIR)/list_swap.cc
+# MANTEST = $(MTSTDIR)/list_leaks.cc
+MANLEAK = $(MTSTDIR)/list_leaks.cc
 MTSTEXE = a.out
 
 TESTDIR = unit_tests
@@ -51,17 +55,25 @@ test: clean $(TARGET)
 
 memtest: test
 ifeq ($(OS), Linux)
+# leaks only:
 	CK_FORK=no valgrind $(VGFLAGS) ./$(TESTEXE)
+# other memory errors:
+#	CK_FORK=no valgrind -s $(VGFLAGS) ./$(TESTEXE)
 else
 	CK_FORK=no leaks --atExit -- ./$(TESTEXE)
+#	./valgrind.sh
 endif
 
 mantest_leaks:
 	$(CC) $(FLAGS) $(MANLEAK)
 ifeq ($(OS), Linux)
+# leaks only:
 	CK_FORK=no valgrind $(VGFLAGS) ./$(MTSTEXE)
+# other memory errors:
+#	CK_FORK=no valgrind -s $(VGFLAGS) ./$(MTSTEXE)
 else
 	CK_FORK=no leaks --atExit -- ./$(MTSTEXE)
+#	./valgrind.sh
 endif
 
 style:

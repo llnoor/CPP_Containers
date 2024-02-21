@@ -94,4 +94,4 @@ namespace s21 {
     cycle->data_ = cycle->prev_->data_;
   }
 
-} // namespace 21
+} // namespace s21

@@ -101,4 +101,4 @@ namespace s21 {
     }
   }
 
-} // namespace 21
+} // namespace s21

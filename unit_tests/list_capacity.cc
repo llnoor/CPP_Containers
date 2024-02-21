@@ -2,185 +2,233 @@
 
 /* empty */
 
-TEST(Capacity, IsEmptyCorrectInt) {
-  s21::list<int> emptyList;
-  EXPECT_TRUE(emptyList.empty());
+TEST(ListCapacity, IsEmptyCorrectInt) {
+  s21::list<int> test;
+  EXPECT_TRUE(test.empty());
 }
 
-TEST(Capacity, IsEmptyCorrectChar) {
-  s21::list<char> emptyList;
-  EXPECT_TRUE(emptyList.empty());
+TEST(ListCapacity, IsEmptyCorrectChar) {
+  s21::list<char> test;
+  EXPECT_TRUE(test.empty());
 }
 
-TEST(Capacity, IsEmptyCorrectStr) {
-  s21::list<std::string> emptyList;
-  EXPECT_TRUE(emptyList.empty());
+TEST(ListCapacity, IsEmptyCorrectStr) {
+  s21::list<std::string> test;
+  EXPECT_TRUE(test.empty());
 }
 
-TEST(Capacity, IsEmptyCompareInt) {
-  s21::list<int> s21_emptyList;
-  std::list<int> std_emptyList;
-  EXPECT_TRUE(s21_emptyList.empty() == std_emptyList.empty());
+TEST(ListCapacity, IsEmptyCompareInt) {
+  s21::list<int> s21_test;
+  std::list<int> std_test;
+  EXPECT_TRUE(s21_test.empty() == std_test.empty());
 }
 
-TEST(Capacity, IsEmptyCompareChar) {
-  s21::list<char> s21_emptyList;
-  std::list<char> std_emptyList;
-  EXPECT_TRUE(s21_emptyList.empty() == std_emptyList.empty());
+TEST(ListCapacity, IsEmptyCompareChar) {
+  s21::list<char> s21_test;
+  std::list<char> std_test;
+  EXPECT_TRUE(s21_test.empty() == std_test.empty());
 }
 
-TEST(Capacity, IsEmptyCompareStr) {
-  s21::list<std::string> s21_emptyList;
-  std::list<std::string> std_emptyList;
-  EXPECT_TRUE(s21_emptyList.empty() == std_emptyList.empty());
+TEST(ListCapacity, IsEmptyCompareStr) {
+  s21::list<std::string> s21_test;
+  std::list<std::string> std_test;
+  EXPECT_TRUE(s21_test.empty() == std_test.empty());
 }
 
-TEST(Capacity, IsntEmptyCorrectInt) {
-  s21::list<int> nonEmptyListP(1);
-  s21::list<int> nonEmptyListI{1};
-  EXPECT_FALSE(nonEmptyListP.empty());
-  EXPECT_FALSE(nonEmptyListI.empty());
+TEST(ListCapacity, IsntEmptyCorrectInt) {
+  s21::list<int> test_p(1);
+  s21::list<int> test_il{1};
+  EXPECT_FALSE(test_p.empty());
+  EXPECT_FALSE(test_il.empty());
 }
 
-TEST(Capacity, IsntEmptyCorrectChar) {
-  s21::list<char> nonEmptyListP(1);
-  s21::list<char> nonEmptyListI{'a'};
-  EXPECT_FALSE(nonEmptyListP.empty());
-  EXPECT_FALSE(nonEmptyListI.empty());
+TEST(ListCapacity, IsntEmptyCorrectChar) {
+  s21::list<char> test_p(1);
+  s21::list<char> test_il{'a'};
+  EXPECT_FALSE(test_p.empty());
+  EXPECT_FALSE(test_il.empty());
 }
 
-TEST(Capacity, IsntEmptyCorrectStr) {
-  s21::list<std::string> nonEmptyListP(1);
-  s21::list<std::string> nonEmptyListI{"asd"};
-  EXPECT_FALSE(nonEmptyListP.empty());
-  EXPECT_FALSE(nonEmptyListI.empty());
+TEST(ListCapacity, IsntEmptyCorrectStr) {
+  s21::list<std::string> test_p(1);
+  s21::list<std::string> test_il{"asd"};
+  EXPECT_FALSE(test_p.empty());
+  EXPECT_FALSE(test_il.empty());
 }
 
-TEST(Capacity, IsntEmptyCompareInt) {
-  s21::list<int> s21_nonEmptyListP(1);
-  std::list<int> std_nonEmptyListP(1);
-  s21::list<int> s21_nonEmptyListI{1};
-  std::list<int> std_nonEmptyListI{1};
-  EXPECT_TRUE(!s21_nonEmptyListP.empty() == !std_nonEmptyListP.empty());
-  EXPECT_TRUE(!s21_nonEmptyListI.empty() == !std_nonEmptyListI.empty());
+TEST(ListCapacity, IsntEmptyCompareInt) {
+  s21::list<int> s21_test_p(1);
+  std::list<int> std_test_p(1);
+  s21::list<int> s21_test_il{1};
+  std::list<int> std_test_il{1};
+  EXPECT_TRUE(!s21_test_p.empty() == !std_test_p.empty());
+  EXPECT_TRUE(!s21_test_il.empty() == !std_test_il.empty());
 }
 
-TEST(Capacity, IsntEmptyCompareChar) {
-  s21::list<char> s21_nonEmptyListP(1);
-  std::list<char> std_nonEmptyListP(1);
-  s21::list<char> s21_nonEmptyListI{'a'};
-  std::list<char> std_nonEmptyListI{'a'};
-  EXPECT_TRUE(!s21_nonEmptyListP.empty() == !std_nonEmptyListP.empty());
-  EXPECT_TRUE(!s21_nonEmptyListI.empty() == !std_nonEmptyListI.empty());
+TEST(ListCapacity, IsntEmptyCompareChar) {
+  s21::list<char> s21_test_p(1);
+  std::list<char> std_test_p(1);
+  s21::list<char> s21_test_il{'a'};
+  std::list<char> std_test_il{'a'};
+  EXPECT_TRUE(!s21_test_p.empty() == !std_test_p.empty());
+  EXPECT_TRUE(!s21_test_il.empty() == !std_test_il.empty());
 }
 
-TEST(Capacity, IsntEmptyCompareStr) {
-  s21::list<std::string> s21_nonEmptyListP(1);
-  std::list<std::string> std_nonEmptyListP(1);
-  s21::list<std::string> s21_nonEmptyListI{"asd"};
-  std::list<std::string> std_nonEmptyListI{"asd"};
-  EXPECT_TRUE(!s21_nonEmptyListP.empty() == !std_nonEmptyListP.empty());
-  EXPECT_TRUE(!s21_nonEmptyListI.empty() == !std_nonEmptyListI.empty());
+TEST(ListCapacity, IsntEmptyCompareStr) {
+  s21::list<std::string> s21_test_p(1);
+  std::list<std::string> std_test_p(1);
+  s21::list<std::string> s21_test_il{"asd"};
+  std::list<std::string> std_test_il{"asd"};
+  EXPECT_TRUE(!s21_test_p.empty() == !std_test_p.empty());
+  EXPECT_TRUE(!s21_test_il.empty() == !std_test_il.empty());
 }
 
 /* size */
 
-TEST(Capacity, SizeEmptyCorrectInt) {
-  s21::list<int> emptyList;
-  EXPECT_TRUE(emptyList.size() == 0);
+TEST(ListCapacity, SizeEmptyCorrectInt) {
+  s21::list<int> test;
+  EXPECT_TRUE(test.size() == 0);
 }
 
-TEST(Capacity, SizeEmptyCorrectChar) {
-  s21::list<char> emptyList;
-  EXPECT_TRUE(emptyList.size() == 0);
+TEST(ListCapacity, SizeEmptyCorrectChar) {
+  s21::list<char> test;
+  EXPECT_TRUE(test.size() == 0);
 }
 
-TEST(Capacity, SizeEmptyCorrectStr) {
-  s21::list<std::string> emptyList;
-  EXPECT_TRUE(emptyList.size() == 0);
+TEST(ListCapacity, SizeEmptyCorrectStr) {
+  s21::list<std::string> test;
+  EXPECT_TRUE(test.size() == 0);
 }
 
-TEST(Capacity, SizeEmptyCompareInt) {
-  s21::list<int> s21_emptyList;
-  std::list<int> std_emptyList;
-  EXPECT_TRUE(s21_emptyList.size() == std_emptyList.size());
+TEST(ListCapacity, SizeEmptyCompareInt) {
+  s21::list<int> s21_test;
+  std::list<int> std_test;
+  EXPECT_TRUE(s21_test.size() == std_test.size());
 }
 
-TEST(Capacity, SizeEmptyCompareChar) {
-  s21::list<char> s21_emptyList;
-  std::list<char> std_emptyList;
-  EXPECT_TRUE(s21_emptyList.size() == std_emptyList.size());
+TEST(ListCapacity, SizeEmptyCompareChar) {
+  s21::list<char> s21_test;
+  std::list<char> std_test;
+  EXPECT_TRUE(s21_test.size() == std_test.size());
 }
 
-TEST(Capacity, SizeEmptyCompareStr) {
-  s21::list<std::string> s21_emptyList;
-  std::list<std::string> std_emptyList;
-  EXPECT_TRUE(s21_emptyList.size() == std_emptyList.size());
+TEST(ListCapacity, SizeEmptyCompareStr) {
+  s21::list<std::string> s21_test;
+  std::list<std::string> std_test;
+  EXPECT_TRUE(s21_test.size() == std_test.size());
 }
 
-TEST(Capacity, SizeCorrectInt) {
-  s21::list<int> nonEmptyListP(1);
-  s21::list<int> nonEmptyListI{42};
-  EXPECT_TRUE(nonEmptyListP.size() == 1);
-  EXPECT_TRUE(nonEmptyListI.size() == 1);
+TEST(ListCapacity, SizeOneCorrectInt) {
+  s21::list<int> test_p(1);
+  s21::list<int> test_il{42};
+  EXPECT_TRUE(test_p.size() == 1);
+  EXPECT_TRUE(test_il.size() == 1);
 }
 
-TEST(Capacity, SizeCorrectChar) {
-  s21::list<char> nonEmptyListP(1);
-  s21::list<char> nonEmptyListI{'a'};
-  EXPECT_TRUE(nonEmptyListP.size() == 1);
-  EXPECT_TRUE(nonEmptyListI.size() == 1);
+TEST(ListCapacity, SizeOneCorrectChar) {
+  s21::list<char> test_p(1);
+  s21::list<char> test_il{'a'};
+  EXPECT_TRUE(test_p.size() == 1);
+  EXPECT_TRUE(test_il.size() == 1);
 }
 
-TEST(Capacity, SizeCorrectStr) {
-  s21::list<std::string> nonEmptyListP(1);
-  s21::list<std::string> nonEmptyListI{"abcd"};
-  EXPECT_TRUE(nonEmptyListP.size() == 1);
-  EXPECT_TRUE(nonEmptyListI.size() == 1);
+TEST(ListCapacity, SizeOneCorrectStr) {
+  s21::list<std::string> test_p(1);
+  s21::list<std::string> test_il{"abcd"};
+  EXPECT_TRUE(test_p.size() == 1);
+  EXPECT_TRUE(test_il.size() == 1);
 }
 
-TEST(Capacity, SizeCompareInt) {
-  s21::list<int> s21_nonEmptyListP(1);
-  std::list<int> std_nonEmptyListP(1);
-  s21::list<int> s21_nonEmptyListI{42};
-  std::list<int> std_nonEmptyListI{42};
-  EXPECT_TRUE(s21_nonEmptyListP.size() == std_nonEmptyListP.size());
-  EXPECT_TRUE(s21_nonEmptyListI.size() == std_nonEmptyListI.size());
+TEST(ListCapacity, SizeOneCompareInt) {
+  s21::list<int> s21_test_p(1);
+  std::list<int> std_test_p(1);
+  s21::list<int> s21_test_il{42};
+  std::list<int> std_test_il{42};
+  EXPECT_TRUE(s21_test_p.size() == std_test_p.size());
+  EXPECT_TRUE(s21_test_il.size() == std_test_il.size());
 }
 
-TEST(Capacity, SizeCompareChar) {
-  s21::list<char> s21_nonEmptyListP(1);
-  std::list<char> std_nonEmptyListP(1);
-  s21::list<char> s21_nonEmptyListI{'a'};
-  std::list<char> std_nonEmptyListI{'a'};
-  EXPECT_TRUE(s21_nonEmptyListP.size() == std_nonEmptyListP.size());
-  EXPECT_TRUE(s21_nonEmptyListI.size() == std_nonEmptyListI.size());
+TEST(ListCapacity, SizeOneCompareChar) {
+  s21::list<char> s21_test_p(1);
+  std::list<char> std_test_p(1);
+  s21::list<char> s21_test_il{'a'};
+  std::list<char> std_test_il{'a'};
+  EXPECT_TRUE(s21_test_p.size() == std_test_p.size());
+  EXPECT_TRUE(s21_test_il.size() == std_test_il.size());
 }
 
-TEST(Capacity, SizeCompareStr) {
-  s21::list<std::string> s21_nonEmptyListP(1);
-  std::list<std::string> std_nonEmptyListP(1);
-  s21::list<std::string> s21_nonEmptyListI{"ABCD"};
-  std::list<std::string> std_nonEmptyListI{"ABCD"};
-  EXPECT_TRUE(s21_nonEmptyListP.size() == std_nonEmptyListP.size());
-  EXPECT_TRUE(s21_nonEmptyListI.size() == std_nonEmptyListI.size());
+TEST(ListCapacity, SizeOneCompareStr) {
+  s21::list<std::string> s21_test_p(1);
+  std::list<std::string> std_test_p(1);
+  s21::list<std::string> s21_test_il{"ABCD"};
+  std::list<std::string> std_test_il{"ABCD"};
+  EXPECT_TRUE(s21_test_p.size() == std_test_p.size());
+  EXPECT_TRUE(s21_test_il.size() == std_test_il.size());
+}
+
+TEST(ListCapacity, SizeManyCorrectInt) {
+  s21::list<int> test_p(5);
+  s21::list<int> test_il{1, 2, 3, 4, 5};
+  EXPECT_TRUE(test_p.size() == 5);
+  EXPECT_TRUE(test_il.size() == 5);
+}
+
+TEST(ListCapacity, SizeManyCorrectChar) {
+  s21::list<char> test_p(5);
+  s21::list<char> test_il{'a', 'b', 'c', 'd', 'e'};
+  EXPECT_TRUE(test_p.size() == 5);
+  EXPECT_TRUE(test_il.size() == 5);
+}
+
+TEST(ListCapacity, SizeManyCorrectStr) {
+  s21::list<std::string> test_p(5);
+  s21::list<std::string> test_il{"abcd", "efgh", "ijkl", "mnop", "qrst"};
+  EXPECT_TRUE(test_p.size() == 5);
+  EXPECT_TRUE(test_il.size() == 5);
+}
+
+TEST(ListCapacity, SizeManyCompareInt) {
+  s21::list<int> s21_test_p(5);
+  std::list<int> std_test_p(5);
+  s21::list<int> s21_test_il{1, 2, 3, 4, 5};
+  std::list<int> std_test_il{1, 2, 3, 4, 5};
+  EXPECT_TRUE(s21_test_p.size() == std_test_p.size());
+  EXPECT_TRUE(s21_test_il.size() == std_test_il.size());
+}
+
+TEST(ListCapacity, SizeManyCompareChar) {
+  s21::list<char> s21_test_p(5);
+  std::list<char> std_test_p(5);
+  s21::list<char> s21_test_il{'a', 'b', 'c', 'd', 'e'};
+  std::list<char> std_test_il{'a', 'b', 'c', 'd', 'e'};
+  EXPECT_TRUE(s21_test_p.size() == std_test_p.size());
+  EXPECT_TRUE(s21_test_il.size() == std_test_il.size());
+}
+
+TEST(ListCapacity, SizeManyCompareStr) {
+  s21::list<std::string> s21_test_p(5);
+  std::list<std::string> std_test_p(5);
+  s21::list<std::string> s21_test_il{"abcd", "efgh", "ijkl", "mnop", "qrst"};
+  std::list<std::string> std_test_il{"abcd", "efgh", "ijkl", "mnop", "qrst"};
+  EXPECT_TRUE(s21_test_p.size() == std_test_p.size());
+  EXPECT_TRUE(s21_test_il.size() == std_test_il.size());
 }
 
 /* max_size */
 
-TEST(Capacity, MaxSizeCompareInt) {
+TEST(ListCapacity, MaxSizeCompareInt) {
   s21::list<int> s21_test;
   std::list<int> std_test;
   EXPECT_TRUE(s21_test.max_size() == std_test.max_size());
 }
 
-TEST(Capacity, MaxSizeCompareChar) {
+TEST(ListCapacity, MaxSizeCompareChar) {
   s21::list<char> s21_test;
   std::list<char> std_test;
   EXPECT_TRUE(s21_test.max_size() == std_test.max_size());
 }
 
-TEST(Capacity, MaxSizeCompareStr) {
+TEST(ListCapacity, MaxSizeCompareStr) {
   s21::list<std::string> s21_test;
   std::list<std::string> std_test;
   EXPECT_TRUE(s21_test.max_size() == std_test.max_size());

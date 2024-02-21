@@ -1,42 +1,42 @@
 #include "unit_tests.h"
 
-TEST(ModifiersPop, PopFrontEmptyCorrectInt) {
+TEST(ListModifiersPop, PopFrontOneCorrectInt) {
   s21::list<int> test{0};
   test.pop_front();
   EXPECT_TRUE(test.empty());
 }
 
-TEST(ModifiersPop, PopFrontEmptyCorrectChar) {
+TEST(ListModifiersPop, PopFrontOneCorrectChar) {
   s21::list<char> test{'a'};
   test.pop_front();
   EXPECT_TRUE(test.empty());
 }
 
-TEST(ModifiersPop, PopFrontEmptyCorrectStr) {
+TEST(ListModifiersPop, PopFrontOneCorrectStr) {
   s21::list<std::string> test{"yeet"};
   test.pop_front();
   EXPECT_TRUE(test.empty());
 }
 
-TEST(ModifiersPop, PopBackEmptyCorrectInt) {
+TEST(ListModifiersPop, PopBackOneCorrectInt) {
   s21::list<int> test{0};
   test.pop_back();
   EXPECT_TRUE(test.empty());
 }
 
-TEST(ModifiersPop, PopBackEmptyCorrectChar) {
+TEST(ListModifiersPop, PopBackOneCorrectChar) {
   s21::list<char> test{'a'};
   test.pop_back();
   EXPECT_TRUE(test.empty());
 }
 
-TEST(ModifiersPop, PopBackEmptyCorrectStr) {
+TEST(ListModifiersPop, PopBackOneCorrectStr) {
   s21::list<std::string> test{"yeet"};
   test.pop_back();
   EXPECT_TRUE(test.empty());
 }
 
-TEST(ModifiersPop, PopFrontEmptyCompareInt) {
+TEST(ListModifiersPop, PopFrontOneCompareInt) {
   s21::list<int> s21_test{0};
   std::list<int> std_test{0};
   s21_test.pop_front();
@@ -44,7 +44,7 @@ TEST(ModifiersPop, PopFrontEmptyCompareInt) {
   EXPECT_TRUE(equalLists(s21_test, std_test));
 }
 
-TEST(ModifiersPop, PopFrontEmptyCompareChar) {
+TEST(ListModifiersPop, PopFrontOneCompareChar) {
   s21::list<char> s21_test{'a'};
   std::list<char> std_test{'a'};
   s21_test.pop_front();
@@ -52,7 +52,7 @@ TEST(ModifiersPop, PopFrontEmptyCompareChar) {
   EXPECT_TRUE(equalLists(s21_test, std_test));
 }
 
-TEST(ModifiersPop, PopFrontEmptyCompareStr) {
+TEST(ListModifiersPop, PopFrontOneCompareStr) {
   s21::list<std::string> s21_test{"vfr"};
   std::list<std::string> std_test{"vfr"};
   s21_test.pop_front();
@@ -60,7 +60,7 @@ TEST(ModifiersPop, PopFrontEmptyCompareStr) {
   EXPECT_TRUE(equalLists(s21_test, std_test));
 }
 
-TEST(ModifiersPop, PopBackEmptyCompareInt) {
+TEST(ListModifiersPop, PopBackOneCompareInt) {
   s21::list<int> s21_test{0};
   std::list<int> std_test{0};
   s21_test.pop_back();
@@ -68,7 +68,7 @@ TEST(ModifiersPop, PopBackEmptyCompareInt) {
   EXPECT_TRUE(equalLists(s21_test, std_test));
 }
 
-TEST(ModifiersPop, PopBackEmptyCompareChar) {
+TEST(ListModifiersPop, PopBackOneCompareChar) {
   s21::list<char> s21_test{'a'};
   std::list<char> std_test{'a'};
   s21_test.pop_back();
@@ -76,7 +76,7 @@ TEST(ModifiersPop, PopBackEmptyCompareChar) {
   EXPECT_TRUE(equalLists(s21_test, std_test));
 }
 
-TEST(ModifiersPop, PopBackEmptyCompareStr) {
+TEST(ListModifiersPop, PopBackOneCompareStr) {
   s21::list<std::string> s21_test{"qaz"};
   std::list<std::string> std_test{"qaz"};
   s21_test.pop_back();
@@ -84,49 +84,49 @@ TEST(ModifiersPop, PopBackEmptyCompareStr) {
   EXPECT_TRUE(equalLists(s21_test, std_test));
 }
 
-TEST(ModifiersPop, PopFrontCorrectInt) {
+TEST(ListModifiersPop, PopFrontCorrectInt) {
   s21::list<int> test{1, 2, 3};
   s21::list<int> compare{2, 3};
   test.pop_front();
   EXPECT_TRUE(equalLists(test, compare));
 }
 
-TEST(ModifiersPop, PopFrontCorrectChar) {
+TEST(ListModifiersPop, PopFrontCorrectChar) {
   s21::list<char> test{'X', 'Y', 'Z'};
   s21::list<char> compare{'Y', 'Z'};
   test.pop_front();
   EXPECT_TRUE(equalLists(test, compare));
 }
 
-TEST(ModifiersPop, PopFrontCorrectStr) {
+TEST(ListModifiersPop, PopFrontCorrectStr) {
   s21::list<std::string> test{"qaz", "wsx", "edc"};
   s21::list<std::string> compare{"wsx", "edc"};
   test.pop_front();
   EXPECT_TRUE(equalLists(test, compare));
 }
 
-TEST(ModifiersPop, PopBackCorrectInt) {
+TEST(ListModifiersPop, PopBackCorrectInt) {
   s21::list<int> test{1, 2, 3};
   s21::list<int> compare{1, 2};
   test.pop_back();
   EXPECT_TRUE(equalLists(test, compare));
 }
 
-TEST(ModifiersPop, PopBackCorrectChar) {
+TEST(ListModifiersPop, PopBackCorrectChar) {
   s21::list<char> test{'X', 'Y', 'Z'};
   s21::list<char> compare{'X', 'Y'};
   test.pop_back();
   EXPECT_TRUE(equalLists(test, compare));
 }
 
-TEST(ModifiersPop, PopBackCorrectStr) {
+TEST(ListModifiersPop, PopBackCorrectStr) {
   s21::list<std::string> test{"qaz", "wsx", "edc"};
   s21::list<std::string> compare{"qaz", "wsx"};
   test.pop_back();
   EXPECT_TRUE(equalLists(test, compare));
 }
 
-TEST(ModifiersPop, PopFrontCompareInt) {
+TEST(ListModifiersPop, PopFrontCompareInt) {
   s21::list<int> s21_test{1, 2, 3};
   std::list<int> std_test{1, 2, 3};
   s21_test.pop_front();
@@ -134,7 +134,7 @@ TEST(ModifiersPop, PopFrontCompareInt) {
   EXPECT_TRUE(equalLists(s21_test, std_test));
 }
 
-TEST(ModifiersPop, PopFrontCompareChar) {
+TEST(ListModifiersPop, PopFrontCompareChar) {
   s21::list<char> s21_test{'X', 'Y', 'Z'};
   std::list<char> std_test{'X', 'Y', 'Z'};
   s21_test.pop_front();
@@ -142,7 +142,7 @@ TEST(ModifiersPop, PopFrontCompareChar) {
   EXPECT_TRUE(equalLists(s21_test, std_test));
 }
 
-TEST(ModifiersPop, PopFrontCompareStr) {
+TEST(ListModifiersPop, PopFrontCompareStr) {
   s21::list<std::string> s21_test{"qaz", "wsx", "edc"};
   std::list<std::string> std_test{"qaz", "wsx", "edc"};
   s21_test.pop_front();
@@ -150,7 +150,7 @@ TEST(ModifiersPop, PopFrontCompareStr) {
   EXPECT_TRUE(equalLists(s21_test, std_test));
 }
 
-TEST(ModifiersPop, PopBackCompareInt) {
+TEST(ListModifiersPop, PopBackCompareInt) {
   s21::list<int> s21_test{1, 2, 3};
   std::list<int> std_test{1, 2, 3};
   s21_test.pop_back();
@@ -158,7 +158,7 @@ TEST(ModifiersPop, PopBackCompareInt) {
   EXPECT_TRUE(equalLists(s21_test, std_test));
 }
 
-TEST(ModifiersPop, PopBackCompareChar) {
+TEST(ListModifiersPop, PopBackCompareChar) {
   s21::list<char> s21_test{'X', 'Y', 'Z'};
   std::list<char> std_test{'X', 'Y', 'Z'};
   s21_test.pop_back();
@@ -166,7 +166,7 @@ TEST(ModifiersPop, PopBackCompareChar) {
   EXPECT_TRUE(equalLists(s21_test, std_test));
 }
 
-TEST(ModifiersPop, PopBackCompareStr) {
+TEST(ListModifiersPop, PopBackCompareStr) {
   s21::list<std::string> s21_test{"qaz", "wsx", "edc"};
   std::list<std::string> std_test{"qaz", "wsx", "edc"};
   s21_test.pop_back();
@@ -174,32 +174,32 @@ TEST(ModifiersPop, PopBackCompareStr) {
   EXPECT_TRUE(equalLists(s21_test, std_test));
 }
 
-TEST(ModifiersPop, PopFrontIncorrectInt) {
+TEST(ListModifiersPop, PopFrontIncorrectInt) {
   s21::list<int> test;
   EXPECT_ANY_THROW(test.pop_front());
 }
 
-TEST(ModifiersPop, PopFrontIncorrectChar) {
+TEST(ListModifiersPop, PopFrontIncorrectChar) {
   s21::list<char> test;
   EXPECT_ANY_THROW(test.pop_front());
 }
 
-TEST(ModifiersPop, PopFrontIncorrectStr) {
+TEST(ListModifiersPop, PopFrontIncorrectStr) {
   s21::list<std::string> test;
   EXPECT_ANY_THROW(test.pop_front());
 }
 
-TEST(ModifiersPop, PopBackIncorrectInt) {
+TEST(ListModifiersPop, PopBackIncorrectInt) {
   s21::list<int> test;
   EXPECT_ANY_THROW(test.pop_back());
 }
 
-TEST(ModifiersPop, PopBackIncorrectChar) {
+TEST(ListModifiersPop, PopBackIncorrectChar) {
   s21::list<char> test;
   EXPECT_ANY_THROW(test.pop_back());
 }
 
-TEST(ModifiersPop, PopBackIncorrectStr) {
+TEST(ListModifiersPop, PopBackIncorrectStr) {
   s21::list<std::string> test;
   EXPECT_ANY_THROW(test.pop_back());
 }

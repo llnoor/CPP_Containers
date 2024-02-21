@@ -1,66 +1,66 @@
 #include "unit_tests.h"
 
-TEST(ElementAccess, FrontCorrectInt) {
+TEST(ListElementAccess, FrontCorrectInt) {
   s21::list<int> test{42, 99};
   EXPECT_TRUE(test.front() == 42);
 }
 
-TEST(ElementAccess, FrontCorrectChar) {
+TEST(ListElementAccess, FrontCorrectChar) {
   s21::list<char> test{'a', 'Z'};
   EXPECT_TRUE(test.front() == 'a');
 }
 
-TEST(ElementAccess, FrontCorrectStr) {
+TEST(ListElementAccess, FrontCorrectStr) {
   s21::list<std::string> test{"gog", "magog"};
   EXPECT_TRUE(test.front() == "gog");
 }
 
-TEST(ElementAccess, FrontCompareInt) {
+TEST(ListElementAccess, FrontCompareInt) {
   s21::list<int> s21_test{42, 99};
   std::list<int> std_test{42, 99};
   EXPECT_TRUE(s21_test.front() == std_test.front());
 }
 
-TEST(ElementAccess, FrontCompareChar) {
+TEST(ListElementAccess, FrontCompareChar) {
   s21::list<char> s21_test{'a', 'Z'};
   std::list<char> std_test{'a', 'Z'};
   EXPECT_TRUE(s21_test.front() == std_test.front());
 }
 
-TEST(ElementAccess, FrontCompareStr) {
+TEST(ListElementAccess, FrontCompareStr) {
   s21::list<std::string> s21_test{"gog", "magog"};
   std::list<std::string> std_test{"gog", "magog"};
   EXPECT_TRUE(s21_test.front() == std_test.front());
 }
 
-TEST(ElementAccess, FrontEmptyCorrectInt) {
+TEST(ListElementAccess, FrontEmptyCorrectInt) {
   s21::list<int> test;
   EXPECT_TRUE(test.front() == s21::list<int>::default_value);
 }
 
-TEST(ElementAccess, FrontEmptyCorrectChar) {
+TEST(ListElementAccess, FrontEmptyCorrectChar) {
   s21::list<char> test;
   EXPECT_TRUE(test.front() == s21::list<char>::default_value);
 }
 
-TEST(ElementAccess, FrontEmptyCorrectStr) {
+TEST(ListElementAccess, FrontEmptyCorrectStr) {
   s21::list<std::string> test;
   EXPECT_TRUE(test.front() == s21::list<std::string>::default_value);
 }
 
-TEST(ElementAccess, FrontEmptyCompareInt) {
+TEST(ListElementAccess, FrontEmptyCompareInt) {
   s21::list<int> s21_test;
   std::list<int> std_test;
   EXPECT_TRUE(s21_test.front() == std_test.front());
 }
 
-TEST(ElementAccess, FrontEmptyCompareChar) {
+TEST(ListElementAccess, FrontEmptyCompareChar) {
   s21::list<char> s21_test;
   std::list<char> std_test;
   EXPECT_TRUE(s21_test.front() == std_test.front());
 }
 
-/*TEST(ElementAccess, FrontEmptyCompareStr) {
+/*TEST(ListElementAccess, FrontEmptyCompareStr) {
   s21::list<std::string> s21_test;
   std::list<std::string> std_test;
   std::cout << s21_test.front() << std::endl;
@@ -69,67 +69,67 @@ TEST(ElementAccess, FrontEmptyCompareChar) {
   EXPECT_TRUE(s21_test.front() == std_test.front());
 }*/
 
-TEST(ElementAccess, BackCorrectInt) {
+TEST(ListElementAccess, BackCorrectInt) {
   s21::list<int> test{42, 99};
   EXPECT_TRUE(test.back() == 99);
 }
 
-TEST(ElementAccess, BackCorrectChar) {
+TEST(ListElementAccess, BackCorrectChar) {
   s21::list<char> test{'a', 'Z'};
   EXPECT_TRUE(test.back() == 'Z');
 }
 
-TEST(ElementAccess, BackCorrectStr) {
+TEST(ListElementAccess, BackCorrectStr) {
   s21::list<std::string> test{"gog", "magog"};
   EXPECT_TRUE(test.back() == "magog");
 }
 
-TEST(ElementAccess, BackEmptyCorrectInt) {
-  s21::list<int> test;
-  EXPECT_TRUE(test.back() == s21::list<int>::default_value);
-}
-
-TEST(ElementAccess, BackEmptyCorrectChar) {
-  s21::list<char> test;
-  EXPECT_TRUE(test.back() == s21::list<char>::default_value);
-}
-
-TEST(ElementAccess, BackEmptyCorrectStr) {
-  s21::list<std::string> test;
-  EXPECT_TRUE(test.back() == s21::list<std::string>::default_value);
-}
-
-TEST(ElementAccess, BackCompareInt) {
+TEST(ListElementAccess, BackCompareInt) {
   s21::list<int> s21_test{42, 99};
   std::list<int> std_test{42, 99};
   EXPECT_TRUE(s21_test.back() == std_test.back());
 }
 
-TEST(ElementAccess, BackCompareChar) {
+TEST(ListElementAccess, BackCompareChar) {
   s21::list<char> s21_test{'a', 'Z'};
   std::list<char> std_test{'a', 'Z'};
   EXPECT_TRUE(s21_test.back() == std_test.back());
 }
 
-TEST(ElementAccess, BackCompareStr) {
+TEST(ListElementAccess, BackCompareStr) {
   s21::list<std::string> s21_test{"gog", "magog"};
   std::list<std::string> std_test{"gog", "magog"};
   EXPECT_TRUE(s21_test.back() == std_test.back());
 }
 
-TEST(ElementAccess, BackEmptyCompareInt) {
+TEST(ListElementAccess, BackEmptyCorrectInt) {
+  s21::list<int> test;
+  EXPECT_TRUE(test.back() == s21::list<int>::default_value);
+}
+
+TEST(ListElementAccess, BackEmptyCorrectChar) {
+  s21::list<char> test;
+  EXPECT_TRUE(test.back() == s21::list<char>::default_value);
+}
+
+TEST(ListElementAccess, BackEmptyCorrectStr) {
+  s21::list<std::string> test;
+  EXPECT_TRUE(test.back() == s21::list<std::string>::default_value);
+}
+
+TEST(ListElementAccess, BackEmptyCompareInt) {
   s21::list<int> s21_test;
   std::list<int> std_test;
   EXPECT_TRUE(s21_test.back() == std_test.back());
 }
 
-TEST(ElementAccess, BackEmptyCompareChar) {
+TEST(ListElementAccess, BackEmptyCompareChar) {
   s21::list<char> s21_test;
   std::list<char> std_test;
   EXPECT_TRUE(s21_test.back() == std_test.back());
 }
 
-/*TEST(ElementAccess, BackEmptyCompareStr) {
+/*TEST(ListElementAccess, BackEmptyCompareStr) {
   s21::list<std::string> s21_test;
   std::list<std::string> std_test;
   std::cout << s21_test.back() << std::endl;
@@ -138,14 +138,14 @@ TEST(ElementAccess, BackEmptyCompareChar) {
   EXPECT_TRUE(s21_test.back() == std_test.back());
 }*/
 
-TEST(ElementAccess, EmptyFrontStringLeaksCheck) {
+TEST(ListElementAccess, EmptyFrontStringLeaksCheck) {
   // leaks check, original list is broken on strings
   s21::list<std::string> s21_test;
   EXPECT_TRUE(s21_test.size() == s21_test.size());
   EXPECT_TRUE(s21_test.front() == s21_test.front());
 }
 
-TEST(ElementAccess, EmptyBackStringLeaksCheck) {
+TEST(ListElementAccess, EmptyBackStringLeaksCheck) {
   // leaks check, original list is broken on strings
   s21::list<std::string> s21_test;
   EXPECT_TRUE(s21_test.size() == s21_test.size());
