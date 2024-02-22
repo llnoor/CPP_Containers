@@ -36,7 +36,7 @@ TEST(QueueCapacity, IsEmptyCompareStr) {
 }
 
 TEST(QueueCapacity, IsntEmptyCorrectInt) {
-    s21::queue<int> test{1};
+  s21::queue<int> test{1};
   EXPECT_FALSE(test.empty());
 }
 

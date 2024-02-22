@@ -139,7 +139,8 @@ TEST(ListConstructor, ParameterizedMaxSizeExceededChar) {
 
 TEST(ListConstructor, ParameterizedMaxSizeExceededStr) {
   s21::list<std::string> temp;
-  EXPECT_THROW(s21::list<std::string> test(temp.max_size() + 1), std::out_of_range);
+  EXPECT_THROW(s21::list<std::string> test(temp.max_size() + 1),
+               std::out_of_range);
 }
 
 TEST(ListConstructor, ParameterizedNegativeInt) {
@@ -210,19 +211,19 @@ TEST(ListConstructor, InitListCorrectStr) {
 TEST(ListConstructor, InitListCompareInt) {
   s21::list<int> s21_test = {1, 2, 3, 4, 5};
   std::list<int> std_test = {1, 2, 3, 4, 5};
-  EXPECT_TRUE(equalLists(s21_test, std_test));
+  EXPECT_TRUE(EqualLists(s21_test, std_test));
 }
 
 TEST(ListConstructor, InitListCompareChar) {
   s21::list<char> s21_test = {'a', 'b', 'c', 'd', 'e'};
   std::list<char> std_test = {'a', 'b', 'c', 'd', 'e'};
-  EXPECT_TRUE(equalLists(s21_test, std_test));
+  EXPECT_TRUE(EqualLists(s21_test, std_test));
 }
 
 TEST(ListConstructor, InitListCompareString) {
   s21::list<std::string> s21_test = {"aboba", "sus", "amogus", "LOL", "KEK"};
   std::list<std::string> std_test = {"aboba", "sus", "amogus", "LOL", "KEK"};
-  EXPECT_TRUE(equalLists(s21_test, std_test));
+  EXPECT_TRUE(EqualLists(s21_test, std_test));
 }
 
 TEST(ListConstructor, InitListCorrectTwoInt) {
@@ -249,19 +250,19 @@ TEST(ListConstructor, InitListCorrectTwoStr) {
 TEST(ListConstructor, InitListCompareTwoInt) {
   s21::list<int> s21_test = {42, 99};
   std::list<int> std_test = {42, 99};
-  EXPECT_TRUE(equalLists(s21_test, std_test));
+  EXPECT_TRUE(EqualLists(s21_test, std_test));
 }
 
 TEST(ListConstructor, InitListCompareTwoChar) {
   s21::list<char> s21_test = {'a', 'z'};
   std::list<char> std_test = {'a', 'z'};
-  EXPECT_TRUE(equalLists(s21_test, std_test));
+  EXPECT_TRUE(EqualLists(s21_test, std_test));
 }
 
 TEST(ListConstructor, InitListCompareTwoStr) {
   s21::list<std::string> s21_test = {"sussy", "Baka"};
   std::list<std::string> std_test = {"sussy", "Baka"};
-  EXPECT_TRUE(equalLists(s21_test, std_test));
+  EXPECT_TRUE(EqualLists(s21_test, std_test));
 }
 
 /* copy */
@@ -270,14 +271,14 @@ TEST(ListConstructor, CopyInitListCorrectInt) {
   s21::list<int> test = {1, 2, 3, 4, 5};
   s21::list<int> copy(test);
   EXPECT_TRUE(test.size() == copy.size());
-  EXPECT_TRUE(equalLists(test, copy));
+  EXPECT_TRUE(EqualLists(test, copy));
 }
 
 TEST(ListConstructor, CopyInitListCorrectChar) {
   s21::list<char> test = {'a', 'b', 'c', 'd', 'e'};
   s21::list<char> copy(test);
   EXPECT_TRUE(test.size() == copy.size());
-  EXPECT_TRUE(equalLists(test, copy));
+  EXPECT_TRUE(EqualLists(test, copy));
 }
 
 TEST(ListConstructor, CopyInitListCorrectStr) {
@@ -285,7 +286,7 @@ TEST(ListConstructor, CopyInitListCorrectStr) {
                                  "boku no hiro"};
   s21::list<std::string> copy(test);
   EXPECT_TRUE(test.size() == copy.size());
-  EXPECT_TRUE(equalLists(test, copy));
+  EXPECT_TRUE(EqualLists(test, copy));
 }
 
 TEST(ListConstructor, CopyInitListCompareInt) {
@@ -293,9 +294,9 @@ TEST(ListConstructor, CopyInitListCompareInt) {
   s21::list<int> s21_copy(s21_test);
   std::list<int> std_test = {1, 2, 3, 4, 5};
   std::list<int> std_copy(std_test);
-  EXPECT_TRUE(equalLists(s21_test, std_test));
-  EXPECT_TRUE(equalLists(s21_copy, std_test));
-  EXPECT_TRUE(equalLists(s21_copy, std_copy));
+  EXPECT_TRUE(EqualLists(s21_test, std_test));
+  EXPECT_TRUE(EqualLists(s21_copy, std_test));
+  EXPECT_TRUE(EqualLists(s21_copy, std_copy));
 }
 
 TEST(ListConstructor, CopyInitListCompareChar) {
@@ -303,9 +304,9 @@ TEST(ListConstructor, CopyInitListCompareChar) {
   s21::list<char> s21_copy(s21_test);
   std::list<char> std_test = {'a', 'b', 'c', 'd', 'e'};
   std::list<char> std_copy(std_test);
-  EXPECT_TRUE(equalLists(s21_test, std_test));
-  EXPECT_TRUE(equalLists(s21_copy, std_test));
-  EXPECT_TRUE(equalLists(s21_copy, std_copy));
+  EXPECT_TRUE(EqualLists(s21_test, std_test));
+  EXPECT_TRUE(EqualLists(s21_copy, std_test));
+  EXPECT_TRUE(EqualLists(s21_copy, std_copy));
 }
 
 TEST(ListConstructor, CopyInitListCompareStr) {
@@ -315,27 +316,27 @@ TEST(ListConstructor, CopyInitListCompareStr) {
   std::list<std::string> std_test = {"aboba", "sys", "among us", "boku no pico",
                                      "boku no hiro"};
   std::list<std::string> std_copy(std_test);
-  EXPECT_TRUE(equalLists(s21_test, std_test));
-  EXPECT_TRUE(equalLists(s21_copy, std_test));
-  EXPECT_TRUE(equalLists(s21_copy, std_copy));
+  EXPECT_TRUE(EqualLists(s21_test, std_test));
+  EXPECT_TRUE(EqualLists(s21_copy, std_test));
+  EXPECT_TRUE(EqualLists(s21_copy, std_copy));
 }
 
 TEST(ListConstructor, CopyDefaultCorrectInt) {
   s21::list<int> test;
   s21::list<int> copy(test);
-  EXPECT_TRUE(equalLists(test, copy));
+  EXPECT_TRUE(EqualLists(test, copy));
 }
 
 TEST(ListConstructor, CopyDefaultCorrectChar) {
   s21::list<char> test;
   s21::list<char> copy(test);
-  EXPECT_TRUE(equalLists(test, copy));
+  EXPECT_TRUE(EqualLists(test, copy));
 }
 
 TEST(ListConstructor, CopyDefaultCorrectStr) {
   s21::list<std::string> test;
   s21::list<std::string> copy(test);
-  EXPECT_TRUE(equalLists(test, copy));
+  EXPECT_TRUE(EqualLists(test, copy));
 }
 
 TEST(ListConstructor, CopyDefaultCompareInt) {
@@ -343,9 +344,9 @@ TEST(ListConstructor, CopyDefaultCompareInt) {
   s21::list<int> s21_copy(s21_test);
   std::list<int> std_test;
   std::list<int> std_copy(std_test);
-  EXPECT_TRUE(equalLists(s21_test, std_test));
-  EXPECT_TRUE(equalLists(s21_copy, std_test));
-  EXPECT_TRUE(equalLists(s21_copy, std_copy));
+  EXPECT_TRUE(EqualLists(s21_test, std_test));
+  EXPECT_TRUE(EqualLists(s21_copy, std_test));
+  EXPECT_TRUE(EqualLists(s21_copy, std_copy));
 }
 
 TEST(ListConstructor, CopyDefaultCompareChar) {
@@ -353,9 +354,9 @@ TEST(ListConstructor, CopyDefaultCompareChar) {
   s21::list<char> s21_copy(s21_test);
   std::list<char> std_test;
   std::list<char> std_copy(std_test);
-  EXPECT_TRUE(equalLists(s21_test, std_test));
-  EXPECT_TRUE(equalLists(s21_copy, std_test));
-  EXPECT_TRUE(equalLists(s21_copy, std_copy));
+  EXPECT_TRUE(EqualLists(s21_test, std_test));
+  EXPECT_TRUE(EqualLists(s21_copy, std_test));
+  EXPECT_TRUE(EqualLists(s21_copy, std_copy));
 }
 
 /*TEST(ListConstructor, CopyDefaultCompareStr) {
@@ -381,7 +382,7 @@ TEST(ListConstructor, MoveInitListCorrectInt) {
   s21::list<int> moved(std::move(test));
   EXPECT_TRUE(test.empty());
   EXPECT_TRUE(moved.size() == 3);
-  EXPECT_TRUE(equalLists(moved, compare));
+  EXPECT_TRUE(EqualLists(moved, compare));
 }
 
 TEST(ListConstructor, MoveInitListCorrectChar) {
@@ -390,7 +391,7 @@ TEST(ListConstructor, MoveInitListCorrectChar) {
   s21::list<char> moved(std::move(test));
   EXPECT_TRUE(test.empty());
   EXPECT_TRUE(moved.size() == 3);
-  EXPECT_TRUE(equalLists(moved, compare));
+  EXPECT_TRUE(EqualLists(moved, compare));
 }
 
 TEST(ListConstructor, MoveInitListCorrectStr) {
@@ -399,7 +400,7 @@ TEST(ListConstructor, MoveInitListCorrectStr) {
   s21::list<std::string> moved(std::move(test));
   EXPECT_TRUE(test.empty());
   EXPECT_TRUE(moved.size() == 3);
-  EXPECT_TRUE(equalLists(moved, compare));
+  EXPECT_TRUE(EqualLists(moved, compare));
 }
 
 TEST(ListConstructor, MoveInitListCompareInt) {
@@ -408,7 +409,7 @@ TEST(ListConstructor, MoveInitListCompareInt) {
   std::list<int> std_test{1, 2, 3};
   std::list<int> std_moved(std::move(std_test));
   EXPECT_TRUE(s21_test.empty() == std_test.empty());
-  EXPECT_TRUE(equalLists(s21_moved, std_moved));
+  EXPECT_TRUE(EqualLists(s21_moved, std_moved));
 }
 
 TEST(ListConstructor, MoveInitListCompareChar) {
@@ -417,7 +418,7 @@ TEST(ListConstructor, MoveInitListCompareChar) {
   std::list<char> std_test{'x', 'y', 'z'};
   std::list<char> std_moved(std::move(std_test));
   EXPECT_TRUE(s21_test.empty() == std_test.empty());
-  EXPECT_TRUE(equalLists(s21_moved, std_moved));
+  EXPECT_TRUE(EqualLists(s21_moved, std_moved));
 }
 
 TEST(ListConstructor, MoveInitListCompareStr) {
@@ -426,7 +427,7 @@ TEST(ListConstructor, MoveInitListCompareStr) {
   std::list<std::string> std_test{"wsd", "ASD", "!!!"};
   std::list<std::string> std_moved(std::move(std_test));
   EXPECT_TRUE(s21_test.empty() == std_test.empty());
-  EXPECT_TRUE(equalLists(s21_moved, std_moved));
+  EXPECT_TRUE(EqualLists(s21_moved, std_moved));
 }
 
 TEST(ListConstructor, MoveDefaultCorrectInt) {
@@ -482,7 +483,7 @@ TEST(ListConstructor, AssignmentInitListCorrectInt) {
   s21::list<int> moved = std::move(test);
   EXPECT_TRUE(test.size() == 0);
   EXPECT_TRUE(moved.size() == 3);
-  EXPECT_TRUE(equalLists(moved, compare));
+  EXPECT_TRUE(EqualLists(moved, compare));
 }
 
 TEST(ListConstructor, AssignmentInitListCorrectChar) {
@@ -491,7 +492,7 @@ TEST(ListConstructor, AssignmentInitListCorrectChar) {
   s21::list<char> moved = std::move(test);
   EXPECT_TRUE(test.size() == 0);
   EXPECT_TRUE(moved.size() == 3);
-  EXPECT_TRUE(equalLists(moved, compare));
+  EXPECT_TRUE(EqualLists(moved, compare));
 }
 
 TEST(ListConstructor, AssignmentInitListCorrectStr) {
@@ -500,7 +501,7 @@ TEST(ListConstructor, AssignmentInitListCorrectStr) {
   s21::list<std::string> moved = std::move(test);
   EXPECT_TRUE(test.size() == 0);
   EXPECT_TRUE(moved.size() == 3);
-  EXPECT_TRUE(equalLists(moved, compare));
+  EXPECT_TRUE(EqualLists(moved, compare));
 }
 
 TEST(ListConstructor, AssignmentInitListCompareInt) {
@@ -508,8 +509,8 @@ TEST(ListConstructor, AssignmentInitListCompareInt) {
   s21::list<int> s21_moved = std::move(s21_test);
   std::list<int> std_test{1, 2, 3};
   std::list<int> std_moved = std::move(std_test);
-  EXPECT_TRUE(equalLists(s21_test, std_test));
-  EXPECT_TRUE(equalLists(s21_moved, std_moved));
+  EXPECT_TRUE(EqualLists(s21_test, std_test));
+  EXPECT_TRUE(EqualLists(s21_moved, std_moved));
 }
 
 TEST(ListConstructor, AssignmentInitListCompareChar) {
@@ -517,8 +518,8 @@ TEST(ListConstructor, AssignmentInitListCompareChar) {
   s21::list<char> s21_moved = std::move(s21_test);
   std::list<char> std_test{'X', 'Y', 'Z'};
   std::list<char> std_moved = std::move(std_test);
-  EXPECT_TRUE(equalLists(s21_test, std_test));
-  EXPECT_TRUE(equalLists(s21_moved, std_moved));
+  EXPECT_TRUE(EqualLists(s21_test, std_test));
+  EXPECT_TRUE(EqualLists(s21_moved, std_moved));
 }
 
 TEST(ListConstructor, AssignmentInitListCompareStr) {
@@ -526,26 +527,26 @@ TEST(ListConstructor, AssignmentInitListCompareStr) {
   s21::list<std::string> s21_moved = std::move(s21_test);
   std::list<std::string> std_test{"sus", "amogus", "aboba"};
   std::list<std::string> std_moved = std::move(std_test);
-  EXPECT_TRUE(equalLists(s21_test, std_test));
-  EXPECT_TRUE(equalLists(s21_moved, std_moved));
+  EXPECT_TRUE(EqualLists(s21_test, std_test));
+  EXPECT_TRUE(EqualLists(s21_moved, std_moved));
 }
 
 TEST(ListConstructor, AssignmentDefaultCorrectInt) {
   s21::list<int> test;
   s21::list<int> moved = std::move(test);
-  EXPECT_TRUE(equalLists(test, moved));
+  EXPECT_TRUE(EqualLists(test, moved));
 }
 
 TEST(ListConstructor, AssignmentDefaultCorrectChar) {
   s21::list<char> test;
   s21::list<char> moved = std::move(test);
-  EXPECT_TRUE(equalLists(test, moved));
+  EXPECT_TRUE(EqualLists(test, moved));
 }
 
 TEST(ListConstructor, AssignmentDefaultCorrectStr) {
   s21::list<std::string> test;
   s21::list<std::string> moved = std::move(test);
-  EXPECT_TRUE(equalLists(test, moved));
+  EXPECT_TRUE(EqualLists(test, moved));
 }
 
 TEST(ListConstructor, AssignmentDefaultCompareInt) {
@@ -553,8 +554,8 @@ TEST(ListConstructor, AssignmentDefaultCompareInt) {
   s21::list<int> s21_moved = std::move(s21_test);
   std::list<int> std_test;
   std::list<int> std_moved = std::move(std_test);
-  EXPECT_TRUE(equalLists(s21_test, std_test));
-  EXPECT_TRUE(equalLists(s21_moved, std_moved));
+  EXPECT_TRUE(EqualLists(s21_test, std_test));
+  EXPECT_TRUE(EqualLists(s21_moved, std_moved));
 }
 
 TEST(ListConstructor, AssignmentDefaultCompareChar) {
@@ -562,8 +563,8 @@ TEST(ListConstructor, AssignmentDefaultCompareChar) {
   s21::list<char> s21_moved = std::move(s21_test);
   std::list<char> std_test;
   std::list<char> std_moved = std::move(std_test);
-  EXPECT_TRUE(equalLists(s21_test, std_test));
-  EXPECT_TRUE(equalLists(s21_moved, std_moved));
+  EXPECT_TRUE(EqualLists(s21_test, std_test));
+  EXPECT_TRUE(EqualLists(s21_moved, std_moved));
 }
 
 TEST(ListConstructor, AssignmentDefaultCompareStr) {
@@ -571,6 +572,6 @@ TEST(ListConstructor, AssignmentDefaultCompareStr) {
   s21::list<std::string> s21_moved = std::move(s21_test);
   std::list<std::string> std_test;
   std::list<std::string> std_moved = std::move(std_test);
-  EXPECT_TRUE(equalLists(s21_test, std_test));
-  EXPECT_TRUE(equalLists(s21_moved, std_moved));
+  EXPECT_TRUE(EqualLists(s21_test, std_test));
+  EXPECT_TRUE(EqualLists(s21_moved, std_moved));
 }

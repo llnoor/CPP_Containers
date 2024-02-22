@@ -6,8 +6,8 @@ TEST(ListModifiersSwap, ExchangeCorrectInt) {
   s21::list<int> copy_dest(dest);
   s21::list<int> copy_src(src);
   dest.swap(src);
-  EXPECT_TRUE(equalLists(dest, copy_src));
-  EXPECT_TRUE(equalLists(src, copy_dest));
+  EXPECT_TRUE(EqualLists(dest, copy_src));
+  EXPECT_TRUE(EqualLists(src, copy_dest));
 }
 
 TEST(ListModifiersSwap, ExchangeCorrectChar) {
@@ -16,18 +16,19 @@ TEST(ListModifiersSwap, ExchangeCorrectChar) {
   s21::list<char> copy_dest(dest);
   s21::list<char> copy_src(src);
   dest.swap(src);
-  EXPECT_TRUE(equalLists(dest, copy_src));
-  EXPECT_TRUE(equalLists(src, copy_dest));
+  EXPECT_TRUE(EqualLists(dest, copy_src));
+  EXPECT_TRUE(EqualLists(src, copy_dest));
 }
 
 TEST(ListModifiersSwap, ExchangeCorrectStr) {
-  s21::list<std::string> dest = {"evangelion", "steinsgate", "onepunchman", "chainsawman", "jojo"};
+  s21::list<std::string> dest = {"evangelion", "steinsgate", "onepunchman",
+                                 "chainsawman", "jojo"};
   s21::list<std::string> src = {"KZN", "MSK", "SPB"};
   s21::list<std::string> copy_dest(dest);
   s21::list<std::string> copy_src(src);
   dest.swap(src);
-  EXPECT_TRUE(equalLists(dest, copy_src));
-  EXPECT_TRUE(equalLists(src, copy_dest));
+  EXPECT_TRUE(EqualLists(dest, copy_src));
+  EXPECT_TRUE(EqualLists(src, copy_dest));
 }
 
 TEST(ListModifiersSwap, ExchangeCompareInt) {
@@ -37,8 +38,8 @@ TEST(ListModifiersSwap, ExchangeCompareInt) {
   std::list<int> std_src = {10, 20, 30};
   s21_dest.swap(s21_src);
   std_dest.swap(std_src);
-  EXPECT_TRUE(equalLists(s21_dest, std_dest));
-  EXPECT_TRUE(equalLists(s21_src, std_src));
+  EXPECT_TRUE(EqualLists(s21_dest, std_dest));
+  EXPECT_TRUE(EqualLists(s21_src, std_src));
 }
 
 TEST(ListModifiersSwap, ExchangeCompareChar) {
@@ -48,19 +49,21 @@ TEST(ListModifiersSwap, ExchangeCompareChar) {
   std::list<char> std_src = {'X', 'Y', 'Z'};
   s21_dest.swap(s21_src);
   std_dest.swap(std_src);
-  EXPECT_TRUE(equalLists(s21_dest, std_dest));
-  EXPECT_TRUE(equalLists(s21_src, std_src));
+  EXPECT_TRUE(EqualLists(s21_dest, std_dest));
+  EXPECT_TRUE(EqualLists(s21_src, std_src));
 }
 
 TEST(ListModifiersSwap, ExchangeCompareStr) {
-  s21::list<std::string> s21_dest = {"evangelion", "steinsgate", "onepunchman", "chainsawman", "jojo"};
+  s21::list<std::string> s21_dest = {"evangelion", "steinsgate", "onepunchman",
+                                     "chainsawman", "jojo"};
   s21::list<std::string> s21_src = {"KZN", "MSK", "SPB"};
-  std::list<std::string> std_dest = {"evangelion", "steinsgate", "onepunchman", "chainsawman", "jojo"};
+  std::list<std::string> std_dest = {"evangelion", "steinsgate", "onepunchman",
+                                     "chainsawman", "jojo"};
   std::list<std::string> std_src = {"KZN", "MSK", "SPB"};
   s21_dest.swap(s21_src);
   std_dest.swap(std_src);
-  EXPECT_TRUE(equalLists(s21_dest, std_dest));
-  EXPECT_TRUE(equalLists(s21_src, std_src));
+  EXPECT_TRUE(EqualLists(s21_dest, std_dest));
+  EXPECT_TRUE(EqualLists(s21_src, std_src));
 }
 
 TEST(ListModifiersSwap, ExchangeDestEmptyCorrectInt) {
@@ -68,7 +71,7 @@ TEST(ListModifiersSwap, ExchangeDestEmptyCorrectInt) {
   s21::list<int> src = {10, 20, 30};
   s21::list<int> compare(src);
   dest.swap(src);
-  EXPECT_TRUE(equalLists(dest, compare));
+  EXPECT_TRUE(EqualLists(dest, compare));
   EXPECT_TRUE(src.empty());
 }
 
@@ -77,7 +80,7 @@ TEST(ListModifiersSwap, ExchangeDestEmptyCorrectChar) {
   s21::list<char> src = {'X', 'Y', 'Z'};
   s21::list<char> compare(src);
   dest.swap(src);
-  EXPECT_TRUE(equalLists(dest, compare));
+  EXPECT_TRUE(EqualLists(dest, compare));
   EXPECT_TRUE(src.empty());
 }
 
@@ -86,7 +89,7 @@ TEST(ListModifiersSwap, ExchangeDestEmptyCorrectStr) {
   s21::list<std::string> src = {"KZN", "MSK", "SPB"};
   s21::list<std::string> compare(src);
   dest.swap(src);
-  EXPECT_TRUE(equalLists(dest, compare));
+  EXPECT_TRUE(EqualLists(dest, compare));
   EXPECT_TRUE(src.empty());
 }
 
@@ -97,8 +100,8 @@ TEST(ListModifiersSwap, ExchangeDestEmptyCompareInt) {
   std::list<int> std_src = {10, 20, 30};
   s21_dest.swap(s21_src);
   s21_dest.swap(s21_src);
-  EXPECT_TRUE(equalLists(s21_dest, std_dest));
-  EXPECT_TRUE(equalLists(s21_src, std_src));
+  EXPECT_TRUE(EqualLists(s21_dest, std_dest));
+  EXPECT_TRUE(EqualLists(s21_src, std_src));
 }
 
 TEST(ListModifiersSwap, ExchangeDestEmptyCompareChar) {
@@ -108,8 +111,8 @@ TEST(ListModifiersSwap, ExchangeDestEmptyCompareChar) {
   std::list<char> std_src = {'X', 'Y', 'Z'};
   s21_dest.swap(s21_src);
   s21_dest.swap(s21_src);
-  EXPECT_TRUE(equalLists(s21_dest, std_dest));
-  EXPECT_TRUE(equalLists(s21_src, std_src));
+  EXPECT_TRUE(EqualLists(s21_dest, std_dest));
+  EXPECT_TRUE(EqualLists(s21_src, std_src));
 }
 
 TEST(ListModifiersSwap, ExchangeDestEmptyCompareStr) {
@@ -119,8 +122,8 @@ TEST(ListModifiersSwap, ExchangeDestEmptyCompareStr) {
   std::list<std::string> std_src = {"KZN", "MSK", "SPB"};
   s21_dest.swap(s21_src);
   s21_dest.swap(s21_src);
-  EXPECT_TRUE(equalLists(s21_dest, std_dest));
-  EXPECT_TRUE(equalLists(s21_src, std_src));
+  EXPECT_TRUE(EqualLists(s21_dest, std_dest));
+  EXPECT_TRUE(EqualLists(s21_src, std_src));
 }
 
 TEST(ListModifiersSwap, ExchangeSourceEmptyCorrectInt) {
@@ -128,7 +131,7 @@ TEST(ListModifiersSwap, ExchangeSourceEmptyCorrectInt) {
   s21::list<int> src;
   s21::list<int> compare(dest);
   dest.swap(src);
-  EXPECT_TRUE(equalLists(src, compare));
+  EXPECT_TRUE(EqualLists(src, compare));
   EXPECT_TRUE(dest.empty());
 }
 
@@ -137,7 +140,7 @@ TEST(ListModifiersSwap, ExchangeSourceEmptyCorrectChar) {
   s21::list<char> src;
   s21::list<char> compare(dest);
   dest.swap(src);
-  EXPECT_TRUE(equalLists(src, compare));
+  EXPECT_TRUE(EqualLists(src, compare));
   EXPECT_TRUE(dest.empty());
 }
 
@@ -146,7 +149,7 @@ TEST(ListModifiersSwap, ExchangeSourceEmptyCorrectStr) {
   s21::list<std::string> src;
   s21::list<std::string> compare(dest);
   dest.swap(src);
-  EXPECT_TRUE(equalLists(src, compare));
+  EXPECT_TRUE(EqualLists(src, compare));
   EXPECT_TRUE(dest.empty());
 }
 
@@ -157,8 +160,8 @@ TEST(ListModifiersSwap, ExchangeSourceEmptyCompareInt) {
   std::list<int> std_src;
   s21_dest.swap(s21_src);
   s21_dest.swap(s21_src);
-  EXPECT_TRUE(equalLists(s21_dest, std_dest));
-  EXPECT_TRUE(equalLists(s21_src, std_src));
+  EXPECT_TRUE(EqualLists(s21_dest, std_dest));
+  EXPECT_TRUE(EqualLists(s21_src, std_src));
 }
 
 TEST(ListModifiersSwap, ExchangeSourceEmptyCompareChar) {
@@ -168,8 +171,8 @@ TEST(ListModifiersSwap, ExchangeSourceEmptyCompareChar) {
   std::list<char> std_src;
   s21_dest.swap(s21_src);
   s21_dest.swap(s21_src);
-  EXPECT_TRUE(equalLists(s21_dest, std_dest));
-  EXPECT_TRUE(equalLists(s21_src, std_src));
+  EXPECT_TRUE(EqualLists(s21_dest, std_dest));
+  EXPECT_TRUE(EqualLists(s21_src, std_src));
 }
 
 TEST(ListModifiersSwap, ExchangeSourceEmptyCompareStr) {
@@ -179,29 +182,29 @@ TEST(ListModifiersSwap, ExchangeSourceEmptyCompareStr) {
   std::list<std::string> std_src;
   s21_dest.swap(s21_src);
   s21_dest.swap(s21_src);
-  EXPECT_TRUE(equalLists(s21_dest, std_dest));
-  EXPECT_TRUE(equalLists(s21_src, std_src));
+  EXPECT_TRUE(EqualLists(s21_dest, std_dest));
+  EXPECT_TRUE(EqualLists(s21_src, std_src));
 }
 
 TEST(ListModifiersSwap, ExchangeBothEmptyCorrectInt) {
   s21::list<int> dest;
   s21::list<int> src;
   dest.swap(src);
-  EXPECT_TRUE(equalLists(dest, src));
+  EXPECT_TRUE(EqualLists(dest, src));
 }
 
 TEST(ListModifiersSwap, ExchangeBothEmptyCorrectChar) {
   s21::list<char> dest;
   s21::list<char> src;
   dest.swap(src);
-  EXPECT_TRUE(equalLists(dest, src));
+  EXPECT_TRUE(EqualLists(dest, src));
 }
 
 TEST(ListModifiersSwap, ExchangeBothEmptyCorrectStr) {
   s21::list<std::string> dest;
   s21::list<std::string> src;
   dest.swap(src);
-  EXPECT_TRUE(equalLists(dest, src));
+  EXPECT_TRUE(EqualLists(dest, src));
 }
 
 TEST(ListModifiersSwap, ExchangeBothEmptyCompareInt) {
@@ -211,8 +214,8 @@ TEST(ListModifiersSwap, ExchangeBothEmptyCompareInt) {
   std::list<int> std_src;
   s21_dest.swap(s21_src);
   std_dest.swap(std_src);
-  EXPECT_TRUE(equalLists(s21_dest, std_dest));
-  EXPECT_TRUE(equalLists(s21_src, std_src));
+  EXPECT_TRUE(EqualLists(s21_dest, std_dest));
+  EXPECT_TRUE(EqualLists(s21_src, std_src));
 }
 
 TEST(ListModifiersSwap, ExchangeBothEmptyCompareChar) {
@@ -222,8 +225,8 @@ TEST(ListModifiersSwap, ExchangeBothEmptyCompareChar) {
   std::list<char> std_src;
   s21_dest.swap(s21_src);
   std_dest.swap(std_src);
-  EXPECT_TRUE(equalLists(s21_dest, std_dest));
-  EXPECT_TRUE(equalLists(s21_src, std_src));
+  EXPECT_TRUE(EqualLists(s21_dest, std_dest));
+  EXPECT_TRUE(EqualLists(s21_src, std_src));
 }
 
 /*TEST(ListModifiersSwap, ExchangeBothEmptyCompareStr) {

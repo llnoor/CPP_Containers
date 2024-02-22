@@ -1,6 +1,7 @@
 #include "unit_tests.h"
 
-// there is no char and string type tests, maybe it is better for other tests too
+// there is no char and string type tests, maybe it is better for other tests
+// too
 
 TEST(ListIterators, ArithmeticsPlusCorrect) {
   s21::list<int> test{1, 2, 3, 4, 5};
@@ -61,7 +62,7 @@ TEST(ListIterators, ArithmeticsMinusCompare) {
 TEST(ListIterators, IncrementBeginCorrect) {
   s21::list<int> test{1, 2};
   auto it = test.begin();
-  
+
   EXPECT_TRUE(*it == 1);
   ++it;
   EXPECT_TRUE(*it == 2);
@@ -72,7 +73,7 @@ TEST(ListIterators, IncrementBeginCompare) {
   std::list<int> std_test{1, 2};
   auto s21_it = s21_test.begin();
   auto std_it = std_test.begin();
-  
+
   EXPECT_TRUE(*s21_it == *std_it);
   ++s21_it;
   ++std_it;
@@ -82,7 +83,7 @@ TEST(ListIterators, IncrementBeginCompare) {
 TEST(ListIterators, IncrementCycleCorrect) {
   s21::list<int> test{1, 2};
   auto it = test.end();
-  
+
   EXPECT_TRUE(*it == 2);
   ++it;
   EXPECT_TRUE(*it == 1);
@@ -93,7 +94,7 @@ TEST(ListIterators, IncrementCycleCompare) {
   std::list<int> std_test{1, 2};
   auto s21_it = s21_test.end();
   auto std_it = std_test.end();
-  
+
   EXPECT_TRUE(*s21_it == *std_it);
   ++s21_it;
   ++std_it;
@@ -103,10 +104,10 @@ TEST(ListIterators, IncrementCycleCompare) {
 TEST(ListIterators, DecrementEndCorrect) {
   s21::list<int> test{1, 2};
   auto it = test.end();
-  
-  EXPECT_TRUE(*it == 2);  //cycle
+
+  EXPECT_TRUE(*it == 2);  // cycle
   --it;
-  EXPECT_TRUE(*it == 2);  //tail
+  EXPECT_TRUE(*it == 2);  // tail
 }
 
 TEST(ListIterators, DecrementEndCompare) {
@@ -123,7 +124,7 @@ TEST(ListIterators, DecrementEndCompare) {
 TEST(ListIterators, DecrementCycleCorrect) {
   s21::list<int> test{1, 2};
   auto it = test.begin();
-  
+
   EXPECT_TRUE(*it == 1);
   --it;
   EXPECT_TRUE(*it == 2);
@@ -134,7 +135,7 @@ TEST(ListIterators, DecrementCycleCompare) {
   std::list<int> std_test{1, 2};
   auto s21_it = s21_test.begin();
   auto std_it = std_test.begin();
-  
+
   EXPECT_TRUE(*s21_it == *std_it);
   --s21_it;
   --std_it;
@@ -145,7 +146,7 @@ TEST(ListIterators, EqualCorrect) {
   s21::list<int> test{1, 2};
   auto it_b = test.begin();
   auto it_e = test.end();
-  
+
   EXPECT_TRUE(*it_b == 1);
   EXPECT_TRUE(*it_e == 2);
 }
@@ -157,7 +158,7 @@ TEST(ListIterators, EqualCompare) {
   auto s21_it_e = s21_test.end();
   auto std_it_b = std_test.begin();
   auto std_it_e = std_test.end();
-  
+
   EXPECT_TRUE(*s21_it_b == *std_it_b);
   EXPECT_TRUE(*s21_it_e == *std_it_e);
 }
@@ -166,7 +167,7 @@ TEST(ListIterators, NotEqualCorrect) {
   s21::list<int> test{1, 2};
   auto it_b = test.begin();
   auto it_e = test.end();
-  
+
   EXPECT_TRUE(*it_b != 2);
   EXPECT_TRUE(*it_e != 1);
   EXPECT_TRUE(*it_b != *it_e);
@@ -179,7 +180,7 @@ TEST(ListIterators, NotEqualCompare) {
   auto s21_it_e = s21_test.end();
   auto std_it_b = std_test.begin();
   auto std_it_e = std_test.end();
-  
+
   EXPECT_TRUE(*s21_it_b != *s21_it_e);
   EXPECT_TRUE(*s21_it_b != *std_it_e);
   EXPECT_TRUE(*std_it_b != *std_it_e);

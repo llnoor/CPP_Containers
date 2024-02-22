@@ -81,7 +81,7 @@ TEST(QueueConstructors, InitListCompareInt) {
   std_test.push(1);
   std_test.push(2);
   std_test.push(3);
-  EXPECT_TRUE(equalQueues(s21_test, std_test));
+  EXPECT_TRUE(EqualQueues(s21_test, std_test));
 }
 
 TEST(QueueConstructors, InitListCompareChar) {
@@ -90,7 +90,7 @@ TEST(QueueConstructors, InitListCompareChar) {
   std_test.push('x');
   std_test.push('y');
   std_test.push('z');
-  EXPECT_TRUE(equalQueues(s21_test, std_test));
+  EXPECT_TRUE(EqualQueues(s21_test, std_test));
 }
 
 TEST(QueueConstructors, InitListCompareStr) {
@@ -99,7 +99,7 @@ TEST(QueueConstructors, InitListCompareStr) {
   std_test.push("sus");
   std_test.push("amogus");
   std_test.push("aboba");
-  EXPECT_TRUE(equalQueues(s21_test, std_test));
+  EXPECT_TRUE(EqualQueues(s21_test, std_test));
 }
 
 TEST(QueueConstructors, InitListCorrectTwoInt) {
@@ -158,19 +158,19 @@ TEST(QueueConstructors, InitListCompareTwoStr) {
 TEST(QueueConstructors, CopyInitListCorrectInt) {
   s21::queue<int> test{1, 2, 3, 4, 5};
   s21::queue<int> copy(test);
-  EXPECT_TRUE(equalQueues(test, copy));
+  EXPECT_TRUE(EqualQueues(test, copy));
 }
 
 TEST(QueueConstructors, CopyInitListCorrectChar) {
   s21::queue<char> test{'a', 'b', 'c', 'd', 'e'};
   s21::queue<char> copy(test);
-  EXPECT_TRUE(equalQueues(test, copy));
+  EXPECT_TRUE(EqualQueues(test, copy));
 }
 
 TEST(QueueConstructors, CopyInitListCorrectStr) {
   s21::queue<std::string> test{"sus", "amogus", "aboba"};
   s21::queue<std::string> copy(test);
-  EXPECT_TRUE(equalQueues(test, copy));
+  EXPECT_TRUE(EqualQueues(test, copy));
 }
 
 TEST(QueueConstructors, CopyInitListCompareInt) {
@@ -181,9 +181,9 @@ TEST(QueueConstructors, CopyInitListCompareInt) {
   std_test.push(2);
   std_test.push(3);
   std::queue<int> std_copy(std_test);
-  EXPECT_TRUE(equalQueues(s21_test, std_test));
-  EXPECT_TRUE(equalQueues(s21_copy, std_test));
-  EXPECT_TRUE(equalQueues(s21_copy, std_copy));
+  EXPECT_TRUE(EqualQueues(s21_test, std_test));
+  EXPECT_TRUE(EqualQueues(s21_copy, std_test));
+  EXPECT_TRUE(EqualQueues(s21_copy, std_copy));
 }
 
 TEST(QueueConstructors, CopyInitListCompareChar) {
@@ -194,9 +194,9 @@ TEST(QueueConstructors, CopyInitListCompareChar) {
   std_test.push('y');
   std_test.push('z');
   std::queue<char> std_copy(std_test);
-  EXPECT_TRUE(equalQueues(s21_test, std_test));
-  EXPECT_TRUE(equalQueues(s21_copy, std_test));
-  EXPECT_TRUE(equalQueues(s21_copy, std_copy));
+  EXPECT_TRUE(EqualQueues(s21_test, std_test));
+  EXPECT_TRUE(EqualQueues(s21_copy, std_test));
+  EXPECT_TRUE(EqualQueues(s21_copy, std_copy));
 }
 
 TEST(QueueConstructors, CopyInitListCompareStr) {
@@ -207,27 +207,27 @@ TEST(QueueConstructors, CopyInitListCompareStr) {
   std_test.push("amogus");
   std_test.push("aboba");
   std::queue<std::string> std_copy(std_test);
-  EXPECT_TRUE(equalQueues(s21_test, std_test));
-  EXPECT_TRUE(equalQueues(s21_copy, std_test));
-  EXPECT_TRUE(equalQueues(s21_copy, std_copy));
+  EXPECT_TRUE(EqualQueues(s21_test, std_test));
+  EXPECT_TRUE(EqualQueues(s21_copy, std_test));
+  EXPECT_TRUE(EqualQueues(s21_copy, std_copy));
 }
 
 TEST(QueueConstructors, CopyDefaultCorrectInt) {
   s21::queue<int> test;
   s21::queue<int> copy(test);
-  EXPECT_TRUE(equalQueues(test, copy));
+  EXPECT_TRUE(EqualQueues(test, copy));
 }
 
 TEST(QueueConstructors, CopyDefaultCorrectChar) {
   s21::queue<char> test;
   s21::queue<char> copy(test);
-  EXPECT_TRUE(equalQueues(test, copy));
+  EXPECT_TRUE(EqualQueues(test, copy));
 }
 
 TEST(QueueConstructors, CopyDefaultCorrectStr) {
   s21::queue<std::string> test;
   s21::queue<std::string> copy(test);
-  EXPECT_TRUE(equalQueues(test, copy));
+  EXPECT_TRUE(EqualQueues(test, copy));
 }
 
 TEST(QueueConstructors, CopyDefaultCompareInt) {
@@ -235,9 +235,9 @@ TEST(QueueConstructors, CopyDefaultCompareInt) {
   s21::queue<int> s21_copy(s21_test);
   std::queue<int> std_test;
   std::queue<int> std_copy(std_test);
-  EXPECT_TRUE(equalQueues(s21_test, std_test));
-  EXPECT_TRUE(equalQueues(s21_copy, std_test));
-  EXPECT_TRUE(equalQueues(s21_copy, std_copy));
+  EXPECT_TRUE(EqualQueues(s21_test, std_test));
+  EXPECT_TRUE(EqualQueues(s21_copy, std_test));
+  EXPECT_TRUE(EqualQueues(s21_copy, std_copy));
 }
 
 TEST(QueueConstructors, CopyDefaultCompareChar) {
@@ -245,9 +245,9 @@ TEST(QueueConstructors, CopyDefaultCompareChar) {
   s21::queue<char> s21_copy(s21_test);
   std::queue<char> std_test;
   std::queue<char> std_copy(std_test);
-  EXPECT_TRUE(equalQueues(s21_test, std_test));
-  EXPECT_TRUE(equalQueues(s21_copy, std_test));
-  EXPECT_TRUE(equalQueues(s21_copy, std_copy));
+  EXPECT_TRUE(EqualQueues(s21_test, std_test));
+  EXPECT_TRUE(EqualQueues(s21_copy, std_test));
+  EXPECT_TRUE(EqualQueues(s21_copy, std_copy));
 }
 
 TEST(QueueConstructors, CopyDefaultCompareStr) {
@@ -255,9 +255,9 @@ TEST(QueueConstructors, CopyDefaultCompareStr) {
   s21::queue<std::string> s21_copy(s21_test);
   std::queue<std::string> std_test;
   std::queue<std::string> std_copy(std_test);
-  EXPECT_TRUE(equalQueues(s21_test, std_test));
-  EXPECT_TRUE(equalQueues(s21_copy, std_test));
-  EXPECT_TRUE(equalQueues(s21_copy, std_copy));
+  EXPECT_TRUE(EqualQueues(s21_test, std_test));
+  EXPECT_TRUE(EqualQueues(s21_copy, std_test));
+  EXPECT_TRUE(EqualQueues(s21_copy, std_copy));
 }
 
 /* move */
@@ -268,7 +268,7 @@ TEST(QueueConstructors, MoveInitListCorrectInt) {
   s21::queue<int> moved(std::move(test));
   EXPECT_TRUE(test.empty());
   EXPECT_TRUE(moved.size() == 3);
-  EXPECT_TRUE(equalQueues(moved, compare));
+  EXPECT_TRUE(EqualQueues(moved, compare));
 }
 
 TEST(QueueConstructors, MoveInitListCorrectChar) {
@@ -277,7 +277,7 @@ TEST(QueueConstructors, MoveInitListCorrectChar) {
   s21::queue<char> moved(std::move(test));
   EXPECT_TRUE(test.empty());
   EXPECT_TRUE(moved.size() == 3);
-  EXPECT_TRUE(equalQueues(moved, compare));
+  EXPECT_TRUE(EqualQueues(moved, compare));
 }
 
 TEST(QueueConstructors, MoveInitListCorrectStr) {
@@ -286,7 +286,7 @@ TEST(QueueConstructors, MoveInitListCorrectStr) {
   s21::queue<std::string> moved(std::move(test));
   EXPECT_TRUE(test.empty());
   EXPECT_TRUE(moved.size() == 3);
-  EXPECT_TRUE(equalQueues(moved, compare));
+  EXPECT_TRUE(EqualQueues(moved, compare));
 }
 
 TEST(QueueConstructors, MoveInitListCompareInt) {
@@ -298,7 +298,7 @@ TEST(QueueConstructors, MoveInitListCompareInt) {
   std_test.push(3);
   std::queue<int> std_moved(std::move(std_test));
   EXPECT_TRUE(s21_test.empty() == std_test.empty());
-  EXPECT_TRUE(equalQueues(s21_moved, std_moved));
+  EXPECT_TRUE(EqualQueues(s21_moved, std_moved));
 }
 
 TEST(QueueConstructors, MoveInitListCompareChar) {
@@ -310,7 +310,7 @@ TEST(QueueConstructors, MoveInitListCompareChar) {
   std_test.push('z');
   std::queue<char> std_moved(std::move(std_test));
   EXPECT_TRUE(s21_test.empty() == std_test.empty());
-  EXPECT_TRUE(equalQueues(s21_moved, std_moved));
+  EXPECT_TRUE(EqualQueues(s21_moved, std_moved));
 }
 
 TEST(QueueConstructors, MoveInitListCompareStr) {
@@ -322,7 +322,7 @@ TEST(QueueConstructors, MoveInitListCompareStr) {
   std_test.push("aboba");
   std::queue<std::string> std_moved(std::move(std_test));
   EXPECT_TRUE(s21_test.empty() == std_test.empty());
-  EXPECT_TRUE(equalQueues(s21_moved, std_moved));
+  EXPECT_TRUE(EqualQueues(s21_moved, std_moved));
 }
 
 TEST(QueueConstructors, MoveDefaultCorrectInt) {
@@ -378,7 +378,7 @@ TEST(QueueConstructors, AssignmentInitListCorrectInt) {
   s21::queue<int> moved = std::move(test);
   EXPECT_TRUE(test.empty());
   EXPECT_TRUE(moved.size() == 3);
-  EXPECT_TRUE(equalQueues(moved, compare));
+  EXPECT_TRUE(EqualQueues(moved, compare));
 }
 
 TEST(QueueConstructors, AssignmentInitListCorrectChar) {
@@ -387,7 +387,7 @@ TEST(QueueConstructors, AssignmentInitListCorrectChar) {
   s21::queue<char> moved = std::move(test);
   EXPECT_TRUE(test.empty());
   EXPECT_TRUE(moved.size() == 3);
-  EXPECT_TRUE(equalQueues(moved, compare));
+  EXPECT_TRUE(EqualQueues(moved, compare));
 }
 
 TEST(QueueConstructors, AssignmentInitListCorrectStr) {
@@ -396,7 +396,7 @@ TEST(QueueConstructors, AssignmentInitListCorrectStr) {
   s21::queue<std::string> moved = std::move(test);
   EXPECT_TRUE(test.empty());
   EXPECT_TRUE(moved.size() == 3);
-  EXPECT_TRUE(equalQueues(moved, compare));
+  EXPECT_TRUE(EqualQueues(moved, compare));
 }
 
 TEST(QueueConstructors, AssignmentInitListCompareInt) {
@@ -408,7 +408,7 @@ TEST(QueueConstructors, AssignmentInitListCompareInt) {
   std_test.push(3);
   std::queue<int> std_moved = std::move(std_test);
   EXPECT_TRUE(s21_test.empty() == std_test.empty());
-  EXPECT_TRUE(equalQueues(s21_moved, std_moved));
+  EXPECT_TRUE(EqualQueues(s21_moved, std_moved));
 }
 
 TEST(QueueConstructors, AssignmentInitListCompareChar) {
@@ -420,7 +420,7 @@ TEST(QueueConstructors, AssignmentInitListCompareChar) {
   std_test.push('z');
   std::queue<char> std_moved = std::move(std_test);
   EXPECT_TRUE(s21_test.empty() == std_test.empty());
-  EXPECT_TRUE(equalQueues(s21_moved, std_moved));
+  EXPECT_TRUE(EqualQueues(s21_moved, std_moved));
 }
 
 TEST(QueueConstructors, AssignmentInitListCompareStr) {
@@ -432,7 +432,7 @@ TEST(QueueConstructors, AssignmentInitListCompareStr) {
   std_test.push("aboba");
   std::queue<std::string> std_moved = std::move(std_test);
   EXPECT_TRUE(s21_test.empty() == std_test.empty());
-  EXPECT_TRUE(equalQueues(s21_moved, std_moved));
+  EXPECT_TRUE(EqualQueues(s21_moved, std_moved));
 }
 
 TEST(QueueConstructors, AssignmentDefaultCorrectInt) {

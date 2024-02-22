@@ -65,8 +65,8 @@ TEST(ListElementAccess, FrontEmptyCompareChar) {
   std::list<std::string> std_test;
   std::cout << s21_test.front() << std::endl;
   std::cout << std_test.front() << std::endl; // segmentation fault here
-  std::cout << std::boolalpha << (s21_test.front() == std_test.front()) << std::endl;
-  EXPECT_TRUE(s21_test.front() == std_test.front());
+  std::cout << std::boolalpha << (s21_test.front() == std_test.front()) <<
+std::endl; EXPECT_TRUE(s21_test.front() == std_test.front());
 }*/
 
 TEST(ListElementAccess, BackCorrectInt) {
@@ -134,8 +134,8 @@ TEST(ListElementAccess, BackEmptyCompareChar) {
   std::list<std::string> std_test;
   std::cout << s21_test.back() << std::endl;
   std::cout << std_test.back() << std::endl; // segmentation fault here
-  std::cout << std::boolalpha << (s21_test.back() == std_test.back()) << std::endl;
-  EXPECT_TRUE(s21_test.back() == std_test.back());
+  std::cout << std::boolalpha << (s21_test.back() == std_test.back()) <<
+std::endl; EXPECT_TRUE(s21_test.back() == std_test.back());
 }*/
 
 TEST(ListElementAccess, EmptyFrontStringLeaksCheck) {

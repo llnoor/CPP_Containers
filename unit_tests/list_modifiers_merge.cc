@@ -5,7 +5,7 @@ TEST(ListModifiersMerge, TwoListsCorrectInt) {
   s21::list<int> src = {30, 20, 10};
   s21::list<int> compare = {1, 2, 3, 4, 5, 30, 20, 10};
   dest.merge(src);
-  EXPECT_TRUE(equalLists(dest, compare));
+  EXPECT_TRUE(EqualLists(dest, compare));
 }
 
 TEST(ListModifiersMerge, TwoListsCorrectChar) {
@@ -13,15 +13,16 @@ TEST(ListModifiersMerge, TwoListsCorrectChar) {
   s21::list<char> src = {'Z', 'Y', 'X'};
   s21::list<char> compare = {'Z', 'Y', 'X', 'a', 'b', 'c', 'd', 'e'};
   dest.merge(src);
-  EXPECT_TRUE(equalLists(dest, compare));
+  EXPECT_TRUE(EqualLists(dest, compare));
 }
 
 TEST(ListModifiersMerge, TwoListsCorrectStr) {
   s21::list<std::string> dest = {"sus", "amogus", "ABOBA", "sus"};
   s21::list<std::string> src = {"sugoma", "BAOBAB", "yeet"};
-  s21::list<std::string> compare = {"sugoma", "BAOBAB", "sus", "amogus", "ABOBA", "sus", "yeet"};
+  s21::list<std::string> compare = {"sugoma", "BAOBAB", "sus", "amogus",
+                                    "ABOBA",  "sus",    "yeet"};
   dest.merge(src);
-  EXPECT_TRUE(equalLists(dest, compare));
+  EXPECT_TRUE(EqualLists(dest, compare));
 }
 
 TEST(ListModifiersMerge, TwoListsCompareInt) {
@@ -31,7 +32,7 @@ TEST(ListModifiersMerge, TwoListsCompareInt) {
   std::list<int> std_src = {30, 20, 10};
   s21_dest.merge(s21_src);
   std_dest.merge(std_src);
-  EXPECT_TRUE(equalLists(s21_dest, std_dest));
+  EXPECT_TRUE(EqualLists(s21_dest, std_dest));
 }
 
 TEST(ListModifiersMerge, TwoListsCompareChar) {
@@ -41,7 +42,7 @@ TEST(ListModifiersMerge, TwoListsCompareChar) {
   std::list<char> std_src = {'Z', 'Y', 'X'};
   s21_dest.merge(s21_src);
   std_dest.merge(std_src);
-  EXPECT_TRUE(equalLists(s21_dest, std_dest));
+  EXPECT_TRUE(EqualLists(s21_dest, std_dest));
 }
 
 TEST(ListModifiersMerge, TwoListsCompareStr) {
@@ -51,7 +52,7 @@ TEST(ListModifiersMerge, TwoListsCompareStr) {
   std::list<std::string> std_src = {"sugoma", "BAOBAB", "yeet"};
   s21_dest.merge(s21_src);
   std_dest.merge(std_src);
-  EXPECT_TRUE(equalLists(s21_dest, std_dest));
+  EXPECT_TRUE(EqualLists(s21_dest, std_dest));
 }
 
 TEST(ListModifiersMerge, TwoListsRandomOrderCorrectInt) {
@@ -59,7 +60,7 @@ TEST(ListModifiersMerge, TwoListsRandomOrderCorrectInt) {
   s21::list<int> src = {8, 7, 2, 3, 4, 4};
   s21::list<int> compare = {5, 8, 7, 2, 3, 4, 4, 9, 1, 3, 3};
   dest.merge(src);
-  EXPECT_TRUE(equalLists(dest, compare));
+  EXPECT_TRUE(EqualLists(dest, compare));
 }
 
 TEST(ListModifiersMerge, TwoListsRandomOrderCompareInt) {
@@ -69,7 +70,7 @@ TEST(ListModifiersMerge, TwoListsRandomOrderCompareInt) {
   std::list<int> std_src = {8, 7, 2, 3, 4, 4};
   s21_dest.merge(s21_src);
   std_dest.merge(std_src);
-  EXPECT_TRUE(equalLists(s21_dest, std_dest));
+  EXPECT_TRUE(EqualLists(s21_dest, std_dest));
 }
 
 TEST(ListModifiersMerge, DestListEmptyCorrectInt) {
@@ -77,7 +78,7 @@ TEST(ListModifiersMerge, DestListEmptyCorrectInt) {
   s21::list<int> src = {1, 2};
   s21::list<int> compare(src);
   dest.merge(src);
-  EXPECT_TRUE(equalLists(dest, compare));
+  EXPECT_TRUE(EqualLists(dest, compare));
   EXPECT_TRUE(src.empty());
 }
 
@@ -86,7 +87,7 @@ TEST(ListModifiersMerge, DestListEmptyCorrectChar) {
   s21::list<char> src = {'A', 'B'};
   s21::list<char> compare(src);
   dest.merge(src);
-  EXPECT_TRUE(equalLists(dest, compare));
+  EXPECT_TRUE(EqualLists(dest, compare));
   EXPECT_TRUE(src.empty());
 }
 
@@ -95,7 +96,7 @@ TEST(ListModifiersMerge, DestListEmptyCorrectStr) {
   s21::list<std::string> src = {"sus", "amogus"};
   s21::list<std::string> compare(src);
   dest.merge(src);
-  EXPECT_TRUE(equalLists(dest, compare));
+  EXPECT_TRUE(EqualLists(dest, compare));
   EXPECT_TRUE(src.empty());
 }
 
@@ -106,7 +107,7 @@ TEST(ListModifiersMerge, DestListEmptyCompareInt) {
   std::list<int> std_src = {30, 20, 10};
   s21_dest.merge(s21_src);
   std_dest.merge(std_src);
-  EXPECT_TRUE(equalLists(s21_dest, std_dest));
+  EXPECT_TRUE(EqualLists(s21_dest, std_dest));
   EXPECT_TRUE(s21_src.empty() == std_src.empty());
 }
 
@@ -117,7 +118,7 @@ TEST(ListModifiersMerge, DestListEmptyCompareChar) {
   std::list<char> std_src = {'Z', 'Y', 'X'};
   s21_dest.merge(s21_src);
   std_dest.merge(std_src);
-  EXPECT_TRUE(equalLists(s21_dest, std_dest));
+  EXPECT_TRUE(EqualLists(s21_dest, std_dest));
   EXPECT_TRUE(s21_src.empty() == std_src.empty());
 }
 
@@ -128,7 +129,7 @@ TEST(ListModifiersMerge, DestListEmptyCompareStr) {
   std::list<std::string> std_src = {"sugoma", "BAOBAB", "yeet"};
   s21_dest.merge(s21_src);
   std_dest.merge(std_src);
-  EXPECT_TRUE(equalLists(s21_dest, std_dest));
+  EXPECT_TRUE(EqualLists(s21_dest, std_dest));
   EXPECT_TRUE(s21_src.empty() == std_src.empty());
 }
 
@@ -137,7 +138,7 @@ TEST(ListModifiersMerge, SourceListEmptyCorrectInt) {
   s21::list<int> src;
   s21::list<int> compare(dest);
   dest.merge(src);
-  EXPECT_TRUE(equalLists(dest, compare));
+  EXPECT_TRUE(EqualLists(dest, compare));
   EXPECT_TRUE(src.empty());
 }
 
@@ -146,7 +147,7 @@ TEST(ListModifiersMerge, SourceListEmptyCorrectChar) {
   s21::list<char> src;
   s21::list<char> compare(dest);
   dest.merge(src);
-  EXPECT_TRUE(equalLists(dest, compare));
+  EXPECT_TRUE(EqualLists(dest, compare));
   EXPECT_TRUE(src.empty());
 }
 
@@ -155,7 +156,7 @@ TEST(ListModifiersMerge, SourceListEmptyCorrectStr) {
   s21::list<std::string> src;
   s21::list<std::string> compare(dest);
   dest.merge(src);
-  EXPECT_TRUE(equalLists(dest, compare));
+  EXPECT_TRUE(EqualLists(dest, compare));
   EXPECT_TRUE(src.empty());
 }
 
@@ -166,7 +167,7 @@ TEST(ListModifiersMerge, SourceListEmptyCompareInt) {
   std::list<int> std_src;
   s21_dest.merge(s21_src);
   std_dest.merge(std_src);
-  EXPECT_TRUE(equalLists(s21_dest, std_dest));
+  EXPECT_TRUE(EqualLists(s21_dest, std_dest));
   EXPECT_TRUE(s21_src.empty() == std_src.empty());
 }
 
@@ -177,7 +178,7 @@ TEST(ListModifiersMerge, SourceListEmptyCompareChar) {
   std::list<char> std_src;
   s21_dest.merge(s21_src);
   std_dest.merge(std_src);
-  EXPECT_TRUE(equalLists(s21_dest, std_dest));
+  EXPECT_TRUE(EqualLists(s21_dest, std_dest));
   EXPECT_TRUE(s21_src.empty() == std_src.empty());
 }
 
@@ -188,7 +189,7 @@ TEST(ListModifiersMerge, SourceListEmptyCompareStr) {
   std::list<std::string> std_src;
   s21_dest.merge(s21_src);
   std_dest.merge(std_src);
-  EXPECT_TRUE(equalLists(s21_dest, std_dest));
+  EXPECT_TRUE(EqualLists(s21_dest, std_dest));
   EXPECT_TRUE(s21_src.empty() == std_src.empty());
 }
 

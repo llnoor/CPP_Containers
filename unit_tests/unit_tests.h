@@ -2,13 +2,15 @@
 #define SRC_UNIT_TESTS_UNIT_TESTS_H_
 
 #include <gtest/gtest.h>
+
 #include <list>
 #include <queue>
 #include <stack>
+
 #include "../s21_containers.h"
 
 template <typename T>
-bool equalLists(const s21::list<T>& list1, const s21::list<T>& list2) {
+bool EqualLists(const s21::list<T>& list1, const s21::list<T>& list2) {
   if (list1.size() != list2.size()) {
     return false;
   }
@@ -26,7 +28,7 @@ bool equalLists(const s21::list<T>& list1, const s21::list<T>& list2) {
 }
 
 template <typename T>
-bool equalLists(const s21::list<T>& list1, const std::list<T>& list2) {
+bool EqualLists(const s21::list<T>& list1, const std::list<T>& list2) {
   if (list1.size() != list2.size()) {
     return false;
   }
@@ -44,14 +46,14 @@ bool equalLists(const s21::list<T>& list1, const std::list<T>& list2) {
 }
 
 template <typename T>
-bool equalQueues(const s21::queue<T>& queue1, const s21::queue<T>& queue2) {
+bool EqualQueues(const s21::queue<T>& queue1, const s21::queue<T>& queue2) {
   if (queue1.size() != queue2.size()) {
     return false;
   }
 
   s21::queue<T> temp1(queue1);
   s21::queue<T> temp2(queue2);
-  
+
   while (!temp1.empty() && !temp2.empty()) {
     if (temp1.front() != temp2.front()) {
       return false;
@@ -64,7 +66,7 @@ bool equalQueues(const s21::queue<T>& queue1, const s21::queue<T>& queue2) {
 }
 
 template <typename T>
-bool equalQueues(const s21::queue<T>& queue1, const std::queue<T>& queue2) {
+bool EqualQueues(const s21::queue<T>& queue1, const std::queue<T>& queue2) {
   if (queue1.size() != queue2.size()) {
     return false;
   }
@@ -84,14 +86,14 @@ bool equalQueues(const s21::queue<T>& queue1, const std::queue<T>& queue2) {
 }
 
 template <typename T>
-bool equalStacks(const s21::stack<T>& stack1, const s21::stack<T>& stack2) {
+bool EqualStacks(const s21::stack<T>& stack1, const s21::stack<T>& stack2) {
   if (stack1.size() != stack2.size()) {
     return false;
   }
 
   s21::stack<T> temp1(stack1);
   s21::stack<T> temp2(stack2);
-  
+
   while (!temp1.empty() && !temp2.empty()) {
     if (temp1.top() != temp2.top()) {
       return false;
@@ -104,14 +106,14 @@ bool equalStacks(const s21::stack<T>& stack1, const s21::stack<T>& stack2) {
 }
 
 template <typename T>
-bool equalStacks(const s21::stack<T>& stack1, const std::stack<T>& stack2) {
+bool EqualStacks(const s21::stack<T>& stack1, const std::stack<T>& stack2) {
   if (stack1.size() != stack2.size()) {
     return false;
   }
 
   s21::stack<T> temp1(stack1);
   std::stack<T> temp2(stack2);
-  
+
   while (!temp1.empty() && !temp2.empty()) {
     if (temp1.top() != temp2.top()) {
       return false;

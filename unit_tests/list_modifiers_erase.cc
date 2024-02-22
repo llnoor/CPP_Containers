@@ -5,7 +5,7 @@ TEST(ListModifiersErase, DeletingFromBeginCorrectInt) {
   s21::list<int> compare = {2, 3, 4, 5};
 
   test.erase(test.begin());
-  EXPECT_TRUE(equalLists(test, compare));
+  EXPECT_TRUE(EqualLists(test, compare));
 }
 
 TEST(ListModifiersErase, DeletingFromBeginCorrectChar) {
@@ -13,15 +13,16 @@ TEST(ListModifiersErase, DeletingFromBeginCorrectChar) {
   s21::list<char> compare = {'b', 'c', 'd', 'e'};
 
   test.erase(test.begin());
-  EXPECT_TRUE(equalLists(test, compare));
+  EXPECT_TRUE(EqualLists(test, compare));
 }
 
 TEST(ListModifiersErase, DeletingFromBeginCorrectStr) {
-  s21::list<std::string> test = {"sus", "abobus", "aboba", "amogus", "a mongoose"};
+  s21::list<std::string> test = {"sus", "abobus", "aboba", "amogus",
+                                 "a mongoose"};
   s21::list<std::string> compare = {"abobus", "aboba", "amogus", "a mongoose"};
 
   test.erase(test.begin());
-  EXPECT_TRUE(equalLists(test, compare));
+  EXPECT_TRUE(EqualLists(test, compare));
 }
 
 TEST(ListModifiersErase, DeletingFromBeginCompareInt) {
@@ -30,7 +31,7 @@ TEST(ListModifiersErase, DeletingFromBeginCompareInt) {
 
   s21_test.erase(s21_test.begin());
   std_test.erase(std_test.begin());
-  EXPECT_TRUE(equalLists(s21_test, std_test));
+  EXPECT_TRUE(EqualLists(s21_test, std_test));
 }
 
 TEST(ListModifiersErase, DeletingFromBeginCompareChar) {
@@ -39,16 +40,18 @@ TEST(ListModifiersErase, DeletingFromBeginCompareChar) {
 
   s21_test.erase(s21_test.begin());
   std_test.erase(std_test.begin());
-  EXPECT_TRUE(equalLists(s21_test, std_test));
+  EXPECT_TRUE(EqualLists(s21_test, std_test));
 }
 
 TEST(ListModifiersErase, DeletingFromBeginCompareStr) {
-  s21::list<std::string> s21_test = {"sus", "abobus", "aboba", "amogus", "a mongoose"};
-  std::list<std::string> std_test = {"sus", "abobus", "aboba", "amogus", "a mongoose"};
+  s21::list<std::string> s21_test = {"sus", "abobus", "aboba", "amogus",
+                                     "a mongoose"};
+  std::list<std::string> std_test = {"sus", "abobus", "aboba", "amogus",
+                                     "a mongoose"};
 
   s21_test.erase(s21_test.begin());
   std_test.erase(std_test.begin());
-  EXPECT_TRUE(equalLists(s21_test, std_test));
+  EXPECT_TRUE(EqualLists(s21_test, std_test));
 }
 
 TEST(ListModifiersErase, DeletingFromMiddleCorrectInt) {
@@ -56,7 +59,7 @@ TEST(ListModifiersErase, DeletingFromMiddleCorrectInt) {
   s21::list<int> compare = {1, 2, 4, 5};
 
   test.erase(test.begin() + 2);
-  EXPECT_TRUE(equalLists(test, compare));
+  EXPECT_TRUE(EqualLists(test, compare));
 }
 
 TEST(ListModifiersErase, DeletingFromMiddleCorrectChar) {
@@ -64,15 +67,16 @@ TEST(ListModifiersErase, DeletingFromMiddleCorrectChar) {
   s21::list<char> compare = {'a', 'b', 'd', 'e'};
 
   test.erase(test.begin() + 2);
-  EXPECT_TRUE(equalLists(test, compare));
+  EXPECT_TRUE(EqualLists(test, compare));
 }
 
 TEST(ListModifiersErase, DeletingFromMiddleCorrectStr) {
-  s21::list<std::string> test = {"sus", "abobus", "aboba", "amogus", "a mongoose"};
+  s21::list<std::string> test = {"sus", "abobus", "aboba", "amogus",
+                                 "a mongoose"};
   s21::list<std::string> compare = {"sus", "abobus", "amogus", "a mongoose"};
 
   test.erase(test.begin() + 2);
-  EXPECT_TRUE(equalLists(test, compare));
+  EXPECT_TRUE(EqualLists(test, compare));
 }
 
 TEST(ListModifiersErase, DeletingFromMiddleCompareInt) {
@@ -81,7 +85,7 @@ TEST(ListModifiersErase, DeletingFromMiddleCompareInt) {
 
   s21_test.erase(++s21_test.begin());
   std_test.erase(++std_test.begin());
-  EXPECT_TRUE(equalLists(s21_test, std_test));
+  EXPECT_TRUE(EqualLists(s21_test, std_test));
 }
 
 TEST(ListModifiersErase, DeletingFromMiddleCompareChar) {
@@ -90,16 +94,18 @@ TEST(ListModifiersErase, DeletingFromMiddleCompareChar) {
 
   s21_test.erase(++s21_test.begin());
   std_test.erase(++std_test.begin());
-  EXPECT_TRUE(equalLists(s21_test, std_test));
+  EXPECT_TRUE(EqualLists(s21_test, std_test));
 }
 
 TEST(ListModifiersErase, DeletingFromMiddleCompareStr) {
-  s21::list<std::string> s21_test = {"sus", "abobus", "aboba", "amogus", "a mongoose"};
-  std::list<std::string> std_test = {"sus", "abobus", "aboba", "amogus", "a mongoose"};
+  s21::list<std::string> s21_test = {"sus", "abobus", "aboba", "amogus",
+                                     "a mongoose"};
+  std::list<std::string> std_test = {"sus", "abobus", "aboba", "amogus",
+                                     "a mongoose"};
 
   s21_test.erase(++s21_test.begin());
   std_test.erase(++std_test.begin());
-  EXPECT_TRUE(equalLists(s21_test, std_test));
+  EXPECT_TRUE(EqualLists(s21_test, std_test));
 }
 
 TEST(ListModifiersErase, DeletingFromEndCorrectInt) {
@@ -107,7 +113,7 @@ TEST(ListModifiersErase, DeletingFromEndCorrectInt) {
   s21::list<int> compare = {1, 2, 3, 4};
 
   test.erase(test.end());
-  EXPECT_TRUE(equalLists(test, compare));
+  EXPECT_TRUE(EqualLists(test, compare));
 }
 
 TEST(ListModifiersErase, DeletingFromEndCorrectChar) {
@@ -115,42 +121,48 @@ TEST(ListModifiersErase, DeletingFromEndCorrectChar) {
   s21::list<char> compare = {'a', 'b', 'c', 'd'};
 
   test.erase(test.end());
-  EXPECT_TRUE(equalLists(test, compare));
+  EXPECT_TRUE(EqualLists(test, compare));
 }
 
 TEST(ListModifiersErase, DeletingFromEndCorrectStr) {
-  s21::list<std::string> test = {"sus", "abobus", "aboba", "amogus", "a mongoose"};
+  s21::list<std::string> test = {"sus", "abobus", "aboba", "amogus",
+                                 "a mongoose"};
   s21::list<std::string> compare = {"sus", "abobus", "aboba", "amogus"};
 
   test.erase(test.end());
-  EXPECT_TRUE(equalLists(test, compare));
+  EXPECT_TRUE(EqualLists(test, compare));
 }
 
 TEST(ListModifiersErase, DeletingFromEndCompareInt) {
   s21::list<int> s21_test = {1, 2, 3, 4, 5};
   std::list<int> std_test = {1, 2, 3, 4, 5};
 
-  s21_test.erase(s21_test.end()); // same with --
-  std_test.erase(--std_test.end()); // somnitelno no ok, without --: pointer being freed was not allocated
-  EXPECT_TRUE(equalLists(s21_test, std_test));
+  s21_test.erase(s21_test.end());    // same with --
+  std_test.erase(--std_test.end());  // somnitelno no ok, without --: pointer
+                                     // being freed was not allocated
+  EXPECT_TRUE(EqualLists(s21_test, std_test));
 }
 
 TEST(ListModifiersErase, DeletingFromEndCompareChar) {
   s21::list<char> s21_test = {'a', 'b', 'c', 'd', 'e'};
   std::list<char> std_test = {'a', 'b', 'c', 'd', 'e'};
 
-  s21_test.erase(s21_test.end()); // same with --
-  std_test.erase(--std_test.end()); // somnitelno no ok, without --: pointer being freed was not allocated
-  EXPECT_TRUE(equalLists(s21_test, std_test));
+  s21_test.erase(s21_test.end());    // same with --
+  std_test.erase(--std_test.end());  // somnitelno no ok, without --: pointer
+                                     // being freed was not allocated
+  EXPECT_TRUE(EqualLists(s21_test, std_test));
 }
 
 TEST(ListModifiersErase, DeletingFromEndCompareStr) {
-  s21::list<std::string> s21_test = {"sus", "abobus", "aboba", "amogus", "a mongoose"};
-  std::list<std::string> std_test = {"sus", "abobus", "aboba", "amogus", "a mongoose"};
+  s21::list<std::string> s21_test = {"sus", "abobus", "aboba", "amogus",
+                                     "a mongoose"};
+  std::list<std::string> std_test = {"sus", "abobus", "aboba", "amogus",
+                                     "a mongoose"};
 
-  s21_test.erase(s21_test.end()); // same with --
-  std_test.erase(--std_test.end()); // somnitelno no ok, without --: pointer being freed was not allocated
-  EXPECT_TRUE(equalLists(s21_test, std_test));
+  s21_test.erase(s21_test.end());    // same with --
+  std_test.erase(--std_test.end());  // somnitelno no ok, without --: pointer
+                                     // being freed was not allocated
+  EXPECT_TRUE(EqualLists(s21_test, std_test));
 }
 
 // cannot compare with stl 'cause it returns: "free(): invalid pointer"

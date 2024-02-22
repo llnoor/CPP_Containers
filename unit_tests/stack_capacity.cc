@@ -36,7 +36,7 @@ TEST(StackCapacity, IsEmptyCompareStr) {
 }
 
 TEST(StackCapacity, IsntEmptyCorrectInt) {
-    s21::stack<int> test{1};
+  s21::stack<int> test{1};
   EXPECT_FALSE(test.empty());
 }
 

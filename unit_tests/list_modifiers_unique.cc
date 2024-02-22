@@ -98,7 +98,7 @@ TEST(ListModifiersUnique, TwoDiffElementsCorrectInt) {
   s21::list<int> compare(test);
   test.unique();
   EXPECT_TRUE(test.size() == 2);
-  EXPECT_TRUE(equalLists(test, compare));
+  EXPECT_TRUE(EqualLists(test, compare));
 }
 
 TEST(ListModifiersUnique, TwoDiffElementsCorrectChar) {
@@ -106,7 +106,7 @@ TEST(ListModifiersUnique, TwoDiffElementsCorrectChar) {
   s21::list<char> compare(test);
   test.unique();
   EXPECT_TRUE(test.size() == 2);
-  EXPECT_TRUE(equalLists(test, compare));
+  EXPECT_TRUE(EqualLists(test, compare));
 }
 
 TEST(ListModifiersUnique, TwoDiffElementsCorrectStr) {
@@ -114,7 +114,7 @@ TEST(ListModifiersUnique, TwoDiffElementsCorrectStr) {
   s21::list<std::string> compare(test);
   test.unique();
   EXPECT_TRUE(test.size() == 2);
-  EXPECT_TRUE(equalLists(test, compare));
+  EXPECT_TRUE(EqualLists(test, compare));
 }
 
 TEST(ListModifiersUnique, TwoDiffElementsCompareInt) {
@@ -123,7 +123,7 @@ TEST(ListModifiersUnique, TwoDiffElementsCompareInt) {
   s21_test.unique();
   std_test.unique();
   EXPECT_TRUE(s21_test.size() == std_test.size());
-  EXPECT_TRUE(equalLists(s21_test, std_test));
+  EXPECT_TRUE(EqualLists(s21_test, std_test));
 }
 
 TEST(ListModifiersUnique, TwoDiffElementsCompareChar) {
@@ -132,7 +132,7 @@ TEST(ListModifiersUnique, TwoDiffElementsCompareChar) {
   s21_test.unique();
   std_test.unique();
   EXPECT_TRUE(s21_test.size() == std_test.size());
-  EXPECT_TRUE(equalLists(s21_test, std_test));
+  EXPECT_TRUE(EqualLists(s21_test, std_test));
 }
 
 TEST(ListModifiersUnique, TwoDiffElementsCompareStr) {
@@ -141,7 +141,7 @@ TEST(ListModifiersUnique, TwoDiffElementsCompareStr) {
   s21_test.unique();
   std_test.unique();
   EXPECT_TRUE(s21_test.size() == std_test.size());
-  EXPECT_TRUE(equalLists(s21_test, std_test));
+  EXPECT_TRUE(EqualLists(s21_test, std_test));
 }
 
 TEST(ListModifiersUnique, TwoSameElementsCorrectInt) {
@@ -171,7 +171,7 @@ TEST(ListModifiersUnique, TwoSameElementsCompareInt) {
   s21_test.unique();
   std_test.unique();
   EXPECT_TRUE(s21_test.size() == std_test.size());
-  EXPECT_TRUE(equalLists(s21_test, std_test));
+  EXPECT_TRUE(EqualLists(s21_test, std_test));
 }
 
 TEST(ListModifiersUnique, TwoSameElementsCompareChar) {
@@ -180,7 +180,7 @@ TEST(ListModifiersUnique, TwoSameElementsCompareChar) {
   s21_test.unique();
   std_test.unique();
   EXPECT_TRUE(s21_test.size() == std_test.size());
-  EXPECT_TRUE(equalLists(s21_test, std_test));
+  EXPECT_TRUE(EqualLists(s21_test, std_test));
 }
 
 TEST(ListModifiersUnique, TwoSameElementsCompareStr) {
@@ -189,7 +189,7 @@ TEST(ListModifiersUnique, TwoSameElementsCompareStr) {
   s21_test.unique();
   std_test.unique();
   EXPECT_TRUE(s21_test.size() == std_test.size());
-  EXPECT_TRUE(equalLists(s21_test, std_test));
+  EXPECT_TRUE(EqualLists(s21_test, std_test));
 }
 
 TEST(ListModifiersUnique, MultipleAllDifferentElementsCorrectInt) {
@@ -197,7 +197,7 @@ TEST(ListModifiersUnique, MultipleAllDifferentElementsCorrectInt) {
   s21::list<int> compare(test);
   test.unique();
   EXPECT_TRUE(test.size() == 5);
-  EXPECT_TRUE(equalLists(test, compare));
+  EXPECT_TRUE(EqualLists(test, compare));
 }
 
 TEST(ListModifiersUnique, MultipleAllDifferentElementsCorrectChar) {
@@ -205,7 +205,7 @@ TEST(ListModifiersUnique, MultipleAllDifferentElementsCorrectChar) {
   s21::list<char> compare(test);
   test.unique();
   EXPECT_TRUE(test.size() == 5);
-  EXPECT_TRUE(equalLists(test, compare));
+  EXPECT_TRUE(EqualLists(test, compare));
 }
 
 TEST(ListModifiersUnique, MultipleAllDifferentElementsCorrectStr) {
@@ -213,7 +213,7 @@ TEST(ListModifiersUnique, MultipleAllDifferentElementsCorrectStr) {
   s21::list<std::string> compare(test);
   test.unique();
   EXPECT_TRUE(test.size() == 5);
-  EXPECT_TRUE(equalLists(test, compare));
+  EXPECT_TRUE(EqualLists(test, compare));
 }
 
 TEST(ListModifiersUnique, MultipleAllDifferentElementsCompareInt) {
@@ -222,7 +222,7 @@ TEST(ListModifiersUnique, MultipleAllDifferentElementsCompareInt) {
   s21_test.unique();
   std_test.unique();
   EXPECT_TRUE(s21_test.size() == std_test.size());
-  EXPECT_TRUE(equalLists(s21_test, std_test));
+  EXPECT_TRUE(EqualLists(s21_test, std_test));
 }
 
 TEST(ListModifiersUnique, MultipleAllDifferentElementsCompareChar) {
@@ -231,7 +231,7 @@ TEST(ListModifiersUnique, MultipleAllDifferentElementsCompareChar) {
   s21_test.unique();
   std_test.unique();
   EXPECT_TRUE(s21_test.size() == std_test.size());
-  EXPECT_TRUE(equalLists(s21_test, std_test));
+  EXPECT_TRUE(EqualLists(s21_test, std_test));
 }
 
 TEST(ListModifiersUnique, MultipleAllDifferentElementsCompareStr) {
@@ -240,7 +240,7 @@ TEST(ListModifiersUnique, MultipleAllDifferentElementsCompareStr) {
   s21_test.unique();
   std_test.unique();
   EXPECT_TRUE(s21_test.size() == std_test.size());
-  EXPECT_TRUE(equalLists(s21_test, std_test));
+  EXPECT_TRUE(EqualLists(s21_test, std_test));
 }
 
 TEST(ListModifiersUnique, MultipleSomeDuplConseqElementsCorrectInt) {
@@ -248,7 +248,7 @@ TEST(ListModifiersUnique, MultipleSomeDuplConseqElementsCorrectInt) {
   s21::list<int> compare{1, 2, 3};
   test.unique();
   EXPECT_TRUE(test.size() == 3);
-  EXPECT_TRUE(equalLists(test, compare));
+  EXPECT_TRUE(EqualLists(test, compare));
 }
 
 TEST(ListModifiersUnique, MultipleSomeDuplConseqElementsCorrectChar) {
@@ -256,7 +256,7 @@ TEST(ListModifiersUnique, MultipleSomeDuplConseqElementsCorrectChar) {
   s21::list<char> compare{'x', 'y', 'z'};
   test.unique();
   EXPECT_TRUE(test.size() == 3);
-  EXPECT_TRUE(equalLists(test, compare));
+  EXPECT_TRUE(EqualLists(test, compare));
 }
 
 TEST(ListModifiersUnique, MultipleSomeDuplConseqElementsCorrectStr) {
@@ -264,7 +264,7 @@ TEST(ListModifiersUnique, MultipleSomeDuplConseqElementsCorrectStr) {
   s21::list<std::string> compare{"sus", "among", "us"};
   test.unique();
   EXPECT_TRUE(test.size() == 3);
-  EXPECT_TRUE(equalLists(test, compare));
+  EXPECT_TRUE(EqualLists(test, compare));
 }
 
 TEST(ListModifiersUnique, MultipleSomeDuplConseqElementsCompareInt) {
@@ -273,7 +273,7 @@ TEST(ListModifiersUnique, MultipleSomeDuplConseqElementsCompareInt) {
   s21_test.unique();
   std_test.unique();
   EXPECT_TRUE(s21_test.size() == std_test.size());
-  EXPECT_TRUE(equalLists(s21_test, std_test));
+  EXPECT_TRUE(EqualLists(s21_test, std_test));
 }
 
 TEST(ListModifiersUnique, MultipleSomeDuplConseqElementsCompareChar) {
@@ -282,7 +282,7 @@ TEST(ListModifiersUnique, MultipleSomeDuplConseqElementsCompareChar) {
   s21_test.unique();
   std_test.unique();
   EXPECT_TRUE(s21_test.size() == std_test.size());
-  EXPECT_TRUE(equalLists(s21_test, std_test));
+  EXPECT_TRUE(EqualLists(s21_test, std_test));
 }
 
 TEST(ListModifiersUnique, MultipleSomeDuplConseqElementsCompareStr) {
@@ -291,7 +291,7 @@ TEST(ListModifiersUnique, MultipleSomeDuplConseqElementsCompareStr) {
   s21_test.unique();
   std_test.unique();
   EXPECT_TRUE(s21_test.size() == std_test.size());
-  EXPECT_TRUE(equalLists(s21_test, std_test));
+  EXPECT_TRUE(EqualLists(s21_test, std_test));
 }
 
 TEST(ListModifiersUnique, MultipleSomeDuplElementsCorrectInt) {
@@ -299,7 +299,7 @@ TEST(ListModifiersUnique, MultipleSomeDuplElementsCorrectInt) {
   s21::list<int> compare(test);
   test.unique();
   EXPECT_TRUE(test.size() == 5);
-  EXPECT_TRUE(equalLists(test, compare));
+  EXPECT_TRUE(EqualLists(test, compare));
 }
 
 TEST(ListModifiersUnique, MultipleSomeDuplElementsCorrectChar) {
@@ -307,7 +307,7 @@ TEST(ListModifiersUnique, MultipleSomeDuplElementsCorrectChar) {
   s21::list<char> compare(test);
   test.unique();
   EXPECT_TRUE(test.size() == 5);
-  EXPECT_TRUE(equalLists(test, compare));
+  EXPECT_TRUE(EqualLists(test, compare));
 }
 
 TEST(ListModifiersUnique, MultipleSomeDuplElementsCorrectStr) {
@@ -315,7 +315,7 @@ TEST(ListModifiersUnique, MultipleSomeDuplElementsCorrectStr) {
   s21::list<std::string> compare(test);
   test.unique();
   EXPECT_TRUE(test.size() == 5);
-  EXPECT_TRUE(equalLists(test, compare));
+  EXPECT_TRUE(EqualLists(test, compare));
 }
 
 TEST(ListModifiersUnique, MultipleSomeDuplElementsCompareInt) {
@@ -324,7 +324,7 @@ TEST(ListModifiersUnique, MultipleSomeDuplElementsCompareInt) {
   s21_test.unique();
   std_test.unique();
   EXPECT_TRUE(s21_test.size() == std_test.size());
-  EXPECT_TRUE(equalLists(s21_test, std_test));
+  EXPECT_TRUE(EqualLists(s21_test, std_test));
 }
 
 TEST(ListModifiersUnique, MultipleSomeDuplElementsCompareChar) {
@@ -333,7 +333,7 @@ TEST(ListModifiersUnique, MultipleSomeDuplElementsCompareChar) {
   s21_test.unique();
   std_test.unique();
   EXPECT_TRUE(s21_test.size() == std_test.size());
-  EXPECT_TRUE(equalLists(s21_test, std_test));
+  EXPECT_TRUE(EqualLists(s21_test, std_test));
 }
 
 TEST(ListModifiersUnique, MultipleSomeDuplElementsCompareStr) {
@@ -342,5 +342,5 @@ TEST(ListModifiersUnique, MultipleSomeDuplElementsCompareStr) {
   s21_test.unique();
   std_test.unique();
   EXPECT_TRUE(s21_test.size() == std_test.size());
-  EXPECT_TRUE(equalLists(s21_test, std_test));
+  EXPECT_TRUE(EqualLists(s21_test, std_test));
 }

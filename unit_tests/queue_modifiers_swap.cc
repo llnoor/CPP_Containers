@@ -6,8 +6,8 @@ TEST(QueueModifiers, SwapCorrectInt) {
   s21::queue<int> copy_dest(dest);
   s21::queue<int> copy_src(src);
   dest.swap(src);
-  EXPECT_TRUE(equalQueues(dest, copy_src));
-  EXPECT_TRUE(equalQueues(src, copy_dest));
+  EXPECT_TRUE(EqualQueues(dest, copy_src));
+  EXPECT_TRUE(EqualQueues(src, copy_dest));
 }
 
 TEST(QueueModifiers, SwapCorrectChar) {
@@ -16,18 +16,19 @@ TEST(QueueModifiers, SwapCorrectChar) {
   s21::queue<char> copy_dest(dest);
   s21::queue<char> copy_src(src);
   dest.swap(src);
-  EXPECT_TRUE(equalQueues(dest, copy_src));
-  EXPECT_TRUE(equalQueues(src, copy_dest));
+  EXPECT_TRUE(EqualQueues(dest, copy_src));
+  EXPECT_TRUE(EqualQueues(src, copy_dest));
 }
 
 TEST(QueueModifiers, SwapCorrectStr) {
-  s21::queue<std::string> dest = {"evangelion", "steinsgate", "onepunchman", "chainsawman", "jojo"};
+  s21::queue<std::string> dest = {"evangelion", "steinsgate", "onepunchman",
+                                  "chainsawman", "jojo"};
   s21::queue<std::string> src = {"KZN", "MSK", "SPB"};
   s21::queue<std::string> copy_dest(dest);
   s21::queue<std::string> copy_src(src);
   dest.swap(src);
-  EXPECT_TRUE(equalQueues(dest, copy_src));
-  EXPECT_TRUE(equalQueues(src, copy_dest));
+  EXPECT_TRUE(EqualQueues(dest, copy_src));
+  EXPECT_TRUE(EqualQueues(src, copy_dest));
 }
 
 TEST(QueueModifiers, SwapCompareInt) {
@@ -43,8 +44,8 @@ TEST(QueueModifiers, SwapCompareInt) {
   std_src.push(30);
   s21_dest.swap(s21_src);
   std_dest.swap(std_src);
-  EXPECT_TRUE(equalQueues(s21_dest, std_dest));
-  EXPECT_TRUE(equalQueues(s21_src, std_src));
+  EXPECT_TRUE(EqualQueues(s21_dest, std_dest));
+  EXPECT_TRUE(EqualQueues(s21_src, std_src));
 }
 
 TEST(QueueModifiers, SwapCompareChar) {
@@ -60,12 +61,13 @@ TEST(QueueModifiers, SwapCompareChar) {
   std_src.push('Z');
   s21_dest.swap(s21_src);
   std_dest.swap(std_src);
-  EXPECT_TRUE(equalQueues(s21_dest, std_dest));
-  EXPECT_TRUE(equalQueues(s21_src, std_src));
+  EXPECT_TRUE(EqualQueues(s21_dest, std_dest));
+  EXPECT_TRUE(EqualQueues(s21_src, std_src));
 }
 
 TEST(QueueModifiers, SwapCompareStr) {
-  s21::queue<std::string> s21_dest = {"evangelion", "steinsgate", "onepunchman", "chainsawman", "jojo"};
+  s21::queue<std::string> s21_dest = {"evangelion", "steinsgate", "onepunchman",
+                                      "chainsawman", "jojo"};
   s21::queue<std::string> s21_src = {"KZN", "MSK", "SPB"};
   std::queue<std::string> std_dest;
   std_dest.push("evangelion");
@@ -79,8 +81,8 @@ TEST(QueueModifiers, SwapCompareStr) {
   std_src.push("SPB");
   s21_dest.swap(s21_src);
   std_dest.swap(std_src);
-  EXPECT_TRUE(equalQueues(s21_dest, std_dest));
-  EXPECT_TRUE(equalQueues(s21_src, std_src));
+  EXPECT_TRUE(EqualQueues(s21_dest, std_dest));
+  EXPECT_TRUE(EqualQueues(s21_src, std_src));
 }
 
 TEST(QueueModifiers, SwapDestEmptyCorrectInt) {
@@ -88,7 +90,7 @@ TEST(QueueModifiers, SwapDestEmptyCorrectInt) {
   s21::queue<int> src = {10, 20, 30};
   s21::queue<int> compare(src);
   dest.swap(src);
-  EXPECT_TRUE(equalQueues(dest, compare));
+  EXPECT_TRUE(EqualQueues(dest, compare));
   EXPECT_TRUE(src.empty());
 }
 
@@ -97,7 +99,7 @@ TEST(QueueModifiers, SwapDestEmptyCorrectChar) {
   s21::queue<char> src = {'X', 'Y', 'Z'};
   s21::queue<char> compare(src);
   dest.swap(src);
-  EXPECT_TRUE(equalQueues(dest, compare));
+  EXPECT_TRUE(EqualQueues(dest, compare));
   EXPECT_TRUE(src.empty());
 }
 
@@ -106,7 +108,7 @@ TEST(QueueModifiers, SwapDestEmptyCorrectStr) {
   s21::queue<std::string> src = {"KZN", "MSK", "SPB"};
   s21::queue<std::string> compare(src);
   dest.swap(src);
-  EXPECT_TRUE(equalQueues(dest, compare));
+  EXPECT_TRUE(EqualQueues(dest, compare));
   EXPECT_TRUE(src.empty());
 }
 
@@ -120,8 +122,8 @@ TEST(QueueModifiers, SwapDestEmptyCompareInt) {
   std_src.push(30);
   s21_dest.swap(s21_src);
   s21_dest.swap(s21_src);
-  EXPECT_TRUE(equalQueues(s21_dest, std_dest));
-  EXPECT_TRUE(equalQueues(s21_src, std_src));
+  EXPECT_TRUE(EqualQueues(s21_dest, std_dest));
+  EXPECT_TRUE(EqualQueues(s21_src, std_src));
 }
 
 TEST(QueueModifiers, SwapDestEmptyCompareChar) {
@@ -134,8 +136,8 @@ TEST(QueueModifiers, SwapDestEmptyCompareChar) {
   std_src.push('Z');
   s21_dest.swap(s21_src);
   s21_dest.swap(s21_src);
-  EXPECT_TRUE(equalQueues(s21_dest, std_dest));
-  EXPECT_TRUE(equalQueues(s21_src, std_src));
+  EXPECT_TRUE(EqualQueues(s21_dest, std_dest));
+  EXPECT_TRUE(EqualQueues(s21_src, std_src));
 }
 
 TEST(QueueModifiers, SwapDestEmptyCompareStr) {
@@ -148,8 +150,8 @@ TEST(QueueModifiers, SwapDestEmptyCompareStr) {
   std_src.push("SPB");
   s21_dest.swap(s21_src);
   s21_dest.swap(s21_src);
-  EXPECT_TRUE(equalQueues(s21_dest, std_dest));
-  EXPECT_TRUE(equalQueues(s21_src, std_src));
+  EXPECT_TRUE(EqualQueues(s21_dest, std_dest));
+  EXPECT_TRUE(EqualQueues(s21_src, std_src));
 }
 
 TEST(QueueModifiers, SwapSourceEmptyCorrectInt) {
@@ -157,7 +159,7 @@ TEST(QueueModifiers, SwapSourceEmptyCorrectInt) {
   s21::queue<int> src;
   s21::queue<int> compare(dest);
   dest.swap(src);
-  EXPECT_TRUE(equalQueues(src, compare));
+  EXPECT_TRUE(EqualQueues(src, compare));
   EXPECT_TRUE(dest.empty());
 }
 
@@ -166,7 +168,7 @@ TEST(QueueModifiers, SwapSourceEmptyCorrectChar) {
   s21::queue<char> src;
   s21::queue<char> compare(dest);
   dest.swap(src);
-  EXPECT_TRUE(equalQueues(src, compare));
+  EXPECT_TRUE(EqualQueues(src, compare));
   EXPECT_TRUE(dest.empty());
 }
 
@@ -175,7 +177,7 @@ TEST(QueueModifiers, SwapSourceEmptyCorrectStr) {
   s21::queue<std::string> src;
   s21::queue<std::string> compare(dest);
   dest.swap(src);
-  EXPECT_TRUE(equalQueues(src, compare));
+  EXPECT_TRUE(EqualQueues(src, compare));
   EXPECT_TRUE(dest.empty());
 }
 
@@ -189,8 +191,8 @@ TEST(QueueModifiers, SwapSourceEmptyCompareInt) {
   std::queue<int> std_src;
   s21_dest.swap(s21_src);
   s21_dest.swap(s21_src);
-  EXPECT_TRUE(equalQueues(s21_dest, std_dest));
-  EXPECT_TRUE(equalQueues(s21_src, std_src));
+  EXPECT_TRUE(EqualQueues(s21_dest, std_dest));
+  EXPECT_TRUE(EqualQueues(s21_src, std_src));
 }
 
 TEST(QueueModifiers, SwapSourceEmptyCompareChar) {
@@ -203,8 +205,8 @@ TEST(QueueModifiers, SwapSourceEmptyCompareChar) {
   std::queue<char> std_src;
   s21_dest.swap(s21_src);
   s21_dest.swap(s21_src);
-  EXPECT_TRUE(equalQueues(s21_dest, std_dest));
-  EXPECT_TRUE(equalQueues(s21_src, std_src));
+  EXPECT_TRUE(EqualQueues(s21_dest, std_dest));
+  EXPECT_TRUE(EqualQueues(s21_src, std_src));
 }
 
 TEST(QueueModifiers, SwapSourceEmptyCompareStr) {
@@ -217,29 +219,29 @@ TEST(QueueModifiers, SwapSourceEmptyCompareStr) {
   std::queue<std::string> std_src;
   s21_dest.swap(s21_src);
   s21_dest.swap(s21_src);
-  EXPECT_TRUE(equalQueues(s21_dest, std_dest));
-  EXPECT_TRUE(equalQueues(s21_src, std_src));
+  EXPECT_TRUE(EqualQueues(s21_dest, std_dest));
+  EXPECT_TRUE(EqualQueues(s21_src, std_src));
 }
 
 TEST(QueueModifiers, SwapBothEmptyCorrectInt) {
   s21::queue<int> dest;
   s21::queue<int> src;
   dest.swap(src);
-  EXPECT_TRUE(equalQueues(dest, src));
+  EXPECT_TRUE(EqualQueues(dest, src));
 }
 
 TEST(QueueModifiers, SwapBothEmptyCorrectChar) {
   s21::queue<char> dest;
   s21::queue<char> src;
   dest.swap(src);
-  EXPECT_TRUE(equalQueues(dest, src));
+  EXPECT_TRUE(EqualQueues(dest, src));
 }
 
 TEST(QueueModifiers, SwapBothEmptyCorrectStr) {
   s21::queue<std::string> dest;
   s21::queue<std::string> src;
   dest.swap(src);
-  EXPECT_TRUE(equalQueues(dest, src));
+  EXPECT_TRUE(EqualQueues(dest, src));
 }
 
 TEST(QueueModifiers, SwapBothEmptyCompareInt) {
@@ -249,8 +251,8 @@ TEST(QueueModifiers, SwapBothEmptyCompareInt) {
   std::queue<int> std_src;
   s21_dest.swap(s21_src);
   std_dest.swap(std_src);
-  EXPECT_TRUE(equalQueues(s21_dest, std_dest));
-  EXPECT_TRUE(equalQueues(s21_src, std_src));
+  EXPECT_TRUE(EqualQueues(s21_dest, std_dest));
+  EXPECT_TRUE(EqualQueues(s21_src, std_src));
 }
 
 TEST(QueueModifiers, SwapBothEmptyCompareChar) {
@@ -260,8 +262,8 @@ TEST(QueueModifiers, SwapBothEmptyCompareChar) {
   std::queue<char> std_src;
   s21_dest.swap(s21_src);
   std_dest.swap(std_src);
-  EXPECT_TRUE(equalQueues(s21_dest, std_dest));
-  EXPECT_TRUE(equalQueues(s21_src, std_src));
+  EXPECT_TRUE(EqualQueues(s21_dest, std_dest));
+  EXPECT_TRUE(EqualQueues(s21_src, std_src));
 }
 
 TEST(QueueModifiers, SwapBothEmptyCompareStr) {
@@ -271,6 +273,6 @@ TEST(QueueModifiers, SwapBothEmptyCompareStr) {
   std::queue<std::string> std_src;
   s21_dest.swap(s21_src);
   std_dest.swap(std_src);
-  EXPECT_TRUE(equalQueues(s21_dest, std_dest));
-  EXPECT_TRUE(equalQueues(s21_src, std_src));
+  EXPECT_TRUE(EqualQueues(s21_dest, std_dest));
+  EXPECT_TRUE(EqualQueues(s21_src, std_src));
 }

@@ -4,21 +4,21 @@ TEST(ListModifiersReverse, IntCorrect) {
   s21::list<int> test = {1, 2, 3, 4, 5};
   s21::list<int> compare = {5, 4, 3, 2, 1};
   test.reverse();
-  EXPECT_TRUE(equalLists(test, compare));
+  EXPECT_TRUE(EqualLists(test, compare));
 }
 
 TEST(ListModifiersReverse, CharCorrect) {
   s21::list<char> test = {'a', 'b', 'c', 'd', 'e'};
   s21::list<char> compare = {'e', 'd', 'c', 'b', 'a'};
   test.reverse();
-  EXPECT_TRUE(equalLists(test, compare));
+  EXPECT_TRUE(EqualLists(test, compare));
 }
 
 TEST(ListModifiersReverse, StrCorrect) {
   s21::list<std::string> test = {"aboba", "sus", "sugoma", "ligma", "yeet"};
   s21::list<std::string> compare = {"yeet", "ligma", "sugoma", "sus", "aboba"};
   test.reverse();
-  EXPECT_TRUE(equalLists(test, compare));
+  EXPECT_TRUE(EqualLists(test, compare));
 }
 
 TEST(ListModifiersReverse, IntCompare) {
@@ -26,7 +26,7 @@ TEST(ListModifiersReverse, IntCompare) {
   std::list<int> std_test = {1, 2, 3, 4, 5};
   s21_test.reverse();
   std_test.reverse();
-  EXPECT_TRUE(equalLists(s21_test, std_test));
+  EXPECT_TRUE(EqualLists(s21_test, std_test));
 }
 
 TEST(ListModifiersReverse, CharCompare) {
@@ -34,7 +34,7 @@ TEST(ListModifiersReverse, CharCompare) {
   std::list<char> std_test = {'a', 'b', 'c', 'd', 'e'};
   s21_test.reverse();
   std_test.reverse();
-  EXPECT_TRUE(equalLists(s21_test, std_test));
+  EXPECT_TRUE(EqualLists(s21_test, std_test));
 }
 
 TEST(ListModifiersReverse, StrCompare) {
@@ -42,28 +42,28 @@ TEST(ListModifiersReverse, StrCompare) {
   std::list<std::string> std_test = {"aboba", "sus", "sugoma", "ligma", "yeet"};
   s21_test.reverse();
   std_test.reverse();
-  EXPECT_TRUE(equalLists(s21_test, std_test));
+  EXPECT_TRUE(EqualLists(s21_test, std_test));
 }
 
 TEST(ListModifiersReverse, IntOneCorrect) {
   s21::list<int> test = {1};
   s21::list<int> compare = {1};
   test.reverse();
-  EXPECT_TRUE(equalLists(test, compare));
+  EXPECT_TRUE(EqualLists(test, compare));
 }
 
 TEST(ListModifiersReverse, CharOneCorrect) {
   s21::list<char> test = {'a'};
   s21::list<char> compare = {'a'};
   test.reverse();
-  EXPECT_TRUE(equalLists(test, compare));
+  EXPECT_TRUE(EqualLists(test, compare));
 }
 
 TEST(ListModifiersReverse, StrOneCorrect) {
   s21::list<std::string> test = {"aboba"};
   s21::list<std::string> compare = {"aboba"};
   test.reverse();
-  EXPECT_TRUE(equalLists(test, compare));
+  EXPECT_TRUE(EqualLists(test, compare));
 }
 
 TEST(ListModifiersReverse, IntOneCompare) {
@@ -71,7 +71,7 @@ TEST(ListModifiersReverse, IntOneCompare) {
   std::list<int> std_test = {1};
   s21_test.reverse();
   std_test.reverse();
-  EXPECT_TRUE(equalLists(s21_test, std_test));
+  EXPECT_TRUE(EqualLists(s21_test, std_test));
 }
 
 TEST(ListModifiersReverse, CharOneCompare) {
@@ -79,7 +79,7 @@ TEST(ListModifiersReverse, CharOneCompare) {
   std::list<char> std_test = {'a'};
   s21_test.reverse();
   std_test.reverse();
-  EXPECT_TRUE(equalLists(s21_test, std_test));
+  EXPECT_TRUE(EqualLists(s21_test, std_test));
 }
 
 TEST(ListModifiersReverse, StrOneCompare) {
@@ -87,28 +87,28 @@ TEST(ListModifiersReverse, StrOneCompare) {
   std::list<std::string> std_test = {"aboba"};
   s21_test.reverse();
   std_test.reverse();
-  EXPECT_TRUE(equalLists(s21_test, std_test));
+  EXPECT_TRUE(EqualLists(s21_test, std_test));
 }
 
 TEST(ListModifiersReverse, IntTwoCorrect) {
   s21::list<int> test = {1, 2};
   s21::list<int> compare = {2, 1};
   test.reverse();
-  EXPECT_TRUE(equalLists(test, compare));
+  EXPECT_TRUE(EqualLists(test, compare));
 }
 
 TEST(ListModifiersReverse, CharTwoCorrect) {
   s21::list<char> test = {'a', 'z'};
   s21::list<char> compare = {'z', 'a'};
   test.reverse();
-  EXPECT_TRUE(equalLists(test, compare));
+  EXPECT_TRUE(EqualLists(test, compare));
 }
 
 TEST(ListModifiersReverse, StrTwoCorrect) {
   s21::list<std::string> test = {"among", "us"};
   s21::list<std::string> compare = {"us", "among"};
   test.reverse();
-  EXPECT_TRUE(equalLists(test, compare));
+  EXPECT_TRUE(EqualLists(test, compare));
 }
 
 TEST(ListModifiersReverse, IntTwoCompare) {
@@ -116,7 +116,7 @@ TEST(ListModifiersReverse, IntTwoCompare) {
   std::list<int> std_test = {1, 2};
   s21_test.reverse();
   std_test.reverse();
-  EXPECT_TRUE(equalLists(s21_test, std_test));
+  EXPECT_TRUE(EqualLists(s21_test, std_test));
 }
 
 TEST(ListModifiersReverse, CharTwoCompare) {
@@ -124,7 +124,7 @@ TEST(ListModifiersReverse, CharTwoCompare) {
   std::list<char> std_test = {'a', 'b'};
   s21_test.reverse();
   std_test.reverse();
-  EXPECT_TRUE(equalLists(s21_test, std_test));
+  EXPECT_TRUE(EqualLists(s21_test, std_test));
 }
 
 TEST(ListModifiersReverse, StrTwoCompare) {
@@ -132,5 +132,5 @@ TEST(ListModifiersReverse, StrTwoCompare) {
   std::list<std::string> std_test = {"among", "us"};
   s21_test.reverse();
   std_test.reverse();
-  EXPECT_TRUE(equalLists(s21_test, std_test));
+  EXPECT_TRUE(EqualLists(s21_test, std_test));
 }
